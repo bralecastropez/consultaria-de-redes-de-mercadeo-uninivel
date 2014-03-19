@@ -19,17 +19,6 @@ public abstract class AbstractAppRol{
 	public void setConnected(boolean estadoSesion){
 		this.estadoSesion=estadoSesion;
 	}
-	
-
-	public void buscarPelicula(){
-		
-	}
-	public void obtenerPeliculas(){
-
-	}
-	public void obtenerSalas(){
-		
-	}
 	public void iniciar(){
 		do{
 			System.out.print(">>");
