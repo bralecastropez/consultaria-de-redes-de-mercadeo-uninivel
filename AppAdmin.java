@@ -33,7 +33,7 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 	
 				ManejadorUsuario.getInstancia().agregarUsuario(usuario);
 
-				System.out.println("	Usuario agregado satisfactoriamente. :)");
+				System.out.println("	Usuario agregado satisfactoriamente.");
 				
 				break;
 			case "remove user":
@@ -42,7 +42,7 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 					ManejadorUsuario.getInstancia().eliminarUsuario(usuarioAEliminar);
 					System.out.println("	Usuario "+parametros.get("nick")+" eliminado satisfactoriamente.");
 				}else{
-					System.out.println("	El usuario no existe. Compruebe su sintaxis.");
+					System.out.println("El usuario no existe.");
 				}
 				break;
 			case "list user":
