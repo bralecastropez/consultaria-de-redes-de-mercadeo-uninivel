@@ -32,7 +32,7 @@ public abstract class AbstractAppRol{
 	}
 	public void iniciar(){
 		do{
-			System.out.print("comandos>>");
+			System.out.print(">>");
 			String comando=Entrada.getInstancia().leer();
 			if(this.decodificador!=null){
 				this.decodificador.decodificarComando(comando);
