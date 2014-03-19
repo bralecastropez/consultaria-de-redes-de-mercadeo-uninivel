@@ -13,7 +13,7 @@ public class Principal{
 			String nick, password;
 			System.out.println("Ingrese Nombre de Usuario: ");
 			nick=Entrada.getInstancia().leer();
-			System.out.println("Ingrese Contraseña: ");
+			System.out.println("Ingrese Contrase a: ");
 			password=Entrada.getInstancia().leer();
 		
 			boolean resultado = ManejadorUsuario.getInstancia().autenticarUsuario(nick, password);
