@@ -1,13 +1,37 @@
-package org.brandon.sistema;
+package org.Brandon.sistema;
 
-import org.brandon.utilidades.Entrada;
+import org.Brandon.utilidades.Entrada;
+import org.Brandon.utilidades.Decodificador;
+import org.Brandon.manejadores.ManejadorUsuario;
+import org.Brandon.app.AppAdmin;
+import org.Brandon.app.AbstractAppRol;
 
 public class Principal{
 	public void iniciar(){
-		String nombreusuario, password;
-		System.out.println("Ingrese Nombre de Usuario: ");
-		nombreusuario=Entrada.getInstancia().leer();
-		System.out.println("Ingrese su ContraseÃ±a: ");
-		password=Entrada.getInstancia().leer();
+		do{
+			AbstractAppRol app = null;		
+
+
+			String nick, password;
+			System.out.println("Ingrese Nombre de Usuario: ");
+			nick=Entrada.getInstancia().leer();
+			System.out.println("Ingrese Contraseña: ");
+			password=Entrada.getInstancia().leer();
+		
+			boolean resultado = ManejadorUsuario.getInstancia().autenticarUsuario(nick, password);
+
+			if(resultado){
+				System.out.println("Bienvenido "+ManejadorUsuario.getInstancia().obtenerUsuarioAutenticado().getNombre());
+				switch(ManejadorUsuario.getInstancia().obtenerUsuarioAutenticado().getRol()){
+					case "admin":
+						app=new AppAdmin(new Decodificador());
+						app.iniciar();
+						break;
+					default:
+						System.out.println("Nuestro sistema esta en mantenimiento, su rol no existe. :(");
+				}
+			}else
+				System.out.println("Verifique sus credenciales.");
+		}while(true);
 	}
 }
