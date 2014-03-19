@@ -10,8 +10,6 @@ public class Principal{
 	public void iniciar(){
 		do{
 			AbstractAppRol app = null;		
-
-
 			String nick, password;
 			System.out.println("Ingrese Nombre de Usuario: ");
 			nick=Entrada.getInstancia().leer();
@@ -28,10 +26,10 @@ public class Principal{
 						app.iniciar();
 						break;
 					default:
-						System.out.println("Nuestro sistema esta en mantenimiento, su rol no existe. :(");
+						System.out.println("Usuario no encontrado");
 				}
 			}else
-				System.out.println("Verifique sus credenciales.");
+				System.out.println("Verifique sus datos.");
 		}while(true);
 	}
 }

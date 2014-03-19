@@ -13,15 +13,6 @@ public class ManejadorUsuario{
 		this.listaUsuario=new ArrayList<Usuario>();
 
 		this.listaUsuario.add(new Usuario("Brandon", "brandon", "bcastro", "admin", 15)); //Primera forma de agregar
-		/*Usuario usuario1=new Usuario(); //Segunda forma de agregar
-		usuario1.setNombre("");
-		usuario1.setNick("");
-		usuario1.setPassword("");
-		usuario1.setRol("");
-		usuario1.setEdad();
-		this.listaUsuario.add(usuario1);
-		Usuario usuario2=new Usuario("", "", "", "", ); //Tercera forma de agregar
-		this.listaUsuario.add(usuario2);*/
 	}
 	
 	public void agregarUsuario(Usuario usuario){
