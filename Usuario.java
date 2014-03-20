@@ -1,4 +1,4 @@
-package org.Brandon.beans;
+package org.brandon.beans;
 public class Usuario{
 	private String nombre;
 	private String nick;

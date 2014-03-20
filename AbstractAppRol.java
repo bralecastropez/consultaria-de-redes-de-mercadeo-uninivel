@@ -1,7 +1,7 @@
-package org.Brandon.app;
+package org.brandon.app;
 
-import org.Brandon.utilidades.Entrada;
-import org.Brandon.utilidades.Decodificador;
+import org.brandon.utilidades.Entrada;
+import org.brandon.utilidades.Decodificador;
 
 public abstract class AbstractAppRol{
 	private Decodificador decodificador;

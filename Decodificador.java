@@ -1,6 +1,6 @@
-package org.Brandon.utilidades;
+package org.brandon.utilidades;
 
-import org.Brandon.utilidades.eventos.DecodeListener;
+import org.brandon.utilidades.eventos.DecodeListener;
 
 import java.util.HashMap;
 
@@ -18,6 +18,8 @@ public class Decodificador{
 
 		if(comandos.length>1){
 			accion = comandos[0]+" "+comandos[1];
+		}else{
+			accion = comandos[0];
 		}		
 		for(int posicion=2;posicion<comandos.length;posicion++){
 			String claveValor[] = comandos[posicion].split("=");

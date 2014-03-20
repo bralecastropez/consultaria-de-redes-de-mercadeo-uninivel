@@ -1,8 +1,8 @@
-package org.Brandon.manejadores;
+package org.brandon.manejadores;
 
 import java.util.ArrayList;
 
-import org.Brandon.beans.Usuario;
+import org.brandon.beans.Usuario;
 
 public class ManejadorUsuario{
 	private ArrayList<Usuario> listaUsuario;

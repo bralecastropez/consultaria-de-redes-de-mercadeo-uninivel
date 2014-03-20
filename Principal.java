@@ -1,10 +1,10 @@
-package org.Brandon.sistema;
+package org.brandon.sistema;
 
-import org.Brandon.utilidades.Entrada;
-import org.Brandon.utilidades.Decodificador;
-import org.Brandon.manejadores.ManejadorUsuario;
-import org.Brandon.app.AppAdmin;
-import org.Brandon.app.AbstractAppRol;
+import org.brandon.utilidades.Entrada;
+import org.brandon.utilidades.Decodificador;
+import org.brandon.manejadores.ManejadorUsuario;
+import org.brandon.app.AppAdmin;
+import org.brandon.app.AbstractAppRol;
 
 public class Principal{
 	public void iniciar(){
