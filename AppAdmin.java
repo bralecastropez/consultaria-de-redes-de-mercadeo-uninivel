@@ -25,15 +25,13 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 
 				String nombre=parametros.get("nombre");
 				usuario.setNombre(nombre);
-
 				usuario.setNick(parametros.get("nick"));
 				usuario.setPassword(parametros.get("password"));
-				usuario.setRol(parametros.get("rol"));
 				usuario.setEdad(Integer.parseInt(parametros.get("edad")));
 	
 				ManejadorUsuario.getInstancia().agregarUsuario(usuario);
 
-				System.out.println("	Usuario agregado satisfactoriamente.");
+				System.out.println("Administrador agregado satisfactoriamente.");
 				
 				break;
 			case "remove user":
@@ -52,7 +50,6 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 					System.out.println("nick: "+user.getNick());
 					System.out.println("rol: "+user.getRol());
 					System.out.println("edad: "+user.getEdad());
-					System.out.println("-");
 				}
 				System.out.println("");
 				System.out.println("------------------------------");
@@ -72,13 +69,17 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 				break;
 			case "list products":
 				break;
-			case "show products":
+			case "show product":
 				break;
 			case "show downline":
+				break;
+			case "list downlines":
 				break;
 			case "show me":
 				break;
 			case "show history":
+				break;
+			case "search downline":
 				break;
 			default:
 				System.out.println("Compruebe su sintaxis");

@@ -12,7 +12,7 @@ public class ManejadorUsuario{
 	private ManejadorUsuario(){
 		this.listaUsuario=new ArrayList<Usuario>();
 
-		this.listaUsuario.add(new Usuario("Brandon", "brandon", "bcastro", "admin", 15));
+		this.listaUsuario.add(new Usuario("Brandon Castro", "brandon", "bcastro", "admin", 15));
 	}
 	
 	public void agregarUsuario(Usuario usuario){

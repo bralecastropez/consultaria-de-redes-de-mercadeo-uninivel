@@ -1,7 +1,6 @@
 package org.brandon.beans;
 public class Producto{
 	private String nombre;
-	private String idProducto;
 	private String categoria;
 	private int precio;
 	
@@ -10,12 +9,6 @@ public class Producto{
 	}
 	public void setNombre(String nombre){
 		this.nombre=nombre;
-	}
-	public String getIdProducto(){
-	return this.idProducto;
-	}
-	public void setIdProducto(String idProducto){
-		this.idProducto=idProducto;
 	}
 	public String getCategoria(){
 		return this.categoria;
@@ -30,10 +23,9 @@ public class Producto{
 	this.precio=precio;
 	}
 	public Producto(){
-			}
-	public Producto(String nombre, String idProducto, String categoria, int precio){
+	}
+	public Producto(String nombre, String categoria, int precio){
 		this.setNombre(nombre);
-		this.setIdProducto(idProducto);
 		this.setCategoria(categoria);
 		this.setPrecio(precio);
 	}
