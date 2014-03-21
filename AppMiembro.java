@@ -26,12 +26,6 @@ public class AppMiembro extends AbstractAppRol implements DecodeListener{
 			case "logout":
 				super.setConnected(false);
 				break;
-			case "add product":
-				break;
-			case "remove product":
-				break;
-			case "edit product":
-				break;
 			case "show sales":
 				break;
 			case "list products":
@@ -51,16 +45,41 @@ public class AppMiembro extends AbstractAppRol implements DecodeListener{
 			case "list downlines":
 				break;
 			case "show me":
+				Usuario user = ManejadorUsuario.getInstancia().obtenerUsuarioAutenticado();
+				System.out.println("");
+				System.out.println("nombre: "+user.getNombre());
+				System.out.println("nick: "+user.getNick());
+				System.out.println("edad: "+user.getEdad());
+				System.out.println("");
 				break;
 			case "show history":
 				break;
 			case "search downline":
 				break;
-			case "buy producto":
+			case "buy product":
 				break;
 			case "add downline":
 				break;
 			case "edit me":
+				if(parametros.size()>=1){
+					Usuario usuarioAmodificar = ManejadorUsuario.getInstancia().obtenerUsuarioAutenticado();
+					if(parametros.get("nombre")!=null){
+						usuarioAmodificar.setNombre(parametros.get("nombre"));
+					}
+					if(parametros.get("nick")!=null){
+						usuarioAmodificar.setNick(parametros.get("nick"));
+					}
+					if(parametros.get("password")!=null){
+						usuarioAmodificar.setPassword(parametros.get("password"));
+					}
+					if(parametros.get("rol")!=null){
+						usuarioAmodificar.setRol(parametros.get("rol"));
+					}
+					if(parametros.get("edad")!=null){
+						usuarioAmodificar.setEdad(Integer.parseInt(parametros.get("edad")));
+					}
+					System.out.println("Administrador Modificado");
+				}
 				break;
 			default:
 				System.out.println("Compruebe su sintaxis");

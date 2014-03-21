@@ -22,7 +22,26 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 	}
 	public void avisarAccionar(String accion, HashMap<String, String> parametros){
 		switch(accion.trim()){
-		case "edit me":
+			case "edit me":
+				if(parametros.size()>=1){
+					Usuario usuarioAmodificar = ManejadorUsuario.getInstancia().obtenerUsuarioAutenticado();
+					if(parametros.get("nombre")!=null){
+						usuarioAmodificar.setNombre(parametros.get("nombre"));
+					}
+					if(parametros.get("nick")!=null){
+						usuarioAmodificar.setNick(parametros.get("nick"));
+					}
+					if(parametros.get("password")!=null){
+						usuarioAmodificar.setPassword(parametros.get("password"));
+					}
+					if(parametros.get("rol")!=null){
+						usuarioAmodificar.setRol(parametros.get("rol"));
+					}
+					if(parametros.get("edad")!=null){
+						usuarioAmodificar.setEdad(Integer.parseInt(parametros.get("edad")));
+					}
+					System.out.println("Administrador Modificado");
+				}
 				break;
 			case "add user":
 				Usuario usuario = new Usuario();
@@ -89,7 +108,7 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 			case "show sales":
 				break;
 			case "list products":
-			for(Producto product : ManejadorProducto.getInstancia().obtenerListaProducto()){
+				for(Producto product : ManejadorProducto.getInstancia().obtenerListaProducto()){
 					System.out.println("");
 					System.out.println("nombre: "+product.getNombre());
 				}

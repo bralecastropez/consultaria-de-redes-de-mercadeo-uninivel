@@ -27,6 +27,10 @@ public class Principal{
 						app=new AppAdmin(new Decodificador());
 						app.iniciar();
 						break;
+					case "miembro":
+						app=new AppMiembro(new Decodificador());
+						app.iniciar();
+						break;
 					default:
 						System.out.println("Usuario no encontrado");
 				}
