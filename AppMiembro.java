@@ -81,6 +81,43 @@ public class AppMiembro extends AbstractAppRol implements DecodeListener{
 					System.out.println("Administrador Modificado");
 				}
 				break;
+			case "help":
+				System.out.println("Comandos que puede usar el Miembro");
+				System.out.println("");
+				System.out.println("list products - Muestra un listado de los productos");
+				System.out.println("SINTAXIS: list products");
+				System.out.println("");
+				System.out.println("show product - Muestra informacion detallada de un producto. ");
+				System.out.println("SINTAXIS: show product[nombre del producto]");
+				System.out.println("");
+				System.out.println("list downlines - Muestra una lista de tus downlines o del downline especificado");
+				System.out.println("SINTAXIS: list downlines [idDownline]");
+				System.out.println("");
+				System.out.println("show downline - Muestra información detallada del downline especificado, si se agrega [money] mostrara solo la informacion de volumen monetario");
+				System.out.println("SINTAXIS: show downline [idDownline] [Money]");
+				System.out.println("");
+				System.out.println("show history - Muestra el historial de downlines agregados, si se agrega buy mostrará el historial de compras de mi perfil, si se agrega downline y el id del  downline se mostrará o bien el historial de downlines agregados o de compras dependiendo de la combinación. (si se le agrega buy o no)");
+				System.out.println("SINTAXIS: show history [buy] [downline] [idDownline] ");
+				System.out.println("");
+				System.out.println("show me - Muestra la información de mi perfil, si se coloca money mostrara solo la información de volumen monetario");
+				System.out.println("SINTAXIS: show me [money]");
+				System.out.println("logout - Este comando sirve para cerrar sesion");
+				System.out.println("SINTAXIS: logout ");
+				System.out.println("");
+				System.out.println("edit me - Este comando modifica datos del usuario");
+				System.out.println("SINTAXIS: edit me [Parametro]=[Nuevo Valor]");
+				System.out.println("");
+				System.out.println("add downline - Agregar un downline a tu perfil, o a downline espesificado");
+				System.out.println("SINTAXIS: add downline [Datos] [down] [idDownline] [Producto]");
+				System.out.println("");
+				System.out.println("search downline - Muestra la información detallada del downline si coincide con la búsqueda");
+				System.out.println("SINTAXIS: search downline [Datos]");
+				System.out.println("");
+				System.out.println("buy product - Comprar un producto del Stock");
+				System.out.println("SINTAXIS: buy product [Nombre del Producto] [Numero de Tarjeta]");
+				System.out.println("");
+				
+				break;
 			default:
 				System.out.println("Compruebe su sintaxis");
 		}

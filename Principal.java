@@ -12,7 +12,7 @@ public class Principal{
 			AbstractAppRol app = null;		
 			String nick, password;
 			System.out.println("");
-			System.out.println("Ingrese Nombre de Usuario: ");
+			System.out.println("Ingrese Nombre de Usuario(nick): ");
 			nick=Entrada.getInstancia().leer();
 			System.out.println("Ingrese Contrase a: ");
 			password=Entrada.getInstancia().leer();
