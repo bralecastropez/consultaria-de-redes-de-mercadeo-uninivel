@@ -3,7 +3,9 @@ package org.brandon.sistema;
 import org.brandon.utilidades.eventos.DecodeListener;
 import org.brandon.utilidades.Decodificador;
 import org.brandon.manejadores.ManejadorUsuario;
+import org.brandon.manejadores.ManejadorProducto;
 import org.brandon.beans.Usuario;
+import org.brandon.beans.Producto;
 import org.brandon.app.AbstractAppRol;
 
 import java.util.HashMap;
@@ -33,6 +35,14 @@ public class AppMiembro extends AbstractAppRol implements DecodeListener{
 			case "show sales":
 				break;
 			case "list products":
+			for(Producto producto : ManejadorProducto.getInstancia().obtenerListaProducto()){
+					System.out.println("");
+					System.out.println("nombre: "+producto.getNombre());
+				}
+				System.out.println("");
+				System.out.println("------------------------------");
+				System.out.println("Fin de la lista");
+				System.out.println("");
 				break;
 			case "show product":
 				break;

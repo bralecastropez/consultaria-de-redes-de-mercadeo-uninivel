@@ -11,6 +11,7 @@ public class Principal{
 		do{
 			AbstractAppRol app = null;		
 			String nick, password;
+			System.out.println("");
 			System.out.println("Ingrese Nombre de Usuario: ");
 			nick=Entrada.getInstancia().leer();
 			System.out.println("Ingrese Contrase a: ");
@@ -19,6 +20,7 @@ public class Principal{
 			boolean resultado = ManejadorUsuario.getInstancia().autenticarUsuario(nick, password);
 
 			if(resultado){
+				System.out.println("");
 				System.out.println("Bienvenido "+ManejadorUsuario.getInstancia().obtenerUsuarioAutenticado().getNombre());
 				switch(ManejadorUsuario.getInstancia().obtenerUsuarioAutenticado().getRol()){
 					case "admin":
@@ -29,7 +31,9 @@ public class Principal{
 						System.out.println("Usuario no encontrado");
 				}
 			}else
+				System.out.println("");
 				System.out.println("Verifique sus datos.");
+				System.out.println("");
 		}while(true);
 	}
 }

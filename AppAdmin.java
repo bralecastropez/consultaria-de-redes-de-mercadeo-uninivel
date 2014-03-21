@@ -3,7 +3,9 @@ package org.brandon.app;
 import org.brandon.utilidades.eventos.DecodeListener;
 import org.brandon.utilidades.Decodificador;
 import org.brandon.manejadores.ManejadorUsuario;
+import org.brandon.manejadores.ManejadorProducto;
 import org.brandon.beans.Usuario;
+import org.brandon.beans.Producto;
 
 import java.util.HashMap;
 
@@ -45,11 +47,12 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 				break;
 			case "list user":
 				for(Usuario user : ManejadorUsuario.getInstancia().obtenerListaUsuario()){
-					System.out.println("");
+					System.out.println("+++++++++++++++++++++++++");
 					System.out.println("nombre: "+user.getNombre());
 					System.out.println("nick: "+user.getNick());
 					System.out.println("rol: "+user.getRol());
 					System.out.println("edad: "+user.getEdad());
+					System.out.println("");
 				}
 				System.out.println("");
 				System.out.println("------------------------------");
@@ -60,14 +63,39 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 				super.setConnected(false);
 				break;
 			case "add product":
+				Producto producto = new Producto();
+				
+				producto.setNombre(parametros.get("nombre"));
+				producto.setCategoria(parametros.get("categoria"));
+				producto.setPrecio(Integer.parseInt(parametros.get("precio")));
+	
+				ManejadorProducto.getInstancia().agregarProducto(producto);
+
+				System.out.println("Producto agregado satisfactoriamente.");
 				break;
 			case "remove product":
+				Producto productoAEliminar = ManejadorProducto.getInstancia().buscarProducto(parametros.get("nombre"));
+				if(productoAEliminar!=null){
+					ManejadorProducto.getInstancia().eliminarProducto(productoAEliminar);
+					System.out.println("	Producto "+parametros.get("nombre")+" eliminado satisfactoriamente.");
+				}else{
+					System.out.println("El producto no existe.");
+				}
 				break;
 			case "edit product":
 				break;
 			case "show sales":
 				break;
 			case "list products":
+				/*for(Producto producto : ManejadorProducto.getInstancia().obtenerListaProducto()){
+					System.out.println("+++++++++++++++++++++++++++++");
+					System.out.println("nombre: "+producto.getNombre());
+					System.out.println("");
+				}
+				System.out.println("");
+				System.out.println("------------------------------");
+				System.out.println("Fin de la lista");
+				System.out.println("");*/
 				break;
 			case "show product":
 				break;
