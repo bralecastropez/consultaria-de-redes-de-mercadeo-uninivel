@@ -24,21 +24,21 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 		switch(accion.trim()){
 			case "edit me":
 				if(parametros.size()>=1){
-					Usuario usuarioAmodificar = ManejadorUsuario.getInstancia().obtenerUsuarioAutenticado();
+					Usuario usuarioAEditar = ManejadorUsuario.getInstancia().obtenerUsuarioAutenticado();
 					if(parametros.get("nombre")!=null){
-						usuarioAmodificar.setNombre(parametros.get("nombre"));
+						usuarioAEditar.setNombre(parametros.get("nombre"));
 					}
 					if(parametros.get("nick")!=null){
-						usuarioAmodificar.setNick(parametros.get("nick"));
+						usuarioAEditar.setNick(parametros.get("nick"));
 					}
 					if(parametros.get("password")!=null){
-						usuarioAmodificar.setPassword(parametros.get("password"));
+						usuarioAEditar.setPassword(parametros.get("password"));
 					}
 					if(parametros.get("rol")!=null){
-						usuarioAmodificar.setRol(parametros.get("rol"));
+						usuarioAEditar.setRol(parametros.get("rol"));
 					}
 					if(parametros.get("edad")!=null){
-						usuarioAmodificar.setEdad(Integer.parseInt(parametros.get("edad")));
+						usuarioAEditar.setEdad(Integer.parseInt(parametros.get("edad")));
 					}
 					System.out.println("Administrador Modificado");
 				}
@@ -134,6 +134,58 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 			case "show history":
 				break;
 			case "search downline":
+				break;
+			case "help":
+				System.out.println("Comandos que puede usar el Administrador");
+				System.out.println("");
+				System.out.println("edit me - Este comando modifica datos del usuario");
+				System.out.println("SINTAXIS: edit me [Parametro]=[Nuevo Valor]");
+				System.out.println("");
+				System.out.println("add user - Este comando agrega un nuevo administrador");
+				System.out.println("SINTAXIS: add user [nombre]=[nuevo valor] []=[] []=[]");
+				System.out.println("");
+				System.out.println("remove user - Este comando elimina un usuario por medio de su nik");
+				System.out.println("SINTAXIS: remove user [nick]=[nick del usuario a eliminar]");
+				System.out.println("");
+				System.out.println("list user - muestra un listado de todos los administradores");
+				System.out.println("SINTAXIS: list user");
+				System.out.println("");
+				System.out.println("logout - Este comando sirve para cerrar sesion");
+				System.out.println("SINTAXIS: logout ");
+				System.out.println("");
+				System.out.println("search downline - ");
+				System.out.println("SINTAXIS:");
+				System.out.println("");
+				System.out.println("add product - Este comando agrega un producto a la base de datos");
+				System.out.println("SINTAXIS: add producto [nombre]=[nombre del producto] [categoria]=[categoria del producto] [precio]=[precio del producto]");
+				System.out.println("");
+				System.out.println("show history - ");
+				System.out.println("SINTAXIS:");
+				System.out.println("");
+				System.out.println("show me - Muestra la informacion del administrador auntentificado");
+				System.out.println("SINTAXIS: show me");
+				System.out.println("");
+				System.out.println("remove product - Elimina un producto de la base de datos");
+				System.out.println("SINTAXIS: remove producto [nombre]=[nombre del producto a elimibnar]");
+				System.out.println("");
+				System.out.println("edit product - ");
+				System.out.println("SINTAXIS:");
+				System.out.println("");
+				System.out.println("show sales - ");
+				System.out.println("SINTAXIS:");
+				System.out.println("");
+				System.out.println("list products - Muestra un listado de los productos");
+				System.out.println("SINTAXIS: list products");
+				System.out.println("");
+				System.out.println("show product - ");
+				System.out.println("SINTAXIS:");
+				System.out.println("");
+				System.out.println("list downlines - ");
+				System.out.println("SINTAXIS:");
+				System.out.println("");
+				System.out.println("show downline - ");
+				System.out.println("SINTAXIS:");
+				System.out.println("");
 				break;
 			default:
 				System.out.println("Compruebe su sintaxis");
