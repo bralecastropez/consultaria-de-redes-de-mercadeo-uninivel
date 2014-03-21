@@ -76,6 +76,12 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 			case "list downlines":
 				break;
 			case "show me":
+				Usuario user = ManejadorUsuario.getInstancia().obtenerUsuarioAutenticado();
+				System.out.println("");
+				System.out.println("nombre: "+user.getNombre());
+				System.out.println("nick: "+user.getNick());
+				System.out.println("edad: "+user.getEdad());
+				System.out.println("");
 				break;
 			case "show history":
 				break;
