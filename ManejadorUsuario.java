@@ -22,6 +22,9 @@ public class ManejadorUsuario{
 	public void eliminarUsuario(Usuario usuario){
 		this.listaUsuario.remove(usuario);
 	}
+	/*public void editarUsuario(Usuario usuario){
+		this.listaUsuario.edit(usuario);
+	}*/
 	public ArrayList<Usuario> obtenerListaUsuario(){
 		return this.listaUsuario;
 	}

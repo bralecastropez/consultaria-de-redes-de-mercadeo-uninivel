@@ -22,6 +22,8 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 	}
 	public void avisarAccionar(String accion, HashMap<String, String> parametros){
 		switch(accion.trim()){
+		case "edit me":
+				break;
 			case "add user":
 				Usuario usuario = new Usuario();
 
@@ -87,15 +89,14 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 			case "show sales":
 				break;
 			case "list products":
-				/*for(Producto producto : ManejadorProducto.getInstancia().obtenerListaProducto()){
-					System.out.println("+++++++++++++++++++++++++++++");
-					System.out.println("nombre: "+producto.getNombre());
+			for(Producto product : ManejadorProducto.getInstancia().obtenerListaProducto()){
 					System.out.println("");
+					System.out.println("nombre: "+product.getNombre());
 				}
 				System.out.println("");
 				System.out.println("------------------------------");
 				System.out.println("Fin de la lista");
-				System.out.println("");*/
+				System.out.println("");
 				break;
 			case "show product":
 				break;
