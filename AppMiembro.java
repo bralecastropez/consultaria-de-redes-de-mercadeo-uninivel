@@ -116,7 +116,9 @@ public class AppMiembro extends AbstractAppRol implements DecodeListener{
 				System.out.println("buy product - Comprar un producto del Stock");
 				System.out.println("SINTAXIS: buy product [Nombre del Producto] [Numero de Tarjeta]");
 				System.out.println("");
-				
+				break;
+			case "exit":
+				System.exit(0);
 				break;
 			default:
 				System.out.println("Compruebe su sintaxis");

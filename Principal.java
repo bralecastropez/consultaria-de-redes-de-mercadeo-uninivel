@@ -35,7 +35,6 @@ public class Principal{
 						System.out.println("Usuario no encontrado");
 				}
 			}else
-				System.out.println("");
 				System.out.println("Verifique sus datos.");
 				System.out.println("");
 		}while(true);

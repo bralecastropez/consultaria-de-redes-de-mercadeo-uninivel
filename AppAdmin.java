@@ -118,6 +118,16 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 				System.out.println("");
 				break;
 			case "show product":
+				Producto productoAMostrar = ManejadorProducto.getInstancia().buscarProducto(parametros.get("nombre"));
+				if(productoAMostrar!=null){
+					//if(){
+						System.out.println("Nombre: "+parametros.getNombre);
+						System.out.println("Precio: "+parametros.getPrecio);
+						System.out.println("Categoria: "+parametros.getCategoria);
+					//}
+				}else{
+					System.out.println("El producto no existe.");
+				}
 				break;
 			case "show downline":
 				break;
@@ -134,8 +144,6 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 			case "show history":
 				break;
 			case "search downline":
-				break;
-			case "exit":
 				break;
 			case "help":
 				System.out.println("Comandos que puede usar el Administrador");
@@ -164,6 +172,9 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 				System.out.println("search downline - Muestra la información detallada del downline si coincide con la búsqueda");
 				System.out.println("SINTAXIS: search downline [Datos]");
 				System.out.println("");
+				break;
+			case "exit":
+				System.exit(0);
 				break;
 			default:
 				System.out.println("Compruebe su sintaxis");
