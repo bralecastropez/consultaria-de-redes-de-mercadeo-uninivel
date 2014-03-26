@@ -101,7 +101,7 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 				Producto productoAEliminar = ManejadorProducto.getInstancia().buscarProducto(parametros.get("nombre"));
 				if(productoAEliminar!=null){
 					ManejadorProducto.getInstancia().eliminarProducto(productoAEliminar);
-					System.out.println("	Producto "+parametros.get("nombre")+" eliminado satisfactoriamente.");
+					System.out.println("	Producto eliminado satisfactoriamente.");
 				}else{
 					System.out.println("El producto no existe.");
 				}
@@ -122,12 +122,11 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 				break;
 			case "show product":
 				Producto productoAMostrar = ManejadorProducto.getInstancia().buscarProducto(parametros.get("nombre"));
-				if(productoAMostrar!=null){
-					/*if(){
-						System.out.println("Nombre: "+parametros.getNombre);
-						System.out.println("Precio: "+parametros.getPrecio);
-						System.out.println("Categoria: "+parametros.getCategoria);
-					}*/
+				Producto product = ManejadorProducto.getInstancia().obtenerListaProducto();
+				if(productoAMostrar.equals(product)){
+					System.out.println("Nombre: "+productoAMostrar.getNombre());
+					System.out.println("Precio: "+productoAMostrar.getPrecio());
+					System.out.println("Categoria: "+productoAMostrar.getCategoria());
 				}else{
 					System.out.println("El producto no existe.");
 				}

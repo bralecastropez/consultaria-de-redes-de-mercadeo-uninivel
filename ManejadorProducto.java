@@ -14,7 +14,7 @@ public class ManejadorProducto{
 
 		this.listaProducto.add(new Producto("Reloj avanzado", 		"Relojes", 				1000));
 		this.listaProducto.add(new Producto("Reloj medio", 			"Relojes", 				750));
-		this.listaProducto.add(new Producto("Reloj chafa", 			"Relojes", 				250));
+		this.listaProducto.add(new Producto("reloj", 				"Relojes", 				250));
 		this.listaProducto.add(new Producto("Samsung galaxi s3", 	"Smartphones",			6500));
 		this.listaProducto.add(new Producto("Samsung galaxi s4", 	"Smartphones", 			7000));
 		this.listaProducto.add(new Producto("Lg optimus l5", 		"Smartphones", 			3500));
@@ -24,7 +24,6 @@ public class ManejadorProducto{
 		this.listaProducto.add(new Producto("teclado laser", 		"Computacion", 			350));
 		
 	}
-	
 	public void agregarProducto(Producto producto){
 		this.listaProducto.add(producto);
 	}
