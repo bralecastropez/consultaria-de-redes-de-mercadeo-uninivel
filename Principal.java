@@ -4,6 +4,7 @@ import org.brandon.utilidades.Entrada;
 import org.brandon.utilidades.Decodificador;
 import org.brandon.manejadores.ManejadorUsuario;
 import org.brandon.app.AppAdmin;
+import org.brandon.app.AppMiembro;
 import org.brandon.app.AbstractAppRol;
 
 public class Principal{
@@ -34,10 +35,11 @@ public class Principal{
 					default:
 						System.out.println("Usuario no encontrado");
 				}
-			}else
+			}else{
 				System.out.println("");
-				System.out.println("Verifique sus datos.");
+				System.out.println("Nombre de usuario o contrase a incorrecta.");
 				System.out.println("");
+			}
 		}while(true);
 	}
 }

@@ -6,7 +6,7 @@ public class Miembro{
 	private String rol;
 	private int edad;
 	private int tarjeta;
-	private int pintarjeta;
+	private int pin;
 	
 	public String getNombre(){
 		return this.nombre;
@@ -44,22 +44,22 @@ public class Miembro{
 	public void setTarjeta(int tarjeta){
 		this.tarjeta=tarjeta;
 	}
-	public int getPinTarjeta(){
-		return this.pintarjeta;
+	public int getPin(){
+		return this.pin;
 	}
-	public void setPinTarjeta(int pintarjeta){
-		this.pintarjeta=pintarjeta;
+	public void setPin(int pin){
+		this.pin=pin;
 	}
 	public Miembro(){
 
 	}
-	public Miembro(String nombre, String nick, String password, String rol, int edad,int tarjeta,int pintarjeta){
+	public Miembro(String nombre, String nick, String password, String rol, int edad,int tarjeta,int pin){
 		this.setNombre(nombre);
 		this.setNick(nick);
 		this.setPassword(password);
 		this.setRol(rol);
 		this.setEdad(edad);
 		this.setEdad(tarjeta);
-		this.setEdad(pintarjeta);
+		this.setEdad(pin);
 	}
 }

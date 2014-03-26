@@ -22,6 +22,9 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 	}
 	public void avisarAccionar(String accion, HashMap<String, String> parametros){
 		switch(accion.trim()){
+			case "exit":
+				System.exit(0);
+				break;
 			case "edit me":
 				if(parametros.size()>=1){
 					Usuario usuarioAEditar = ManejadorUsuario.getInstancia().obtenerUsuarioAutenticado();
@@ -135,8 +138,6 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 				break;
 			case "search downline":
 				break;
-			case "exit":
-				break;
 			case "help":
 				System.out.println("Comandos que puede usar el Administrador");
 				System.out.println("");
@@ -163,6 +164,24 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 				System.out.println("");
 				System.out.println("search downline - Muestra la información detallada del downline si coincide con la búsqueda");
 				System.out.println("SINTAXIS: search downline [Datos]");
+				System.out.println("");
+				System.out.println("exit - Sale totalmente del programa");
+				System.out.println("SINTAXIS: exit");
+				System.out.println("");
+				System.out.println("add product - Agrega un producto del stock");
+				System.out.println("SINTAXIS: add product nombre=[nombre del nuevo producto] categoria=[categoria del nuevo producto]  precio=[precio del nuevo producto]");
+				System.out.println("");
+				System.out.println("remove product - Elimina un producto del stock");
+				System.out.println("SINTAXIS: remove product nombre=[nombre del nuevo producto] categoria=[categoria del nuevo producto]  precio=[precio del nuevo producto]");
+				System.out.println("");
+				System.out.println("edit product - Modifica un producto del stock");
+				System.out.println("SINTAXIS: edit product nombre=[nombre del nuevo producto] categoria=[categoria del nuevo producto]  precio=[precio del nuevo producto]");
+				System.out.println("");
+				System.out.println("show sales - Muestra información de venta de un producto si se especifica, o de todos si no se especifica.");
+				System.out.println("SINTAXIS: show sales [product [nombre del producto] ]");
+				System.out.println("");
+				System.out.println("add user - Agrega un Administrador");
+				System.out.println("SINTAXIS: add user nombre=[nombre que desea ponerle al admnistrador] password=[contraseña del administrador] edad=[edad del nuevo administrador] nick=[nombre de usuario del nuevo administrador]");
 				System.out.println("");
 				break;
 			default:

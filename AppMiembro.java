@@ -1,12 +1,11 @@
-package org.brandon.sistema;
+package org.brandon.app;
 
 import org.brandon.utilidades.eventos.DecodeListener;
 import org.brandon.utilidades.Decodificador;
-import org.brandon.manejadores.ManejadorUsuario;
+import org.brandon.manejadores.ManejadorMiembro;
 import org.brandon.manejadores.ManejadorProducto;
-import org.brandon.beans.Usuario;
+import org.brandon.beans.Miembro;
 import org.brandon.beans.Producto;
-import org.brandon.app.AbstractAppRol;
 
 import java.util.HashMap;
 
@@ -23,6 +22,9 @@ public class AppMiembro extends AbstractAppRol implements DecodeListener{
 	}
 	public void avisarAccionar(String accion, HashMap<String, String> parametros){
 		switch(accion.trim()){
+			case "exit":
+				System.exit(0);
+				break;
 			case "logout":
 				super.setConnected(false);
 				break;
@@ -45,11 +47,12 @@ public class AppMiembro extends AbstractAppRol implements DecodeListener{
 			case "list downlines":
 				break;
 			case "show me":
-				Usuario user = ManejadorUsuario.getInstancia().obtenerUsuarioAutenticado();
+				Miembro miem = ManejadorMiembro.getInstancia().obtenerMiembroAutenticado();
 				System.out.println("");
-				System.out.println("nombre: "+user.getNombre());
-				System.out.println("nick: "+user.getNick());
-				System.out.println("edad: "+user.getEdad());
+				System.out.println("Nombre: "+miem.getNombre());
+				System.out.println("Nick: "+miem.getNick());
+				System.out.println("Edad: "+miem.getEdad());
+				System.out.println("Tarjeta de Credito: "+miem.getTarjeta());
 				System.out.println("");
 				break;
 			case "show history":
@@ -62,23 +65,29 @@ public class AppMiembro extends AbstractAppRol implements DecodeListener{
 				break;
 			case "edit me":
 				if(parametros.size()>=1){
-					Usuario usuarioAmodificar = ManejadorUsuario.getInstancia().obtenerUsuarioAutenticado();
+					Miembro miembroAmodificar = ManejadorMiembro.getInstancia().obtenerMiembroAutenticado();
 					if(parametros.get("nombre")!=null){
-						usuarioAmodificar.setNombre(parametros.get("nombre"));
+						miembroAmodificar.setNombre(parametros.get("nombre"));
 					}
 					if(parametros.get("nick")!=null){
-						usuarioAmodificar.setNick(parametros.get("nick"));
+						miembroAmodificar.setNick(parametros.get("nick"));
 					}
 					if(parametros.get("password")!=null){
-						usuarioAmodificar.setPassword(parametros.get("password"));
+						miembroAmodificar.setPassword(parametros.get("password"));
 					}
 					if(parametros.get("rol")!=null){
-						usuarioAmodificar.setRol(parametros.get("rol"));
+						miembroAmodificar.setRol(parametros.get("rol"));
 					}
 					if(parametros.get("edad")!=null){
-						usuarioAmodificar.setEdad(Integer.parseInt(parametros.get("edad")));
+						miembroAmodificar.setEdad(Integer.parseInt(parametros.get("edad")));
 					}
-					System.out.println("Administrador Modificado");
+					if(parametros.get("tarjeta")!=null){
+						miembroAmodificar.setEdad(Integer.parseInt(parametros.get("tarjeta")));
+					}
+					if(parametros.get("pin")!=null){
+						miembroAmodificar.setEdad(Integer.parseInt(parametros.get("pin")));
+					}
+					System.out.println("Miembro Modificado");
 				}
 				break;
 			case "help":
@@ -101,6 +110,7 @@ public class AppMiembro extends AbstractAppRol implements DecodeListener{
 				System.out.println("");
 				System.out.println("show me - Muestra la información de mi perfil, si se coloca money mostrara solo la información de volumen monetario");
 				System.out.println("SINTAXIS: show me [money]");
+				System.out.println("");
 				System.out.println("logout - Este comando sirve para cerrar sesion");
 				System.out.println("SINTAXIS: logout ");
 				System.out.println("");
@@ -116,7 +126,9 @@ public class AppMiembro extends AbstractAppRol implements DecodeListener{
 				System.out.println("buy product - Comprar un producto del Stock");
 				System.out.println("SINTAXIS: buy product [Nombre del Producto] [Numero de Tarjeta]");
 				System.out.println("");
-				
+				System.out.println("exit - Sale totalmente del programa");
+				System.out.println("SINTAXIS: exit");
+				System.out.println("");
 				break;
 			default:
 				System.out.println("Compruebe su sintaxis");
