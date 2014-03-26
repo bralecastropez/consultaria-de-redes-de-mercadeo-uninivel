@@ -35,9 +35,14 @@ public class Principal{
 					default:
 						System.out.println("Usuario no encontrado");
 				}
+<<<<<<< HEAD
 			}else{
 				System.out.println("");
 				System.out.println("Nombre de usuario o contrase a incorrecta.");
+=======
+			}else
+				System.out.println("Verifique sus datos.");
+>>>>>>> 8e83f896f8ec0ad1144bf4640f683dbdb73031aa
 				System.out.println("");
 			}
 		}while(true);
