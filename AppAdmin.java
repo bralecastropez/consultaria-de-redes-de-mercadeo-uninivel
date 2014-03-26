@@ -123,11 +123,11 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 			case "show product":
 				Producto productoAMostrar = ManejadorProducto.getInstancia().buscarProducto(parametros.get("nombre"));
 				if(productoAMostrar!=null){
-					//if(){
+					/*if(){
 						System.out.println("Nombre: "+parametros.getNombre);
 						System.out.println("Precio: "+parametros.getPrecio);
 						System.out.println("Categoria: "+parametros.getCategoria);
-					//}
+					}*/
 				}else{
 					System.out.println("El producto no existe.");
 				}
@@ -193,9 +193,6 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 				System.out.println("add user - Agrega un Administrador");
 				System.out.println("SINTAXIS: add user nombre=[nombre que desea ponerle al admnistrador] password=[contraseña del administrador] edad=[edad del nuevo administrador] nick=[nombre de usuario del nuevo administrador]");
 				System.out.println("");
-				break;
-			case "exit":
-				System.exit(0);
 				break;
 			default:
 				System.out.println("Compruebe su sintaxis");

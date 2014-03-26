@@ -33,7 +33,7 @@ public class AppMiembro extends AbstractAppRol implements DecodeListener{
 			case "list products":
 			for(Producto producto : ManejadorProducto.getInstancia().obtenerListaProducto()){
 					System.out.println("");
-					System.out.println("nombre: "+producto.getNombre());
+					System.out.println("Nombre: "+producto.getNombre());
 				}
 				System.out.println("");
 				System.out.println("------------------------------");
@@ -117,7 +117,7 @@ public class AppMiembro extends AbstractAppRol implements DecodeListener{
 				System.out.println("edit me - Este comando modifica datos del usuario");
 				System.out.println("SINTAXIS: edit me [Parametro]=[Nuevo Valor]");
 				System.out.println("");
-				System.out.println("add downline - Agregar un downline a tu perfil, o a downline espesificado");
+				System.out.println("add downline - Agregar un downline a tu perfil, o a downline especificado");
 				System.out.println("SINTAXIS: add downline [Datos] [down] [idDownline] [Producto]");
 				System.out.println("");
 				System.out.println("search downline - Muestra la información detallada del downline si coincide con la búsqueda");
@@ -126,15 +126,9 @@ public class AppMiembro extends AbstractAppRol implements DecodeListener{
 				System.out.println("buy product - Comprar un producto del Stock");
 				System.out.println("SINTAXIS: buy product [Nombre del Producto] [Numero de Tarjeta]");
 				System.out.println("");
-<<<<<<< HEAD
 				System.out.println("exit - Sale totalmente del programa");
 				System.out.println("SINTAXIS: exit");
 				System.out.println("");
-=======
-				break;
-			case "exit":
-				System.exit(0);
->>>>>>> 8e83f896f8ec0ad1144bf4640f683dbdb73031aa
 				break;
 			default:
 				System.out.println("Compruebe su sintaxis");
