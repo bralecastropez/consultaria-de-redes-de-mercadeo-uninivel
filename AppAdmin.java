@@ -121,7 +121,7 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 				System.out.println("");
 				break;
 			case "show product":
-				Producto productoAMostrar = ManejadorProducto.getInstancia().buscarProducto(parametros.get("nombre"));
+				/*Producto productoAMostrar = ManejadorProducto.getInstancia().buscarProducto(parametros.get("nombre"));
 				//Producto product = ManejadorProducto.getInstancia().obtenerListaProducto();
 				if(productoAMostrar.equals(product)){
 					System.out.println("Nombre: "+productoAMostrar.getNombre());
@@ -129,7 +129,7 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 					System.out.println("Categoria: "+productoAMostrar.getCategoria());
 				}else{
 					System.out.println("El producto no existe.");
-				}
+				}*/
 				break;
 			case "show downline":
 				break;
