@@ -13,6 +13,7 @@ public class ManejadorProducto{
 		this.listaProducto=new ArrayList<Producto>();
 
 		this.listaProducto.add(new Producto("Reloj avanzado", 		"Relojes", 				1000));
+		this.listaProducto.add(new Producto("pro", 					"pro",	 				1000));
 		this.listaProducto.add(new Producto("Reloj medio", 			"Relojes", 				750));
 		this.listaProducto.add(new Producto("reloj", 				"Relojes", 				250));
 		this.listaProducto.add(new Producto("Samsung galaxi s3", 	"Smartphones",			6500));

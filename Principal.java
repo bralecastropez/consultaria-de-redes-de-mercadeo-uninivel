@@ -48,30 +48,6 @@ public class Principal{
 				System.out.println("");
 				System.out.println("Nombre de usuario o contrase a incorrecta.");
 			}
-			/*
-				clase de respaldo
-			*/
-			/*boolean resultado = ManejadorAdmin.getInstancia().autenticarAdmin(nick, password);
-
-			if(resultado){
-				System.out.println("");
-				System.out.println("Bienvenido "+ManejadorAdmin.getInstancia().obtenerAdminAutenticado().getNombre());
-				switch(ManejadorAdmin.getInstancia().obtenerAdminAutenticado().getRol()){
-					case "admin":
-						app=new AppAdmin(new Decodificador());
-						app.iniciar();
-						break;
-					case "miembro":
-						app=new AppMiembro(new Decodificador());
-						app.iniciar();
-						break;
-					default:
-						System.out.println("Usuario no encontrado");
-				}
-			}else{
-				System.out.println("");
-				System.out.println("Nombre de usuario o contrase a incorrecta.");
-			}*/
 		}while(true);
 	}
 }

@@ -12,7 +12,7 @@ public class ManejadorMiembro{
 	private ManejadorMiembro(){
 		this.listaMiembro=new ArrayList<Miembro>();
 
-		this.listaMiembro.add(new Miembro("mim", 		"mim", 		"mim", 		01,			000000000001,		0001));
+		this.listaMiembro.add(new Miembro("mim", 		"mim", 		"mim", 		01,			123,		0001,		1));
 	}
 	
 	public void agregarMiembro(Miembro miembro){

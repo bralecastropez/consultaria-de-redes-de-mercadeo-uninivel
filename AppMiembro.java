@@ -2,6 +2,7 @@ package org.brandon.app;
 
 import org.brandon.utilidades.eventos.DecodeListener;
 import org.brandon.utilidades.Decodificador;
+import org.brandon.utilidades.Entrada;
 import org.brandon.manejadores.ManejadorMiembro;
 import org.brandon.manejadores.ManejadorProducto;
 import org.brandon.beans.Miembro;
@@ -52,6 +53,7 @@ public class AppMiembro extends AbstractAppRol implements DecodeListener{
 				System.out.println("Nombre: "+miem.getNombre());
 				System.out.println("Nick: "+miem.getNick());
 				System.out.println("Edad: "+miem.getEdad());
+				System.out.println("idDownline: "+miem.getIdDownline());
 				System.out.println("Tarjeta de Credito: "+miem.getTarjeta());
 				System.out.println("");
 				break;
@@ -60,6 +62,20 @@ public class AppMiembro extends AbstractAppRol implements DecodeListener{
 			case "search downline":
 				break;
 			case "buy product":
+			/*	String nombreproducto, tarjetadecredito;
+				System.out.println("Ingrese el nombre del Producto a comprar");
+				nombreproducto=Entrada.getInstancia().leer();
+				System.out.println("Ingrese su tarjeta de credito");
+				tarjetadecredito=Entrada.getInstancia().leer();
+				if(ManejadorMiembro.getInstacia().obtenerMiembroAutenticado().getTarjeta().equals(tarjetadecredito)){
+					for(Producto prod : ManejadorProducto.getInstancia().obtenerListaProducto()){
+						if(prod.equals(nombreproducto)){
+							System.out.println("Producto acreditado exitosamente.");
+						}
+					}
+				}else{
+					System.out.println("Tarjeta de Credito Ingresada no valida.");
+				}*/
 				break;
 			case "add downline":
 				break;
@@ -99,13 +115,13 @@ public class AppMiembro extends AbstractAppRol implements DecodeListener{
 				System.out.println("list downlines - Muestra una lista de tus downlines o del downline especificado");
 				System.out.println("SINTAXIS: list downlines [idDownline]");
 				System.out.println("");
-				System.out.println("show downline - Muestra información detallada del downline especificado, si se agrega [money] mostrara solo la informacion de volumen monetario");
+				System.out.println("show downline - Muestra informacion detallada del downline especificado, si se agrega [money] mostrara solo la informacion de volumen monetario");
 				System.out.println("SINTAXIS: show downline [idDownline] [Money]");
 				System.out.println("");
-				System.out.println("show history - Muestra el historial de downlines agregados, si se agrega buy mostrará el historial de compras de mi perfil, si se agrega downline y el id del  downline se mostrará o bien el historial de downlines agregados o de compras dependiendo de la combinación. (si se le agrega buy o no)");
+				System.out.println("show history - Muestra el historial de downlines agregados, si se agrega buy mostrara el historial de compras de mi perfil, si se agrega downline y el id del  downline se mostrara o bien el historial de downlines agregados o de compras dependiendo de la combinacion. (si se le agrega buy o no)");
 				System.out.println("SINTAXIS: show history [buy] [downline] [idDownline] ");
 				System.out.println("");
-				System.out.println("show me - Muestra la información de mi perfil, si se coloca money mostrara solo la información de volumen monetario");
+				System.out.println("show me - Muestra la informacion de mi perfil, si se coloca money mostrara solo la informacion de volumen monetario");
 				System.out.println("SINTAXIS: show me [money]");
 				System.out.println("");
 				System.out.println("logout - Este comando sirve para cerrar sesion");
@@ -117,7 +133,7 @@ public class AppMiembro extends AbstractAppRol implements DecodeListener{
 				System.out.println("add downline - Agregar un downline a tu perfil, o a downline especificado");
 				System.out.println("SINTAXIS: add downline [Datos] [down] [idDownline] [Producto]");
 				System.out.println("");
-				System.out.println("search downline - Muestra la información detallada del downline si coincide con la búsqueda");
+				System.out.println("search downline - Muestra la información detallada del downline si coincide con la busqueda");
 				System.out.println("SINTAXIS: search downline [Datos]");
 				System.out.println("");
 				System.out.println("buy product - Comprar un producto del Stock");

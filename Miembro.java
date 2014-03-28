@@ -4,6 +4,7 @@ public class Miembro{
 	private String nick;
 	private String password;
 	private String rol="miembro";
+	private int idDownline;
 	private int edad;
 	private int tarjeta;
 	private int pin;
@@ -50,15 +51,22 @@ public class Miembro{
 	public void setPin(int pin){
 		this.pin=pin;
 	}
+	public int getIdDownline(){
+		return this.idDownline;
+	}
+	public void setIdDownline(int idDownline){
+		this.idDownline=idDownline;
+	}
 	public Miembro(){
 
 	}
-	public Miembro(String nombre, String nick, String password, int edad,int tarjeta,int pin){
+	public Miembro(String nombre, String nick, String password, int edad,int tarjeta,int pin, int idDownline){
 		this.setNombre(nombre);
 		this.setNick(nick);
 		this.setPassword(password);
 		this.setEdad(edad);
 		this.setEdad(tarjeta);
 		this.setEdad(pin);
+		this.setIdDownline(idDownline);
 	}
 }

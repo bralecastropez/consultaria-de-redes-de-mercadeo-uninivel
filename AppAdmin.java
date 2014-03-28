@@ -55,7 +55,7 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 				Admin adminAEliminar = ManejadorAdmin.getInstancia().buscarAdmin(parametros.get("nick"));
 				if(adminAEliminar!=null){
 					ManejadorAdmin.getInstancia().eliminarAdmin(adminAEliminar);
-					System.out.println("	Usuario "+parametros.get("nick")+" eliminado satisfactoriamente.");
+					System.out.println("Administrador eliminado satisfactoriamente.");
 				}else{
 					System.out.println("El usuario no existe.");
 				}
@@ -147,19 +147,19 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 				System.out.println("list downlines - Muestra una lista de tus downlines o del downline especificado");
 				System.out.println("SINTAXIS: list downlines [idDownline]");
 				System.out.println("");
-				System.out.println("show downline - Muestra información detallada del downline especificado, si se agrega [money] mostrara solo la informacion de volumen monetario");
+				System.out.println("show downline - Muestra informacion detallada del downline especificado, si se agrega [money] mostrara solo la informacion de volumen monetario");
 				System.out.println("SINTAXIS: show downline [idDownline] [Money]");
 				System.out.println("");
-				System.out.println("show history - Muestra el historial de downlines agregados, si se agrega buy mostrará el historial de compras de mi perfil, si se agrega downline y el id del  downline se mostrará o bien el historial de downlines agregados o de compras dependiendo de la combinación (si se le agrega buy o no)");
+				System.out.println("show history - Muestra el historial de downlines agregados, si se agrega buy mostrara el historial de compras de mi perfil, si se agrega downline y el id del  downline se mostrara o bien el historial de downlines agregados o de compras dependiendo de la combinacon (si se le agrega buy o no)");
 				System.out.println("SINTAXIS: show history [buy] [downline] [idDownline] ");
 				System.out.println("");
-				System.out.println("show me - Muestra la información de mi perfil, si se coloca money mostrara solo la información de volumen monetario");
+				System.out.println("show me - Muestra la informacion de mi perfil, si se coloca money mostrara solo la informacion de volumen monetario");
 				System.out.println("SINTAXIS: show me [money]");
 				System.out.println("");
 				System.out.println("logout - Este comando sirve para cerrar sesion");
 				System.out.println("SINTAXIS: logout ");
 				System.out.println("");
-				System.out.println("search downline - Muestra la información detallada del downline si coincide con la búsqueda");
+				System.out.println("search downline - Muestra la información detallada del downline si coincide con la busqueda");
 				System.out.println("SINTAXIS: search downline [Datos]");
 				System.out.println("");
 				System.out.println("exit - Sale totalmente del programa");
@@ -174,11 +174,11 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 				System.out.println("edit product - Modifica un producto del stock");
 				System.out.println("SINTAXIS: edit product nombre=[nombre del nuevo producto] categoria=[categoria del nuevo producto]  precio=[precio del nuevo producto]");
 				System.out.println("");
-				System.out.println("show sales - Muestra información de venta de un producto si se especifica, o de todos si no se especifica.");
+				System.out.println("show sales - Muestra informacion de venta de un producto si se especifica, o de todos si no se especifica.");
 				System.out.println("SINTAXIS: show sales [product [nombre del producto] ]");
 				System.out.println("");
 				System.out.println("add user - Agrega un Administrador");
-				System.out.println("SINTAXIS: add user nombre=[nombre que desea ponerle al admnistrador] password=[contraseña del administrador] edad=[edad del nuevo administrador] nick=[nombre de usuario del nuevo administrador]");
+				System.out.println("SINTAXIS: add user nombre=[nombre que desea ponerle al admnistrador] password=[contrasenha del administrador] nick=[nombre de usuario del nuevo administrador]");
 				System.out.println("");
 				break;
 			default:
