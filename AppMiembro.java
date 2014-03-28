@@ -75,9 +75,6 @@ public class AppMiembro extends AbstractAppRol implements DecodeListener{
 					if(parametros.get("password")!=null){
 						miembroAmodificar.setPassword(parametros.get("password"));
 					}
-					if(parametros.get("rol")!=null){
-						miembroAmodificar.setRol(parametros.get("rol"));
-					}
 					if(parametros.get("edad")!=null){
 						miembroAmodificar.setEdad(Integer.parseInt(parametros.get("edad")));
 					}

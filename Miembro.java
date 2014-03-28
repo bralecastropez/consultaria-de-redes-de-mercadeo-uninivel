@@ -3,7 +3,7 @@ public class Miembro{
 	private String nombre;
 	private String nick;
 	private String password;
-	private String rol;
+	private String rol="miembro";
 	private int edad;
 	private int tarjeta;
 	private int pin;
@@ -53,11 +53,10 @@ public class Miembro{
 	public Miembro(){
 
 	}
-	public Miembro(String nombre, String nick, String password, String rol, int edad,int tarjeta,int pin){
+	public Miembro(String nombre, String nick, String password, int edad,int tarjeta,int pin){
 		this.setNombre(nombre);
 		this.setNick(nick);
 		this.setPassword(password);
-		this.setRol(rol);
 		this.setEdad(edad);
 		this.setEdad(tarjeta);
 		this.setEdad(pin);
