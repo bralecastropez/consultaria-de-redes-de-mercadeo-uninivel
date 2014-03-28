@@ -2,9 +2,9 @@ package org.brandon.app;
 
 import org.brandon.utilidades.eventos.DecodeListener;
 import org.brandon.utilidades.Decodificador;
-import org.brandon.manejadores.ManejadorUsuario;
+import org.brandon.manejadores.ManejadorAdmin;
 import org.brandon.manejadores.ManejadorProducto;
-import org.brandon.beans.Usuario;
+import org.brandon.beans.Admin;
 import org.brandon.beans.Producto;
 
 import java.util.HashMap;
@@ -27,55 +27,44 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 				break;
 			case "edit me":
 				if(parametros.size()>=1){
-					Usuario usuarioAEditar = ManejadorUsuario.getInstancia().obtenerUsuarioAutenticado();
+					Admin adminAEditar = ManejadorAdmin.getInstancia().obtenerAdminAutenticado();
 					if(parametros.get("nombre")!=null){
-						usuarioAEditar.setNombre(parametros.get("nombre"));
+						adminAEditar.setNombre(parametros.get("nombre"));
 					}
 					if(parametros.get("nick")!=null){
-						usuarioAEditar.setNick(parametros.get("nick"));
+						adminAEditar.setNick(parametros.get("nick"));
 					}
 					if(parametros.get("password")!=null){
-						usuarioAEditar.setPassword(parametros.get("password"));
-					}
-					if(parametros.get("rol")!=null){
-						usuarioAEditar.setRol(parametros.get("rol"));
-					}
-					if(parametros.get("edad")!=null){
-						usuarioAEditar.setEdad(Integer.parseInt(parametros.get("edad")));
+						adminAEditar.setPassword(parametros.get("password"));
 					}
 					System.out.println("Administrador Modificado");
 				}
 				break;
 			case "add user":
-				Usuario usuario = new Usuario();
+				Admin admin = new Admin();
 
-				String nombre=parametros.get("nombre");
-				usuario.setNombre(nombre);
-				usuario.setNick(parametros.get("nick"));
-				usuario.setPassword(parametros.get("password"));
-				usuario.setEdad(Integer.parseInt(parametros.get("edad")));
-	
-				ManejadorUsuario.getInstancia().agregarUsuario(usuario);
+				admin.setNombre(parametros.get("nombre"));
+				admin.setNick(parametros.get("nick"));
+				admin.setPassword(parametros.get("password"));
+				ManejadorAdmin.getInstancia().agregarAdmin(admin);
 
 				System.out.println("Administrador agregado satisfactoriamente.");
 				
 				break;
 			case "remove user":
-				Usuario usuarioAEliminar = ManejadorUsuario.getInstancia().buscarUsuario(parametros.get("nick"));
-				if(usuarioAEliminar!=null){
-					ManejadorUsuario.getInstancia().eliminarUsuario(usuarioAEliminar);
+				Admin adminAEliminar = ManejadorAdmin.getInstancia().buscarAdmin(parametros.get("nick"));
+				if(adminAEliminar!=null){
+					ManejadorAdmin.getInstancia().eliminarAdmin(adminAEliminar);
 					System.out.println("	Usuario "+parametros.get("nick")+" eliminado satisfactoriamente.");
 				}else{
 					System.out.println("El usuario no existe.");
 				}
 				break;
 			case "list user":
-				for(Usuario user : ManejadorUsuario.getInstancia().obtenerListaUsuario()){
+				for(Admin administrador : ManejadorAdmin.getInstancia().obtenerListaAdmin()){
 					System.out.println("+++++++++++++++++++++++++");
-					System.out.println("nombre: "+user.getNombre());
-					System.out.println("nick: "+user.getNick());
-					System.out.println("rol: "+user.getRol());
-					System.out.println("edad: "+user.getEdad());
+					System.out.println("nombre: "+administrador.getNombre());
+					System.out.println("nick: "+administrador.getNick());
 					System.out.println("");
 				}
 				System.out.println("");
@@ -136,11 +125,10 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 			case "list downlines":
 				break;
 			case "show me":
-				Usuario user = ManejadorUsuario.getInstancia().obtenerUsuarioAutenticado();
+				Admin admi = ManejadorAdmin.getInstancia().obtenerAdminAutenticado();
 				System.out.println("");
-				System.out.println("nombre: "+user.getNombre());
-				System.out.println("nick: "+user.getNick());
-				System.out.println("edad: "+user.getEdad());
+				System.out.println("nombre: "+admi.getNombre());
+				System.out.println("nick: "+admi.getNick());
 				System.out.println("");
 				break;
 			case "show history":
