@@ -12,7 +12,7 @@ public class ManejadorAdmin{
 	private ManejadorAdmin(){
 		this.listaAdmin=new ArrayList<Admin>();
 
-		this.listaAdmin.add(new Admin("Administrador", 			"admin", 		"admin"));
+		this.listaAdmin.add(new Admin( "Administrador", 			"admin", 		"admin"));
 	}
 	
 	public void agregarAdmin(Admin admin){

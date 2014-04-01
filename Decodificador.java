@@ -18,6 +18,8 @@ public class Decodificador{
 
 		if(comandos.length>1){
 			accion = comandos[0]+" "+comandos[1];
+		}if(comandos.length>2){
+			accion = comandos[0]+" "+comandos[1]+" "+comandos[2];
 		}else{
 			accion = comandos[0];
 		}		

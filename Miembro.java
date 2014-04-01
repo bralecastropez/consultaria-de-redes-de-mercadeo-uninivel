@@ -65,8 +65,8 @@ public class Miembro{
 		this.setNick(nick);
 		this.setPassword(password);
 		this.setEdad(edad);
-		this.setEdad(tarjeta);
-		this.setEdad(pin);
+		this.setTarjeta(tarjeta);
+		this.setPin(pin);
 		this.setIdDownline(idDownline);
 	}
 }

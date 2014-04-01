@@ -62,12 +62,12 @@ public class AppMiembro extends AbstractAppRol implements DecodeListener{
 			case "search downline":
 				break;
 			case "buy product":
-			/*	String nombreproducto, tarjetadecredito;
+				/*String nombreproducto, tarjetadecredito;
 				System.out.println("Ingrese el nombre del Producto a comprar");
 				nombreproducto=Entrada.getInstancia().leer();
 				System.out.println("Ingrese su tarjeta de credito");
 				tarjetadecredito=Entrada.getInstancia().leer();
-				if(ManejadorMiembro.getInstacia().obtenerMiembroAutenticado().getTarjeta().equals(tarjetadecredito)){
+				if(ManejadorMiembro.getInstancia().obtenerMiembroAutenticado().getTarjeta().equals(tarjetadecredito)){
 					for(Producto prod : ManejadorProducto.getInstancia().obtenerListaProducto()){
 						if(prod.equals(nombreproducto)){
 							System.out.println("Producto acreditado exitosamente.");
