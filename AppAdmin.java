@@ -115,6 +115,26 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 				}
 				break;
 			case "show sales":
+				if(parametros.size()>=0){
+					for(Producto product : ManejadorProducto.getInstancia().obtenerListaProducto()){
+						System.out.println("");
+						System.out.println("nombre: "+product.getNombre());
+					}
+				}if(parametros.size()>=1){
+					if(productoAEliminar!=null){
+						Producto productoAMostrar = ManejadorProducto.getInstancia().buscarProducto(parametros.get("nombre"));
+						for(Producto pro : ManejadorProducto.getInstancia().obtenerListaProducto()){
+							if(productoAMostrar.equals(pro)){
+								System.out.println("Nombre: "+pro.getNombre());
+								System.out.println("Categoria: "+pro.getCategoria());
+								System.out.println("Precio: "+pro.getPrecio());
+							}
+						}
+                    }
+                }else{
+						System.out.println("El producto no existe.");
+					}
+				}
 				break;
 			case "list products":
 				for(Producto product : ManejadorProducto.getInstancia().obtenerListaProducto()){
@@ -127,8 +147,20 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 				System.out.println("");
 				break;
 			case "show product":
+				/*Producto productoAmodificar = ManejadorProducto.getInstancia().buscarProducto(parametros.get("producto"));
+                for(Producto prod : ManejadorProducto.getInstancia().obtenerListaProducto()){
+					if(productoAmodificar.equals(prod)){
+						if(parametros.get("articulo")!=null){
+							productoAmodificar.setArticulo(parametros.get("articulo"));
+						}
+						if(parametros.get("precio")!=null){
+							productoAmodificar.setPrecio(Integer.parseInt(parametros.get("precio")));
+                        }
+                    }
+                }*/
 				break;
 			case "show downline":
+				
 				break;
 			case "list downlines":
 				break;
