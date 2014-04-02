@@ -2,6 +2,7 @@ package org.brandon.app;
 
 import org.brandon.utilidades.eventos.DecodeListener;
 import org.brandon.utilidades.Decodificador;
+import org.brandon.utilidades.Ayuda;
 import org.brandon.manejadores.ManejadorAdmin;
 import org.brandon.manejadores.ManejadorProducto;
 import org.brandon.beans.Admin;
@@ -23,6 +24,7 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 	public void avisarAccionar(String accion, HashMap<String, String> parametros){
 		switch(accion.trim()){
 			case "exit":
+				System.out.println("Gracias por utilizar mi programa");
 				System.exit(0);
 				break;
 			case "edit me":
@@ -42,13 +44,15 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 				break;
 			case "add user":
 				Admin admin = new Admin();
-
-				admin.setNombre(parametros.get("nombre"));
-				admin.setNick(parametros.get("nick"));
-				admin.setPassword(parametros.get("password"));
-				ManejadorAdmin.getInstancia().agregarAdmin(admin);
-
-				System.out.println("Administrador agregado satisfactoriamente.");
+				if(parametros.size()==3){
+					admin.setNombre(parametros.get("nombre"));
+					admin.setNick(parametros.get("nick"));
+					admin.setPassword(parametros.get("password"));
+					ManejadorAdmin.getInstancia().agregarAdmin(admin);
+					System.out.println("Administrador agregado satisfactoriamente.");
+				}else{
+					System.out.println("Compruebe su sintaxis.");
+				}
 				
 				break;
 			case "remove user":
@@ -96,6 +100,19 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 				}
 				break;
 			case "edit product":
+				if(parametros.size()>=1){
+					Producto productoAEditar = ManejadorProducto.getInstancia().buscarProducto(parametros.get("nombre"));
+					if(parametros.get("nuevonombre")!=null){
+						productoAEditar.setNombre(parametros.get("nuevonombre"));
+					}
+					if(parametros.get("nuevacategoria")!=null){
+						productoAEditar.setCategoria(parametros.get("nuevacategoria"));
+					}
+					if(parametros.get("nuevoprecio")!=null){
+						productoAEditar.setPrecio(Integer.parseInt(parametros.get("nuevoprecio")));
+					}
+					System.out.println("Producto editado Satisfactoriamente.");
+				}
 				break;
 			case "show sales":
 				break;
@@ -116,10 +133,10 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 			case "list downlines":
 				break;
 			case "show me":
-				Admin admi = ManejadorAdmin.getInstancia().obtenerAdminAutenticado();
+				Admin adminAMostrar = ManejadorAdmin.getInstancia().obtenerAdminAutenticado();
 				System.out.println("");
-				System.out.println("nombre: "+admi.getNombre());
-				System.out.println("nick: "+admi.getNick());
+				System.out.println("nombre: "+adminAMostrar.getNombre());
+				System.out.println("nick: "+adminAMostrar.getNick());
 				System.out.println("");
 				break;
 			case "show history":
@@ -127,50 +144,7 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 			case "search downline":
 				break;
 			case "help":
-				System.out.println("Comandos que puede usar el Administrador");
-				System.out.println("");
-				System.out.println("list products - Muestra un listado de los productos");
-				System.out.println("SINTAXIS: list products");
-				System.out.println("");
-				System.out.println("show product - Muestra informacion detallada de un producto. ");
-				System.out.println("SINTAXIS: show product[nombre del producto]");
-				System.out.println("");
-				System.out.println("list downlines - Muestra una lista de tus downlines o del downline especificado");
-				System.out.println("SINTAXIS: list downlines [idDownline]");
-				System.out.println("");
-				System.out.println("show downline - Muestra informacion detallada del downline especificado, si se agrega [money] mostrara solo la informacion de volumen monetario");
-				System.out.println("SINTAXIS: show downline [idDownline] [Money]");
-				System.out.println("");
-				System.out.println("show history - Muestra el historial de downlines agregados, si se agrega buy mostrara el historial de compras de mi perfil, si se agrega downline y el id del  downline se mostrara o bien el historial de downlines agregados o de compras dependiendo de la combinacon (si se le agrega buy o no)");
-				System.out.println("SINTAXIS: show history [buy] [downline] [idDownline] ");
-				System.out.println("");
-				System.out.println("show me - Muestra la informacion de mi perfil, si se coloca money mostrara solo la informacion de volumen monetario");
-				System.out.println("SINTAXIS: show me [money]");
-				System.out.println("");
-				System.out.println("logout - Este comando sirve para cerrar sesion");
-				System.out.println("SINTAXIS: logout ");
-				System.out.println("");
-				System.out.println("search downline - Muestra la información detallada del downline si coincide con la busqueda");
-				System.out.println("SINTAXIS: search downline [Datos]");
-				System.out.println("");
-				System.out.println("exit - Sale totalmente del programa");
-				System.out.println("SINTAXIS: exit");
-				System.out.println("");
-				System.out.println("add product - Agrega un producto del stock");
-				System.out.println("SINTAXIS: add product nombre=[nombre del nuevo producto] categoria=[categoria del nuevo producto]  precio=[precio del nuevo producto]");
-				System.out.println("");
-				System.out.println("remove product - Elimina un producto del stock");
-				System.out.println("SINTAXIS: remove product nombre=[nombre del nuevo producto] categoria=[categoria del nuevo producto]  precio=[precio del nuevo producto]");
-				System.out.println("");
-				System.out.println("edit product - Modifica un producto del stock");
-				System.out.println("SINTAXIS: edit product nombre=[nombre del nuevo producto] categoria=[categoria del nuevo producto]  precio=[precio del nuevo producto]");
-				System.out.println("");
-				System.out.println("show sales - Muestra informacion de venta de un producto si se especifica, o de todos si no se especifica.");
-				System.out.println("SINTAXIS: show sales [product [nombre del producto] ]");
-				System.out.println("");
-				System.out.println("add user - Agrega un Administrador");
-				System.out.println("SINTAXIS: add user nombre=[nombre que desea ponerle al admnistrador] password=[contrasenha del administrador] nick=[nombre de usuario del nuevo administrador]");
-				System.out.println("");
+				new Ayuda().ayudaadmin();
 				break;
 			default:
 				System.out.println("Compruebe su sintaxis");

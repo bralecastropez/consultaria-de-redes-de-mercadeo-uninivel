@@ -3,6 +3,7 @@ package org.brandon.app;
 import org.brandon.utilidades.eventos.DecodeListener;
 import org.brandon.utilidades.Decodificador;
 import org.brandon.utilidades.Entrada;
+import org.brandon.utilidades.Ayuda;
 import org.brandon.manejadores.ManejadorMiembro;
 import org.brandon.manejadores.ManejadorProducto;
 import org.brandon.beans.Miembro;
@@ -25,6 +26,7 @@ public class AppMiembro extends AbstractAppRol implements DecodeListener{
 		switch(accion.trim()){
 			case "exit":
 				System.exit(0);
+				System.out.println("Gracias por utilizar mi programa.");
 				break;
 			case "logout":
 				super.setConnected(false);
@@ -48,13 +50,13 @@ public class AppMiembro extends AbstractAppRol implements DecodeListener{
 			case "list downlines":
 				break;
 			case "show me":
-				Miembro miem = ManejadorMiembro.getInstancia().obtenerMiembroAutenticado();
+				Miembro miembroAMostrar = ManejadorMiembro.getInstancia().obtenerMiembroAutenticado();
 				System.out.println("");
-				System.out.println("Nombre: "+miem.getNombre());
-				System.out.println("Nick: "+miem.getNick());
-				System.out.println("Edad: "+miem.getEdad());
-				System.out.println("idDownline: "+miem.getIdDownline());
-				System.out.println("Tarjeta de Credito: "+miem.getTarjeta());
+				System.out.println("Nombre: "+miembroAMostrar.getNombre());
+				System.out.println("Nick: "+miembroAMostrar.getNick());
+				System.out.println("Edad: "+miembroAMostrar.getEdad());
+				System.out.println("idDownline: "+miembroAMostrar.getIdDownline());
+				System.out.println("Tarjeta de Credito: "+miembroAMostrar.getTarjeta());
 				System.out.println("");
 				break;
 			case "show history":
@@ -90,44 +92,7 @@ public class AppMiembro extends AbstractAppRol implements DecodeListener{
 				}
 				break;
 			case "help":
-				System.out.println("Comandos que puede usar el Miembro");
-				System.out.println("");
-				System.out.println("list products - Muestra un listado de los productos");
-				System.out.println("SINTAXIS: list products");
-				System.out.println("");
-				System.out.println("show product - Muestra informacion detallada de un producto. ");
-				System.out.println("SINTAXIS: show product[nombre del producto]");
-				System.out.println("");
-				System.out.println("list downlines - Muestra una lista de tus downlines o del downline especificado");
-				System.out.println("SINTAXIS: list downlines [idDownline]");
-				System.out.println("");
-				System.out.println("show downline - Muestra informacion detallada del downline especificado, si se agrega [money] mostrara solo la informacion de volumen monetario");
-				System.out.println("SINTAXIS: show downline [idDownline] [Money]");
-				System.out.println("");
-				System.out.println("show history - Muestra el historial de downlines agregados, si se agrega buy mostrara el historial de compras de mi perfil, si se agrega downline y el id del  downline se mostrara o bien el historial de downlines agregados o de compras dependiendo de la combinacion. (si se le agrega buy o no)");
-				System.out.println("SINTAXIS: show history [buy] [downline] [idDownline] ");
-				System.out.println("");
-				System.out.println("show me - Muestra la informacion de mi perfil, si se coloca money mostrara solo la informacion de volumen monetario");
-				System.out.println("SINTAXIS: show me [money]");
-				System.out.println("");
-				System.out.println("logout - Este comando sirve para cerrar sesion");
-				System.out.println("SINTAXIS: logout ");
-				System.out.println("");
-				System.out.println("edit me - Este comando modifica datos del usuario");
-				System.out.println("SINTAXIS: edit me [Parametro]=[Nuevo Valor]");
-				System.out.println("");
-				System.out.println("add downline - Agregar un downline a tu perfil, o a downline especificado");
-				System.out.println("SINTAXIS: add downline [Datos] [down] [idDownline] [Producto]");
-				System.out.println("");
-				System.out.println("search downline - Muestra la información detallada del downline si coincide con la busqueda");
-				System.out.println("SINTAXIS: search downline [Datos]");
-				System.out.println("");
-				System.out.println("buy product - Comprar un producto del Stock");
-				System.out.println("SINTAXIS: buy product [Nombre del Producto] [Numero de Tarjeta]");
-				System.out.println("");
-				System.out.println("exit - Sale totalmente del programa");
-				System.out.println("SINTAXIS: exit");
-				System.out.println("");
+				new Ayuda().ayudamiembro();
 				break;
 			default:
 				System.out.println("Compruebe su sintaxis");
