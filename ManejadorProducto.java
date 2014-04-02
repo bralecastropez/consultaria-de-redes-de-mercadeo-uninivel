@@ -11,19 +11,15 @@ public class ManejadorProducto{
 	
 	private ManejadorProducto(){
 		this.listaProducto=new ArrayList<Producto>();
-
-		this.listaProducto.add(new Producto("Reloj avanzado", 		"Relojes", 				1000));
-		this.listaProducto.add(new Producto("pro", 					"pro",	 				1000));
-		this.listaProducto.add(new Producto("Reloj medio", 			"Relojes", 				750));
-		this.listaProducto.add(new Producto("reloj", 				"Relojes", 				250));
-		this.listaProducto.add(new Producto("Samsung galaxi s3", 	"Smartphones",			6500));
-		this.listaProducto.add(new Producto("Samsung galaxi s4", 	"Smartphones", 			7000));
-		this.listaProducto.add(new Producto("Lg optimus l5", 		"Smartphones", 			3500));
-		this.listaProducto.add(new Producto("Lg optimus l3", 		"Smartphones", 			1000));
-		this.listaProducto.add(new Producto("Lg optimus l7", 		"Smartphones", 			6790));
-		this.listaProducto.add(new Producto("Mouse laser x", 		"Computacion", 			250));
-		this.listaProducto.add(new Producto("teclado laser", 		"Computacion", 			350));
-		
+		this.listaProducto.add(new Producto("producto1", 			"default", 				1000));
+		this.listaProducto.add(new Producto("producto2", 			"default", 				1000));
+		this.listaProducto.add(new Producto("producto3", 			"default", 				1000));
+		this.listaProducto.add(new Producto("producto4", 			"default", 				1000));
+		this.listaProducto.add(new Producto("producto5", 			"default", 				1000));
+		this.listaProducto.add(new Producto("producto6", 			"default", 				1000));
+		this.listaProducto.add(new Producto("producto7", 			"default", 				1000));
+		this.listaProducto.add(new Producto("producto8", 			"default", 				1000));
+		this.listaProducto.add(new Producto("producto9", 			"default", 				1000));
 	}
 	public void agregarProducto(Producto producto){
 		this.listaProducto.add(producto);

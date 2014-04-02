@@ -32,7 +32,7 @@ public class AppMiembro extends AbstractAppRol implements DecodeListener{
 			case "show sales":
 				break;
 			case "list products":
-			for(Producto producto : ManejadorProducto.getInstancia().obtenerListaProducto()){
+				for(Producto producto : ManejadorProducto.getInstancia().obtenerListaProducto()){
 					System.out.println("");
 					System.out.println("Nombre: "+producto.getNombre());
 				}
@@ -62,20 +62,6 @@ public class AppMiembro extends AbstractAppRol implements DecodeListener{
 			case "search downline":
 				break;
 			case "buy product":
-				/*String nombreproducto, tarjetadecredito;
-				System.out.println("Ingrese el nombre del Producto a comprar");
-				nombreproducto=Entrada.getInstancia().leer();
-				System.out.println("Ingrese su tarjeta de credito");
-				tarjetadecredito=Entrada.getInstancia().leer();
-				if(ManejadorMiembro.getInstancia().obtenerMiembroAutenticado().getTarjeta().equals(tarjetadecredito)){
-					for(Producto prod : ManejadorProducto.getInstancia().obtenerListaProducto()){
-						if(prod.equals(nombreproducto)){
-							System.out.println("Producto acreditado exitosamente.");
-						}
-					}
-				}else{
-					System.out.println("Tarjeta de Credito Ingresada no valida.");
-				}*/
 				break;
 			case "add downline":
 				break;

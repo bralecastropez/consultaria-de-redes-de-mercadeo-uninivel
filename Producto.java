@@ -1,4 +1,4 @@
-package org.brandon.beans;
+	package org.brandon.beans;
 public class Producto{
 	private String nombre;
 	private String categoria;
