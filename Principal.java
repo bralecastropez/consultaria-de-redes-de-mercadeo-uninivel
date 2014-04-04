@@ -1,6 +1,7 @@
 package org.brandon.sistema;
 
 import org.brandon.utilidades.Entrada;
+import org.brandon.utilidades.JPasswordFieldDemo;
 import org.brandon.utilidades.Decodificador;
 import org.brandon.manejadores.ManejadorAdmin;
 import org.brandon.manejadores.ManejadorMiembro;
@@ -8,17 +9,27 @@ import org.brandon.app.AppAdmin;
 import org.brandon.app.AppMiembro;
 import org.brandon.app.AbstractAppRol;
 
+import java.io.Console;
+
 public class Principal{
 	public void iniciar(){
 		do{
-			AbstractAppRol app = null;		
+			Console terminal = System.console();
+			if (terminal==null ) {
+				System.err.println("No puedo obtener la consola.");
+				return;
+			}
+			AbstractAppRol app = null;	
+			
 			String nick, password;
+			
 			System.out.println("");
 			System.out.println("Ingrese Nombre de Usuario(nick): ");
 			nick=Entrada.getInstancia().leer();
+			
 			System.out.println("Ingrese Contrase a: ");
-			password=Entrada.getInstancia().leer();
-		
+			password = new String (terminal.readPassword("********"));
+			
 			boolean resultadoadmin = ManejadorAdmin.getInstancia().autenticarAdmin(nick, password);
 			boolean resultadomim = ManejadorMiembro.getInstancia().autenticarMiembro(nick, password);
 			

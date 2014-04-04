@@ -2,7 +2,7 @@ package org.brandon.app;
 
 import org.brandon.utilidades.eventos.DecodeListener;
 import org.brandon.utilidades.Decodificador;
-import org.brandon.utilidades.Ayuda;
+import org.brandon.utilidades.Comando;
 import org.brandon.manejadores.ManejadorAdmin;
 import org.brandon.manejadores.ManejadorProducto;
 import org.brandon.beans.Admin;
@@ -24,36 +24,44 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 	public void avisarAccionar(String accion, HashMap<String, String> parametros){
 		switch(accion.trim()){
 			case "exit":
-				System.out.println("Gracias por utilizar mi programa");
-				System.exit(0);
+				new Comando().exit();
+				break;
+			case "":
 				break;
 			case "edit me":
-				if(parametros.size()>=1){
-					Admin adminAEditar = ManejadorAdmin.getInstancia().obtenerAdminAutenticado();
-					if(parametros.get("nombre")!=null){
-						adminAEditar.setNombre(parametros.get("nombre"));
+				if(parametros.size()<=2){
+					if(parametros.size()>=1){
+						Admin adminAEditar = ManejadorAdmin.getInstancia().obtenerAdminAutenticado();
+						if(parametros.get("nombre")!=null){
+							adminAEditar.setNombre(parametros.get("nombre"));
+						}
+						if(parametros.get("nick")!=null){
+							adminAEditar.setNick(parametros.get("nick"));
+						}
+						if(parametros.get("password")!=null){
+							adminAEditar.setPassword(parametros.get("password"));
+						}
+						System.out.println("Administrador Modificado");
 					}
-					if(parametros.get("nick")!=null){
-						adminAEditar.setNick(parametros.get("nick"));
-					}
-					if(parametros.get("password")!=null){
-						adminAEditar.setPassword(parametros.get("password"));
-					}
-					System.out.println("Administrador Modificado");
-				}
-				break;
-			case "add user":
-				Admin admin = new Admin();
-				if(parametros.size()==3){
-					admin.setNombre(parametros.get("nombre"));
-					admin.setNick(parametros.get("nick"));
-					admin.setPassword(parametros.get("password"));
-					ManejadorAdmin.getInstancia().agregarAdmin(admin);
-					System.out.println("Administrador agregado satisfactoriamente.");
 				}else{
 					System.out.println("Compruebe su sintaxis.");
 				}
-				
+				break;
+			case "add user":
+				if(parametros.size()<=2){
+					Admin admin = new Admin();
+					if(parametros.size()==3){
+						admin.setNombre(parametros.get("nombre"));
+						admin.setNick(parametros.get("nick"));
+						admin.setPassword(parametros.get("password"));
+						ManejadorAdmin.getInstancia().agregarAdmin(admin);
+						System.out.println("Administrador agregado satisfactoriamente.");
+					}else{
+						System.out.println("Compruebe su sintaxis.");
+					}
+				}else{
+					System.out.println("Ingrese bien los parametros");
+				}
 				break;
 			case "remove user":
 				Admin adminAEliminar = ManejadorAdmin.getInstancia().buscarAdmin(parametros.get("nick"));
@@ -115,68 +123,60 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 				}
 				break;
 			case "show sales":
-				if(parametros.size()>=0){
+				if(parametros.size()==0){
 					for(Producto product : ManejadorProducto.getInstancia().obtenerListaProducto()){
 						System.out.println("");
 						System.out.println("nombre: "+product.getNombre());
 					}
-				}if(parametros.size()>=1){
-					if(productoAEliminar!=null){
-						Producto productoAMostrar = ManejadorProducto.getInstancia().buscarProducto(parametros.get("nombre"));
-						for(Producto pro : ManejadorProducto.getInstancia().obtenerListaProducto()){
-							if(productoAMostrar.equals(pro)){
-								System.out.println("Nombre: "+pro.getNombre());
-								System.out.println("Categoria: "+pro.getCategoria());
-								System.out.println("Precio: "+pro.getPrecio());
-							}
-						}
-                    }
-                }else{
+				}if(parametros.size()==1){
+					Producto productoAMostrar = ManejadorProducto.getInstancia().buscarProducto(parametros.get("nombre"));
+					if(productoAMostrar!=null){
+						System.out.println("");
+						System.out.println("Nombre: "+productoAMostrar.getNombre());
+						System.out.println("Categoria: "+productoAMostrar.getCategoria());
+						System.out.println("Precio: "+productoAMostrar.getPrecio());
+					}else{
+						System.out.println("");
 						System.out.println("El producto no existe.");
+						System.out.println("");
 					}
+				}else{
+					System.out.println("Compruebe su sintaxis.");
 				}
 				break;
 			case "list products":
-				for(Producto product : ManejadorProducto.getInstancia().obtenerListaProducto()){
-					System.out.println("");
-					System.out.println("nombre: "+product.getNombre());
-				}
-				System.out.println("");
-				System.out.println("------------------------------");
-				System.out.println("Fin de la lista");
-				System.out.println("");
+				new Comando().listarProductos();
 				break;
 			case "show product":
-				/*Producto productoAmodificar = ManejadorProducto.getInstancia().buscarProducto(parametros.get("producto"));
-                for(Producto prod : ManejadorProducto.getInstancia().obtenerListaProducto()){
-					if(productoAmodificar.equals(prod)){
-						if(parametros.get("articulo")!=null){
-							productoAmodificar.setArticulo(parametros.get("articulo"));
-						}
-						if(parametros.get("precio")!=null){
-							productoAmodificar.setPrecio(Integer.parseInt(parametros.get("precio")));
-                        }
-                    }
-                }*/
+				if(parametros.size()>=1){
+					Producto productoAMostrar = ManejadorProducto.getInstancia().buscarProducto(parametros.get("nombre"));
+					if(productoAMostrar!=null){
+						System.out.println("");
+						System.out.println("Nombre: "+productoAMostrar.getNombre());
+						System.out.println("Categoria: "+productoAMostrar.getCategoria());
+						System.out.println("Precio: "+productoAMostrar.getPrecio());
+					}else{
+						System.out.println("");
+						System.out.println("El producto no existe.");
+						System.out.println("");
+					}
+				}else{
+					System.out.println("Compruebe su sintaxis.");
+				}
 				break;
 			case "show downline":
-				
 				break;
 			case "list downlines":
 				break;
 			case "show me":
-				Admin adminAMostrar = ManejadorAdmin.getInstancia().obtenerAdminAutenticado();
-				System.out.println("");
-				System.out.println("nombre: "+adminAMostrar.getNombre());
-				System.out.println("nick: "+adminAMostrar.getNick());
-				System.out.println("");
+				new Comando().showmeAdmin();
 				break;
 			case "show history":
 				break;
 			case "search downline":
 				break;
 			case "help":
-				new Ayuda().ayudaadmin();
+				new Comando().ayudaadmin();
 				break;
 			default:
 				System.out.println("Compruebe su sintaxis");

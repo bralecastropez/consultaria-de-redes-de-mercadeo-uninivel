@@ -20,12 +20,17 @@ public class Decodificador{
 			accion = comandos[0]+" "+comandos[1];
 		}else{
 			accion = comandos[0];
-		}		
-		for(int posicion=2;posicion<comandos.length;posicion++){
-			String claveValor[] = comandos[posicion].split("=");
-			diccionario.put(claveValor[0], claveValor[1]);
 		}
-
+		try{		
+			for(int posicion=2;posicion<comandos.length;posicion++){
+				String claveValor[] = comandos[posicion].split("=");
+				diccionario.put(claveValor[0], claveValor[1]);
+			}
+		}catch(ArrayIndexOutOfBoundsException ex){
+			System.out.println("");
+			System.out.println("Ingrese datos validos");
+			System.out.println("");
+		}
 		this.decodeListener.avisarAccionar(accion, diccionario);
 	}
 }
