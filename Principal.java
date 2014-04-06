@@ -14,6 +14,7 @@ import java.io.Console;
 public class Principal{
 	public void iniciar(){
 		do{
+			try{
 			Console terminal = System.console();
 			if (terminal==null ) {
 				System.err.println("No puedo obtener la consola.");
@@ -28,7 +29,7 @@ public class Principal{
 			nick=Entrada.getInstancia().leer();
 			
 			System.out.println("Ingrese Contrase a: ");
-			password = new String (terminal.readPassword("********"));
+			password = new String (terminal.readPassword(">>"));
 			
 			boolean resultadoadmin = ManejadorAdmin.getInstancia().autenticarAdmin(nick, password);
 			boolean resultadomim = ManejadorMiembro.getInstancia().autenticarMiembro(nick, password);
@@ -58,6 +59,9 @@ public class Principal{
 			}else{
 				System.out.println("");
 				System.out.println("Nombre de usuario o contrase a incorrecta.");
+			}
+			}catch(NullPointerException nullexception){
+				System.out.println("Datos Erroneos.");
 			}
 		}while(true);
 	}

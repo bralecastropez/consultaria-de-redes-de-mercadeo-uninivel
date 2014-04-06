@@ -13,7 +13,6 @@ public class Entrada{
 	public String leer(){
 		return scaner.nextLine();
 	}
-	
 	public void cerrar(){
 		scaner.close();
 	}

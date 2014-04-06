@@ -9,6 +9,8 @@ import org.brandon.manejadores.ManejadorProducto;
 import org.brandon.beans.Miembro;
 import org.brandon.beans.Producto;
 
+import java.io.Console;
+
 import java.util.HashMap;
 
 public class AppMiembro extends AbstractAppRol implements DecodeListener{
@@ -84,21 +86,38 @@ public class AppMiembro extends AbstractAppRol implements DecodeListener{
 			case "search downline":
 				break;
 			case "buy product":
-				/*if(parametros.size()==2){
+				try{
+				//if(parametros.size()==2){
 					Producto productoAComprar = ManejadorProducto.getInstancia().buscarProducto(parametros.get("nombre"));
-					Miembro tarjetaSinAutenticar = ManejadorMiembro.getInstancia().buscarMiembro(parametros.get("tarjeta"));
-					if(productoAComprar!=null){
-						if(){
-							System.out.println("");
-						}else{
-							System.out.println("Ingrese el No. de Tarjeta Correctamente");
-						}
+					Miembro tarjeta = ManejadorMiembro.getInstancia().buscarMiembro(parametros.get("tarjeta"));
+					if(productoAComprar!=null /*&& tarjeta!=null*/){
+							Console terminal = System.console();
+							if (terminal==null ) {
+								System.err.println("No puedo obtener la consola.");
+								return;
+							}
+							System.out.print("Ingrese su pin");
+							String pinSinAutenticar= new String (terminal.readPassword(">>"));
+							int pinAutenticado=Integer.parseInt(pinSinAutenticar);
+							if(ManejadorMiembro.getInstancia().obtenerMiembroAutenticado().getPin()==pinAutenticado){
+								System.out.println("Acaba de comprar el producto: "+productoAComprar.getNombre());
+								System.out.println("");
+								System.out.println("Nombre: "+productoAComprar.getNombre());
+								System.out.println("Categoria: "+productoAComprar.getCategoria());
+								System.out.println("Precio: "+productoAComprar.getPrecio());
+								System.out.println("");
+							}else{
+								System.out.println("Pin incorrecto");
+							}
 					}else{
-						System.out.println("El Producto no existe.");
+						System.out.println("El Producto o Tarjeta ingresada no existe.");
 					}
-				}else{
-					System.out.println("Comprueba tu sintaxis.");
-				}*/
+				//}else{
+					//System.out.println("Comprueba tu sintaxis.");
+				//}
+				}catch(NumberFormatException excepcionnumero){
+					System.out.println("Ingrese parametros validos");
+				}
 				break;
 			case "add downline":
 				break;
