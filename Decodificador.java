@@ -12,25 +12,27 @@ public class Decodificador{
 	}
 	
 	public void decodificarComando(String comando){
-		String[] comandos=comando.split(" ");
-		HashMap<String, String> diccionario = new HashMap<String, String>();
-		String accion = null;
+		try{
+			String[] comandos=comando.split(" ");
+			HashMap<String, String> diccionario = new HashMap<String, String>();
+			String accion = null;
 
-		if(comandos.length>1){
-			accion = comandos[0]+" "+comandos[1];
-		}else{
-			accion = comandos[0];
-		}
-		try{		
+			if(comandos.length==1){
+				accion = comandos[0]+" "+comandos[1];
+			}else{
+				accion = comandos[0];
+			}
+				
 			for(int posicion=2;posicion<comandos.length;posicion++){
 				String claveValor[] = comandos[posicion].split("=");
 				diccionario.put(claveValor[0], claveValor[1]);
 			}
+			this.decodeListener.avisarAccionar(accion, diccionario);
+		
 		}catch(ArrayIndexOutOfBoundsException ex){
 			System.out.println("");
 			System.out.println("Ingrese datos validos");
 			System.out.println("");
 		}
-		this.decodeListener.avisarAccionar(accion, diccionario);
 	}
 }

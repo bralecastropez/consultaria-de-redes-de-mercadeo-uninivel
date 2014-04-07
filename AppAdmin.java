@@ -73,7 +73,7 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 				break;
 			case "list user":
 				for(Admin administrador : ManejadorAdmin.getInstancia().obtenerListaAdmin()){
-					System.out.println("+++++++++++++++++++++++++");
+					System.out.println("");
 					System.out.println("nombre: "+administrador.getNombre());
 					System.out.println("nick: "+administrador.getNick());
 					System.out.println("");
