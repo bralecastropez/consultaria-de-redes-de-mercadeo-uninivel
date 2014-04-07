@@ -17,12 +17,12 @@ public class Decodificador{
 			HashMap<String, String> diccionario = new HashMap<String, String>();
 			String accion = null;
 
-			if(comandos.length==1){
+			if(comandos.length>1){
 				accion = comandos[0]+" "+comandos[1];
 			}else{
 				accion = comandos[0];
 			}
-				
+			
 			for(int posicion=2;posicion<comandos.length;posicion++){
 				String claveValor[] = comandos[posicion].split("=");
 				diccionario.put(claveValor[0], claveValor[1]);

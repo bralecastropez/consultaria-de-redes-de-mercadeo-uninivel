@@ -86,6 +86,7 @@ public class AppMiembro extends AbstractAppRol implements DecodeListener{
 					System.out.println("La sintaxis correcta es : ||| show history [buy] --- show history [downline] [idDownline] |||");
 				}else{
 					if(parametros.size()==1){
+						System.out.println("");
 						System.out.println("Los Productos que ha comprado son: ");
 						System.out.println("");
 						for(Producto history : ManejadorProducto.getInstancia().obtenerHistorial()){
@@ -150,6 +151,9 @@ public class AppMiembro extends AbstractAppRol implements DecodeListener{
 				}
 				break;
 			case "add downline":
+				break;
+			case "show history buy":
+				System.out.println("	t(-_-)t		");
 				break;
 			case "edit me":
 				if(parametros.size()>=1){
