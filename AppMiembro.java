@@ -108,7 +108,7 @@ public class AppMiembro extends AbstractAppRol implements DecodeListener{
 						}else{
 							System.out.println("		--		");
 						}
-					//}
+					}
 				}
 				break;
 			case "search downline":
