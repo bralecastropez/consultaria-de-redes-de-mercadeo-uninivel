@@ -1,7 +1,6 @@
 package org.brandon.sistema;
 
 import org.brandon.utilidades.Entrada;
-import org.brandon.utilidades.JPasswordFieldDemo;
 import org.brandon.utilidades.Decodificador;
 import org.brandon.manejadores.ManejadorAdmin;
 import org.brandon.manejadores.ManejadorMiembro;

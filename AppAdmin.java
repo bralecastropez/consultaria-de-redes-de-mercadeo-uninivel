@@ -59,6 +59,7 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 				break;
 				
 			case "":
+				System.out.println("Escribe || help || para obtener ayuda");
 				break;
 				
 			case "edit me":
@@ -125,15 +126,20 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 				break;
 				
 			case "add product":
-				Producto producto = new Producto();
+				try{
+					Producto producto = new Producto();
 				
-				producto.setNombre(parametros.get("nombre"));
-				producto.setCategoria(parametros.get("categoria"));
-				producto.setPrecio(Integer.parseInt(parametros.get("precio")));
+					producto.setNombre(parametros.get("nombre"));
+					producto.setCategoria(parametros.get("categoria"));
+					producto.setPrecio(Integer.parseInt(parametros.get("precio")));
+		
+					ManejadorProducto.getInstancia().agregarProducto(producto);
 	
-				ManejadorProducto.getInstancia().agregarProducto(producto);
-
-				System.out.println("Producto agregado satisfactoriamente.");
+					System.out.println("Producto agregado satisfactoriamente.");
+				}catch(NumberFormatException numexc){
+					System.out.println("");
+					System.out.println("Ingresa datos validos");
+				}
 				break;
 			case "remove product":
 				Producto productoAEliminar = ManejadorProducto.getInstancia().buscarProducto(parametros.get("nombre"));
@@ -146,7 +152,7 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 				break;
 				
 			case "edit product":
-				if(parametros.size()>=1){
+				if(parametros.size()>=1 && parametros.size()<=3){
 					Producto productoAEditar = ManejadorProducto.getInstancia().buscarProducto(parametros.get("nombre"));
 					if(parametros.get("nuevonombre")!=null){
 						productoAEditar.setNombre(parametros.get("nuevonombre"));
@@ -162,12 +168,12 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 				break;
 				
 			case "show sales":
-				if(parametros.size()==0){
+				if(parametros.size()<=0 || parametros.size()==0){
 					for(Producto product : ManejadorProducto.getInstancia().obtenerListaProducto()){
 						System.out.println("");
 						System.out.println("nombre: "+product.getNombre());
 					}
-				}if(parametros.size()==1){
+				}if(parametros.size()>=1 && parametros.size()<2){
 					Producto productoAMostrar = ManejadorProducto.getInstancia().buscarProducto(parametros.get("nombre"));
 					if(productoAMostrar!=null){
 						System.out.println("");
@@ -179,9 +185,9 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 						System.out.println("El producto no existe.");
 						System.out.println("");
 					}
-				}else{
+				}/*else{
 					System.out.println("Compruebe su sintaxis.");
-				}
+				}*/
 				break;
 				
 			case "show downline":

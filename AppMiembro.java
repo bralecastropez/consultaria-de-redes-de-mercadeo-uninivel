@@ -68,12 +68,12 @@ public class AppMiembro extends AbstractAppRol implements DecodeListener{
 				break;
 				
 			case "show sales":
-				if(parametros.size()==0){
+				if(parametros.size()<=0 || parametros.size()==0){
 					for(Producto product : ManejadorProducto.getInstancia().obtenerListaProducto()){
 						System.out.println("");
 						System.out.println("nombre: "+product.getNombre());
 					}
-				}if(parametros.size()==1){
+				}if(parametros.size()>=1 && parametros.size()<2){
 					Producto productoAMostrar = ManejadorProducto.getInstancia().buscarProducto(parametros.get("nombre"));
 					if(productoAMostrar!=null){
 						System.out.println("");
@@ -85,7 +85,9 @@ public class AppMiembro extends AbstractAppRol implements DecodeListener{
 						System.out.println("El producto no existe.");
 						System.out.println("");
 					}
-				}
+				}/*else{
+					System.out.println("Compruebe su sintaxis.");
+				}*/
 				break;
 				
 			case "show downline":
