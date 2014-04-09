@@ -4,7 +4,13 @@ import org.brandon.utilidades.eventos.DecodeListener;
 
 import java.util.HashMap;
 
+/**
+*	@author Brandon Castro
+*	Esta clase como su nombre lo indica esta creada para decodificar los comandos.
+*/
+
 public class Decodificador{
+
 	private DecodeListener decodeListener;	
 	
 	public void addDecodeListener(DecodeListener decodeListener){
@@ -27,6 +33,7 @@ public class Decodificador{
 				String claveValor[] = comandos[posicion].split("=");
 				diccionario.put(claveValor[0], claveValor[1]);
 			}
+			
 			this.decodeListener.avisarAccionar(accion, diccionario);
 		
 		}catch(ArrayIndexOutOfBoundsException ex){
@@ -35,4 +42,5 @@ public class Decodificador{
 			System.out.println("");
 		}
 	}
+	
 }

@@ -4,7 +4,13 @@ import java.util.ArrayList;
 
 import org.brandon.beans.Producto;
 
+/**
+*	@author Brandon Castro
+*	Esta clase es el manejador del beans producto.
+*/
+
 public class ManejadorProducto{
+
 	private ArrayList<Producto> listaProducto;
 	private ArrayList<Producto> historial;
 	private Producto productoAutenticado;
@@ -24,21 +30,26 @@ public class ManejadorProducto{
 		
 		this.historial=new ArrayList<Producto>();
 	}
+	
 	public void agregarProducto(Producto producto){
 		this.listaProducto.add(producto);
 	}
+	
 	public void eliminarProducto(Producto producto){
 		this.listaProducto.remove(producto);
 	}
+	
 	public ArrayList<Producto> obtenerListaProducto(){
 		return this.listaProducto;
 	}
 	public ArrayList<Producto> obtenerHistorial(){
 		return this.historial;
 	}
+	
 	public void agregarHistorial(Producto producto){
 		this.historial.add(producto);
 	}
+	
 	public Producto buscarProducto(String nombre){
 		for(int posicion=0;posicion<this.listaProducto.size();posicion++){
 			if(this.listaProducto.get(posicion).getNombre().equals(nombre)){
@@ -47,6 +58,7 @@ public class ManejadorProducto{
 		}
 		return null;
 	}
+	
 	public static ManejadorProducto getInstancia(){
 		if(instancia==null)
 			instancia=new ManejadorProducto();

@@ -11,6 +11,11 @@ import org.brandon.utilidades.Decodificador;
 
 import java.util.HashMap;
 
+/**
+*	@author Brandon Castro
+*	Esta clase se creo para no repetir comandos en nuestros Apps.
+*/
+
 public class Comando{
 	
 	public void ayudaadmin(){
@@ -59,6 +64,7 @@ public class Comando{
 		System.out.println("SINTAXIS: add user nombre=[nombre que desea ponerle al admnistrador] password=[contrasenha del administrador] nick=[nombre de usuario del nuevo administrador]");
 		System.out.println("");
 	}
+	
 	public void ayudamiembro(){
 		System.out.println("Comandos que puede usar el Miembro");
 		System.out.println("");
@@ -99,10 +105,12 @@ public class Comando{
 		System.out.println("SINTAXIS: exit");
 		System.out.println("");
 	}
+	
 	public void exit(){
 		System.out.println("Gracias por utilizar mi programa");
 		System.exit(0);
 	}
+	
 	public void listarProductos(){
 		for(Producto product : ManejadorProducto.getInstancia().obtenerListaProducto()){
 			System.out.println("");
@@ -113,6 +121,7 @@ public class Comando{
 		System.out.println("Fin de la lista");
 		System.out.println("");
 	}
+	
 	public void showmeAdmin(){
 		Admin adminAMostrar = ManejadorAdmin.getInstancia().obtenerAdminAutenticado();
 		System.out.println("");
@@ -120,6 +129,7 @@ public class Comando{
 		System.out.println("Nombre de Usuario (nick): "+adminAMostrar.getNick());
 		System.out.println("");
 	}
+	
 	public void showmeMiembro(){
 		Miembro miembroAMostrar = ManejadorMiembro.getInstancia().obtenerMiembroAutenticado();
 		System.out.println("");
@@ -130,4 +140,5 @@ public class Comando{
 		System.out.println("Tarjeta de Credito: "+miembroAMostrar.getTarjeta());
 		System.out.println("");
 	}
+	
 }

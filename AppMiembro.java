@@ -13,6 +13,11 @@ import java.io.Console;
 
 import java.util.HashMap;
 
+/**
+*	@author Brandon Castro
+*	Esta clase nos sirve para la aplicacion del Miembro.
+*/
+
 public class AppMiembro extends AbstractAppRol implements DecodeListener{
 
 	public AppMiembro(Decodificador decodificador){
@@ -26,12 +31,42 @@ public class AppMiembro extends AbstractAppRol implements DecodeListener{
 	}
 	public void avisarAccionar(String accion, HashMap<String, String> parametros){
 		switch(accion.trim()){
+		
+			case "list products":
+				if(parametros.size()>0){
+					System.out.println("");
+					System.out.println("La sintaxis correcta es : list products ");
+				}else{
+				new Comando().listarProductos();
+				}
+				break;
+				
+			case "show product":
+				if(parametros.size()<=1){
+					Producto productoAMostrar = ManejadorProducto.getInstancia().buscarProducto(parametros.get("nombre"));
+					if(productoAMostrar!=null){
+						System.out.println("");
+						System.out.println("Nombre: "+productoAMostrar.getNombre());
+						System.out.println("Categoria: "+productoAMostrar.getCategoria());
+						System.out.println("Precio: "+productoAMostrar.getPrecio());
+					}else{
+						System.out.println("");
+						System.out.println("El producto no existe.");
+						System.out.println("");
+					}
+				}else{
+					System.out.println("Comprueba tu sintaxis.");
+				}
+				break;
+				
 			case "exit":
 				new Comando().exit();
 				break;
+				
 			case "logout":
 				super.setConnected(false);
 				break;
+				
 			case "show sales":
 				if(parametros.size()==0){
 					for(Producto product : ManejadorProducto.getInstancia().obtenerListaProducto()){
@@ -52,35 +87,20 @@ public class AppMiembro extends AbstractAppRol implements DecodeListener{
 					}
 				}
 				break;
-			case "list products":
-				new Comando().listarProductos();
-				break;
-			case "show product":
-				if(parametros.size()==1){
-					Producto productoAMostrar = ManejadorProducto.getInstancia().buscarProducto(parametros.get("nombre"));
-					if(productoAMostrar!=null){
-						System.out.println("");
-						System.out.println("Nombre: "+productoAMostrar.getNombre());
-						System.out.println("Categoria: "+productoAMostrar.getCategoria());
-						System.out.println("Precio: "+productoAMostrar.getPrecio());
-					}else{
-						System.out.println("");
-						System.out.println("El producto no existe.");
-						System.out.println("");
-					}
-				}else{
-					System.out.println("Comprueba tu sintaxis.");
-				}
-				break;
+				
 			case "show downline":
 				break;
+				
 			case "list downlines":
 				break;
+				
 			case "show me":
 				new Comando().showmeMiembro();
 				break;
+				
 			case "":
 				break;
+				
 			case "show history":
 				if(parametros.size()==0){
 					System.out.println("La sintaxis correcta es : ||| show history [buy] --- show history [downline] [idDownline] |||");
@@ -112,8 +132,10 @@ public class AppMiembro extends AbstractAppRol implements DecodeListener{
 					}
 				}
 				break;
+				
 			case "search downline":
 				break;
+				
 			case "buy product":
 				try{
 				//if(parametros.size()==2){
@@ -150,11 +172,10 @@ public class AppMiembro extends AbstractAppRol implements DecodeListener{
 					System.out.println("Ingrese parametros validos");
 				}
 				break;
+				
 			case "add downline":
 				break;
-			case "show history buy":
-				System.out.println("	t(-_-)t		");
-				break;
+				
 			case "edit me":
 				if(parametros.size()>=1){
 					Miembro miembroAmodificar = ManejadorMiembro.getInstancia().obtenerMiembroAutenticado();
@@ -179,10 +200,13 @@ public class AppMiembro extends AbstractAppRol implements DecodeListener{
 					System.out.println("Miembro Modificado");
 				}
 				break;
+				
 			case "help":
 				new Comando().ayudamiembro();
 				break;
+				
 			default:
+				System.out.println("");
 				System.out.println("Compruebe su sintaxis");
 		}
 	}

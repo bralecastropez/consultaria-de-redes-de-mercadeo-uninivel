@@ -9,7 +9,10 @@ import org.brandon.beans.Admin;
 import org.brandon.beans.Producto;
 
 import java.util.HashMap;
-
+/**
+*	@author Brandon Castro
+*	Esta clase nos sirve para la Aplicacion del Administrador.
+*/
 public class AppAdmin extends AbstractAppRol implements DecodeListener{
 
 	public AppAdmin(Decodificador decodificador){
@@ -23,11 +26,41 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 	}
 	public void avisarAccionar(String accion, HashMap<String, String> parametros){
 		switch(accion.trim()){
+		
+			case "list products":
+				if(parametros.size()>0){
+					System.out.println("");
+					System.out.println("La sintaxis correcta es : list products ");
+				}else{
+					new Comando().listarProductos();
+				}
+				break;
+				
+			case "show product":
+				if(parametros.size()<=1){
+					Producto productoAMostrar = ManejadorProducto.getInstancia().buscarProducto(parametros.get("nombre"));
+					if(productoAMostrar!=null){
+						System.out.println("");
+						System.out.println("Nombre: "+productoAMostrar.getNombre());
+						System.out.println("Categoria: "+productoAMostrar.getCategoria());
+						System.out.println("Precio: "+productoAMostrar.getPrecio());
+					}else{
+						System.out.println("");
+						System.out.println("El producto no existe.");
+						System.out.println("");
+				}
+				}else{
+					System.out.println("Solo se puede ingresar un producto.");
+				}
+				break;
+				
 			case "exit":
 				new Comando().exit();
 				break;
+				
 			case "":
 				break;
+				
 			case "edit me":
 				if(parametros.size()<=2){
 					if(parametros.size()>=1){
@@ -47,6 +80,7 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 					System.out.println("Compruebe su sintaxis.");
 				}
 				break;
+				
 			case "add user":
 				//if(parametros.size()==2){
 					Admin admin = new Admin();
@@ -62,6 +96,7 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 				//	System.out.println("Compruebe su sintaxis.");
 				//}
 				break;
+				
 			case "remove user":
 				Admin adminAEliminar = ManejadorAdmin.getInstancia().buscarAdmin(parametros.get("nick"));
 				if(adminAEliminar!=null){
@@ -71,6 +106,7 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 					System.out.println("El usuario no existe.");
 				}
 				break;
+				
 			case "list user":
 				for(Admin administrador : ManejadorAdmin.getInstancia().obtenerListaAdmin()){
 					System.out.println("");
@@ -83,9 +119,11 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 				System.out.println("Fin de la lista");
 				System.out.println("");
 				break;
+				
 			case "logout":
 				super.setConnected(false);
 				break;
+				
 			case "add product":
 				Producto producto = new Producto();
 				
@@ -106,6 +144,7 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 					System.out.println("El producto no existe.");
 				}
 				break;
+				
 			case "edit product":
 				if(parametros.size()>=1){
 					Producto productoAEditar = ManejadorProducto.getInstancia().buscarProducto(parametros.get("nombre"));
@@ -121,6 +160,7 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 					System.out.println("Producto editado Satisfactoriamente.");
 				}
 				break;
+				
 			case "show sales":
 				if(parametros.size()==0){
 					for(Producto product : ManejadorProducto.getInstancia().obtenerListaProducto()){
@@ -143,41 +183,28 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 					System.out.println("Compruebe su sintaxis.");
 				}
 				break;
-			case "list products":
-				new Comando().listarProductos();
-				break;
-			case "show product":
-				if(parametros.size()>=1){
-					Producto productoAMostrar = ManejadorProducto.getInstancia().buscarProducto(parametros.get("nombre"));
-					if(productoAMostrar!=null){
-						System.out.println("");
-						System.out.println("Nombre: "+productoAMostrar.getNombre());
-						System.out.println("Categoria: "+productoAMostrar.getCategoria());
-						System.out.println("Precio: "+productoAMostrar.getPrecio());
-					}else{
-						System.out.println("");
-						System.out.println("El producto no existe.");
-						System.out.println("");
-					}
-				}else{
-					System.out.println("Compruebe su sintaxis.");
-				}
-				break;
+				
 			case "show downline":
 				break;
 			case "list downlines":
 				break;
+				
 			case "show me":
 				new Comando().showmeAdmin();
 				break;
+				
 			case "show history":
 				break;
+				
 			case "search downline":
 				break;
+				
 			case "help":
 				new Comando().ayudaadmin();
 				break;
+				
 			default:
+				System.out.println("");
 				System.out.println("Compruebe su sintaxis");
 		}
 	}

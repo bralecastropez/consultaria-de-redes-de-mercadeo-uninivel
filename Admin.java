@@ -1,5 +1,12 @@
 package org.brandon.beans;
+
+/**
+*	@author Brandon Castro
+*	Este es el beans que usa el Administrador.
+*/
+
 public class Admin{
+
 	private String nombre;
 	private String nick;
 	private String password;
@@ -11,24 +18,31 @@ public class Admin{
 	public void setNombre(String nombre){
 		this.nombre=nombre;
 	}
+	
 	public String getNick(){
 		return this.nick;
 	}
 	public void setNick(String nick){
 		this.nick=nick;
 	}
+	
 	public String getPassword(){
 		return this.password;
 	}
 	public void setPassword(String password){
 		this.password=password;
 	}
+	
 	public String getRol(){
 		return this.rol;
 	}
 	public void setRol(String rol){
 		this.rol=rol;
 	}
+	
+	/**
+	*	Constructor vacio.
+	*/
 	public Admin(){
 
 	}
@@ -37,4 +51,5 @@ public class Admin{
 		this.setNick(nick);
 		this.setPassword(password);
 	}
+	
 }
