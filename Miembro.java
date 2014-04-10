@@ -5,13 +5,12 @@ package org.brandon.beans;
 *	Este es el beans del miembro.
 */
 
-public class Miembro{
-
+public class Miembro extends Downline{
+	
 	private String nombre;
 	private String nick;
 	private String password;
 	private String rol="miembro";
-	private int idDownline;
 	private int edad;
 	private int tarjeta;
 	private int pin;
@@ -65,24 +64,16 @@ public class Miembro{
 		this.pin=pin;
 	}
 	
-	public int getIdDownline(){
-		return this.idDownline;
-	}
-	public void setIdDownline(int idDownline){
-		this.idDownline=idDownline;
-	}
-	
 	public Miembro(){
-
+		super();
 	}
-	public Miembro(String nombre, String nick, String password, int edad,int tarjeta,int pin, int idDownline){
+	public Miembro(String nombre, String nick, String password, int edad,int tarjeta,int pin){
 		this.setNombre(nombre);
 		this.setNick(nick);
 		this.setPassword(password);
 		this.setEdad(edad);
 		this.setTarjeta(tarjeta);
 		this.setPin(pin);
-		this.setIdDownline(idDownline);
 	}
 	
 }

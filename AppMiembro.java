@@ -7,10 +7,10 @@ import org.brandon.utilidades.Comando;
 import org.brandon.manejadores.ManejadorMiembro;
 import org.brandon.manejadores.ManejadorProducto;
 import org.brandon.beans.Miembro;
+import org.brandon.beans.Downline;
 import org.brandon.beans.Producto;
 
 import java.io.Console;
-
 import java.util.HashMap;
 
 /**
@@ -94,6 +94,15 @@ public class AppMiembro extends AbstractAppRol implements DecodeListener{
 				break;
 				
 			case "list downlines":
+				for(Miembro miembro : ManejadorMiembro.getInstancia().obtenerListaMiembro()){
+					System.out.println("---------------------------------");
+					System.out.println("Nombre: "+miembro.getNombre());
+					System.out.println("Edad: "+miembro.getEdad());
+					System.out.println("idDownline: "+miembro.getIdDownline());
+					System.out.println("--------Downlines-------");
+					this.listarDownlines(miembro, 1);
+				}
+				System.out.println("---------------------------------");
 				break;
 				
 			case "show me":
@@ -176,10 +185,23 @@ public class AppMiembro extends AbstractAppRol implements DecodeListener{
 				break;
 				
 			case "add downline":
+				Downline downline = new Downline();
+				downline.setNombre(parametros.get("nombre"));
+				downline.setIdDownline(Integer.parseInt(parametros.get("idDownline")));
+				downline.setEdad(Integer.parseInt(parametros.get("edad")));
+				
+				String[] ruta = parametros.get("down").split(",");
+				Downline peliR = ManejadorMiembro.getInstancia().buscarMiembro(ruta[0]);
+				Downline downlineResultado = peliR;
+				
+				for(int posicion=1;posicion<ruta.length;posicion++){
+					downlineResultado=ManejadorMiembro.getInstancia().buscarDentroDeDownline(downlineResultado, ruta[posicion]);
+				}
+				downlineResultado.getListaDownlines().add(downline);
 				break;
 				
 			case "edit me":
-				if(parametros.size()>=1){
+				if(parametros.size()>=1 && parametros.size()<=5){
 					Miembro miembroAmodificar = ManejadorMiembro.getInstancia().obtenerMiembroAutenticado();
 					if(parametros.get("nombre")!=null){
 						miembroAmodificar.setNombre(parametros.get("nombre"));
@@ -208,6 +230,7 @@ public class AppMiembro extends AbstractAppRol implements DecodeListener{
 				break;
 				
 			default:
+				super.revisarAccionar(accion, parametros);
 				System.out.println("");
 				System.out.println("Compruebe su sintaxis");
 		}

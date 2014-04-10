@@ -2,6 +2,12 @@ package org.brandon.app;
 
 import org.brandon.utilidades.Entrada;
 import org.brandon.utilidades.Decodificador;
+import org.brandon.beans.Miembro;
+import org.brandon.beans.Downline;
+import org.brandon.manejadores.ManejadorMiembro;
+
+import java.util.HashMap;
+import java.util.ArrayList;
 
 /**
 *	@author Brandon Castro
@@ -38,4 +44,41 @@ public abstract class AbstractAppRol{
 			}
 		}while(estadoSesion);
 	}
+	
+	public String obtenerLineas(int nivel){
+		String resultado="";
+		for(int posicion=0;posicion<nivel;posicion++){
+			resultado+="     ";
+		}
+		return resultado;
+	}
+	
+	public void listarDownlines(Downline downline, int nivel){
+		String numeroDeLineas=this.obtenerLineas(nivel);
+		for(Downline downlineDentro : downline.getListaDownlines()){
+			System.out.println(numeroDeLineas+"-----------------------");
+			System.out.println(numeroDeLineas+"|_____Nombre: "+downlineDentro.getNombre());
+			System.out.println(numeroDeLineas+"|_____idDownline: "+downlineDentro.getIdDownline());
+			System.out.println(numeroDeLineas+"|_____Edad: "+downlineDentro.getEdad());
+			this.listarDownlines(downlineDentro, nivel+1);
+		}
+		System.out.println(numeroDeLineas+"-----------------------");
+	}
+
+	public void revisarAccionar(String accion, HashMap<String,String> parametros){
+		switch(accion.trim()){
+			case "list downlines":
+				for(Miembro miembro : ManejadorMiembro.getInstancia().obtenerListaMiembro()){
+					System.out.println("---------------------------------");
+					System.out.println("Nombre: "+miembro.getNombre());
+					System.out.println("idDowline: "+miembro.getIdDownline());
+					System.out.println("Edad: "+miembro.getEdad());
+					System.out.println("--------Downlines-------");
+					this.listarDownlines(miembro, 1);
+				}
+				System.out.println("---------------------------------");
+			break;
+		}
+	}
+	
 }

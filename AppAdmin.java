@@ -9,10 +9,12 @@ import org.brandon.beans.Admin;
 import org.brandon.beans.Producto;
 
 import java.util.HashMap;
+
 /**
 *	@author Brandon Castro
 *	Esta clase nos sirve para la Aplicacion del Administrador.
 */
+
 public class AppAdmin extends AbstractAppRol implements DecodeListener{
 
 	public AppAdmin(Decodificador decodificador){
@@ -63,27 +65,25 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 				break;
 				
 			case "edit me":
-				if(parametros.size()<=2){
-					if(parametros.size()>=1){
-						Admin adminAEditar = ManejadorAdmin.getInstancia().obtenerAdminAutenticado();
-						if(parametros.get("nombre")!=null){
-							adminAEditar.setNombre(parametros.get("nombre"));
-						}
-						if(parametros.get("nick")!=null){
-							adminAEditar.setNick(parametros.get("nick"));
-						}
-						if(parametros.get("password")!=null){
-							adminAEditar.setPassword(parametros.get("password"));
-						}
-						System.out.println("Administrador Modificado");
+				if(parametros.size()>=1 && parametros.size()<=3){
+					Admin adminAEditar = ManejadorAdmin.getInstancia().obtenerAdminAutenticado();
+					if(parametros.get("nombre")!=null){
+						adminAEditar.setNombre(parametros.get("nombre"));
 					}
+					if(parametros.get("nick")!=null){
+						adminAEditar.setNick(parametros.get("nick"));
+					}
+					if(parametros.get("password")!=null){
+						adminAEditar.setPassword(parametros.get("password"));
+					}
+					System.out.println("Administrador Modificado");
 				}else{
 					System.out.println("Compruebe su sintaxis.");
 				}
 				break;
 				
 			case "add user":
-				//if(parametros.size()==2){
+				if(parametros.size()>1 && parametros.size()<4){
 					Admin admin = new Admin();
 					if(parametros.get("nombre")!=null && parametros.get("nick")!=null && parametros.get("password")!=null){
 					
@@ -93,9 +93,9 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 						ManejadorAdmin.getInstancia().agregarAdmin(admin);
 						System.out.println("Administrador agregado satisfactoriamente.");
 					}
-			//	}else{
-				//	System.out.println("Compruebe su sintaxis.");
-				//}
+				}else{
+					System.out.println("Compruebe su sintaxis.");
+				}
 				break;
 				
 			case "remove user":
@@ -152,18 +152,23 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 				break;
 				
 			case "edit product":
-				if(parametros.size()>=1 && parametros.size()<=3){
-					Producto productoAEditar = ManejadorProducto.getInstancia().buscarProducto(parametros.get("nombre"));
-					if(parametros.get("nuevonombre")!=null){
-						productoAEditar.setNombre(parametros.get("nuevonombre"));
+				try{
+					if(parametros.size()>=1 && parametros.size()<=3){
+						Producto productoAEditar = ManejadorProducto.getInstancia().buscarProducto(parametros.get("nombre"));
+						if(parametros.get("nuevonombre")!=null){
+							productoAEditar.setNombre(parametros.get("nuevonombre"));
+						}
+						if(parametros.get("nuevacategoria")!=null){
+							productoAEditar.setCategoria(parametros.get("nuevacategoria"));
+						}
+						if(parametros.get("nuevoprecio")!=null){
+							productoAEditar.setPrecio(Integer.parseInt(parametros.get("nuevoprecio")));
+						}
+						System.out.println("Producto editado Satisfactoriamente.");
 					}
-					if(parametros.get("nuevacategoria")!=null){
-						productoAEditar.setCategoria(parametros.get("nuevacategoria"));
-					}
-					if(parametros.get("nuevoprecio")!=null){
-						productoAEditar.setPrecio(Integer.parseInt(parametros.get("nuevoprecio")));
-					}
-					System.out.println("Producto editado Satisfactoriamente.");
+				}catch(NumberFormatException pinexc){
+					System.out.println("");
+					System.out.println("Ingresa datos validos");
 				}
 				break;
 				

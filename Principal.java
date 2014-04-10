@@ -71,7 +71,7 @@ public class Principal{
 				}
 				
 			}catch(NullPointerException nullexception){
-				System.out.println("Datos Erroneos.");
+				System.out.println("Datos Erroneos, porfavor compruebe su sintaxis.");
 			}
 			
 		}while(true);
