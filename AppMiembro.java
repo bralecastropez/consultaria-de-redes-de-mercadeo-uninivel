@@ -31,7 +31,11 @@ public class AppMiembro extends AbstractAppRol implements DecodeListener{
 	}
 	public void avisarAccionar(String accion, HashMap<String, String> parametros){
 		switch(accion.trim()){
-		
+			
+			case "":
+				System.out.println("Escribe || help || para obtener ayuda");
+				break;
+				
 			case "list products":
 				if(parametros.size()>0){
 					System.out.println("");
@@ -94,22 +98,11 @@ public class AppMiembro extends AbstractAppRol implements DecodeListener{
 				break;
 				
 			case "list downlines":
-				for(Miembro miembro : ManejadorMiembro.getInstancia().obtenerListaMiembro()){
-					System.out.println("---------------------------------");
-					System.out.println("Nombre: "+miembro.getNombre());
-					System.out.println("Edad: "+miembro.getEdad());
-					System.out.println("idDownline: "+miembro.getIdDownline());
-					System.out.println("--------Downlines-------");
-					this.listarDownlines(miembro, 1);
-				}
-				System.out.println("---------------------------------");
+				super.revisarAccionar(accion, parametros);
 				break;
 				
 			case "show me":
 				new Comando().showmeMiembro();
-				break;
-				
-			case "":
 				break;
 				
 			case "show history":
@@ -191,13 +184,19 @@ public class AppMiembro extends AbstractAppRol implements DecodeListener{
 				downline.setEdad(Integer.parseInt(parametros.get("edad")));
 				
 				String[] ruta = parametros.get("down").split(",");
-				Downline peliR = ManejadorMiembro.getInstancia().buscarMiembro(ruta[0]);
-				Downline downlineResultado = peliR;
 				
-				for(int posicion=1;posicion<ruta.length;posicion++){
-					downlineResultado=ManejadorMiembro.getInstancia().buscarDentroDeDownline(downlineResultado, ruta[posicion]);
+				Downline peliR = ManejadorMiembro.getInstancia().buscarMiembro(ruta[0]);
+					if(!(peliR.equals(null))){
+						Downline downlineResultado = peliR;
+				
+						for(int posicion=1;posicion<ruta.length;posicion++){
+						downlineResultado=ManejadorMiembro.getInstancia().buscarDentroDeDownline(downlineResultado, ruta[posicion]);
+					}
+					downlineResultado.getListaDownlines().add(downline);
+				}else{
+					System.err.println("pancho");
 				}
-				downlineResultado.getListaDownlines().add(downline);
+				super.revisarAccionar(accion, parametros);
 				break;
 				
 			case "edit me":
@@ -230,7 +229,6 @@ public class AppMiembro extends AbstractAppRol implements DecodeListener{
 				break;
 				
 			default:
-				super.revisarAccionar(accion, parametros);
 				System.out.println("");
 				System.out.println("Compruebe su sintaxis");
 		}

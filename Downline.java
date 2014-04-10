@@ -13,7 +13,7 @@ public class Downline{
 	private int idDownline;
 	private int edad;
 	
-	public void setlistaDownlines(ArrayList<Downline> listaDownlines){
+	public void setListaDownlines(ArrayList<Downline> listaDownlines){
 		this.listaDownlines=listaDownlines;
 	}
 	public 	ArrayList<Downline> getListaDownlines(){
