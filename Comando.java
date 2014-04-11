@@ -10,6 +10,9 @@ import org.brandon.utilidades.eventos.DecodeListener;
 import org.brandon.utilidades.Decodificador;
 
 import java.util.HashMap;
+import java.util.Date; 
+import java.text.DateFormat; 
+import java.text.SimpleDateFormat; 
 
 /**
 *	@author Brandon Castro
@@ -17,6 +20,13 @@ import java.util.HashMap;
 */
 
 public class Comando{
+	private static Comando instancia;
+	
+	public static Comando getInstancia(){
+		if(instancia==null)
+			instancia=new Comando();
+		return instancia;
+	}
 	
 	public void ayudaadmin(){
 		System.out.println("Comandos que puede usar el Administrador");
@@ -65,6 +75,12 @@ public class Comando{
 		System.out.println("");
 	}
 	
+	public String getTime() { 
+		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss"); 
+		Date date = new Date(); 
+		return dateFormat.format(date); 
+	} 
+
 	public void ayudamiembro(){
 		System.out.println("Comandos que puede usar el Miembro");
 		System.out.println("");
@@ -138,51 +154,5 @@ public class Comando{
 		System.out.println("Edad: "+miembroAMostrar.getEdad());
 		System.out.println("Tarjeta de Credito: "+miembroAMostrar.getTarjeta());
 		System.out.println("");
-	}
-	public void editMe(HashMap<String,String> parametros){
-	
-		if(ManejadorAdmin.getInstancia().obtenerAdminAutenticado().getRol().equals("admin")){
-			if(parametros.size()>=1 && parametros.size()<=3){
-				Admin adminAEditar = ManejadorAdmin.getInstancia().obtenerAdminAutenticado();
-				if(parametros.get("nombre")!=null){
-					adminAEditar.setNombre(parametros.get("nombre"));
-				}
-				if(parametros.get("nick")!=null){
-					adminAEditar.setNick(parametros.get("nick"));
-				}
-				if(parametros.get("password")!=null){
-					adminAEditar.setPassword(parametros.get("password"));
-				}
-				System.out.println("Administrador Modificado");
-			}else{
-				System.out.println("Compruebe su sintaxis.");
-			}
-		}else{
-			if(ManejadorMiembro.getInstancia().obtenerMiembroAutenticado().getRol().equals("miembro")){
-				if(parametros.size()>=1 && parametros.size()<=5){
-					Miembro miembroAmodificar = ManejadorMiembro.getInstancia().obtenerMiembroAutenticado();
-					if(parametros.get("nombre")!=null){
-						miembroAmodificar.setNombre(parametros.get("nombre"));
-					}
-					if(parametros.get("nick")!=null){
-						miembroAmodificar.setNick(parametros.get("nick"));
-					}
-					if(parametros.get("password")!=null){
-						miembroAmodificar.setPassword(parametros.get("password"));
-					}
-					if(parametros.get("edad")!=null){
-						miembroAmodificar.setEdad(Integer.parseInt(parametros.get("edad")));
-					}
-					if(parametros.get("tarjeta")!=null){
-						miembroAmodificar.setEdad(Integer.parseInt(parametros.get("tarjeta")));
-					}
-					if(parametros.get("pin")!=null){
-						miembroAmodificar.setEdad(Integer.parseInt(parametros.get("pin")));
-					}
-					System.out.println("Miembro Modificado");
-				}
-			}
-		}
-		
 	}
 }

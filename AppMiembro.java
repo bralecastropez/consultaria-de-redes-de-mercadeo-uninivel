@@ -39,9 +39,9 @@ public class AppMiembro extends AbstractAppRol implements DecodeListener{
 			case "list products":
 				if(parametros.size()>0){
 					System.out.println("");
-					System.out.println("La sintaxis correcta es : list products ");
+					System.out.println("La sintaxis correcta es : list products. Escribe || help || para obtener ayuda");
 				}else{
-				new Comando().listarProductos();
+				Comando.getInstancia().listarProductos();
 				}
 				break;
 				
@@ -55,16 +55,16 @@ public class AppMiembro extends AbstractAppRol implements DecodeListener{
 						System.out.println("Precio: "+productoAMostrar.getPrecio());
 					}else{
 						System.out.println("");
-						System.out.println("El producto no existe.");
+						System.out.println("El producto no existe. Escribe || help || para obtener ayuda");
 						System.out.println("");
 					}
 				}else{
-					System.out.println("Comprueba tu sintaxis.");
+					System.out.println("Comprueba tu sintaxis. Escribe || help || para obtener ayuda");
 				}
 				break;
 				
 			case "exit":
-				new Comando().exit();
+				Comando.getInstancia().exit();
 				break;
 				
 			case "logout":
@@ -86,7 +86,7 @@ public class AppMiembro extends AbstractAppRol implements DecodeListener{
 						System.out.println("Precio: "+productoAMostrar.getPrecio());
 					}else{
 						System.out.println("");
-						System.out.println("El producto no existe.");
+						System.out.println("El producto no existe. Escribe || help || para obtener ayuda");
 						System.out.println("");
 					}
 				}/*else{
@@ -98,7 +98,6 @@ public class AppMiembro extends AbstractAppRol implements DecodeListener{
 				break;
 				
 			case "list downlines":
-				//super.revisarAccionar(accion, parametros);
 				for(Miembro miembro : ManejadorMiembro.getInstancia().obtenerListaMiembro()){
 					System.out.println("---------------------------------");
 					System.out.println("Nombre: "+miembro.getNombre());
@@ -111,7 +110,7 @@ public class AppMiembro extends AbstractAppRol implements DecodeListener{
 				break;
 				
 			case "show me":
-				new Comando().showmeMiembro();
+				Comando.getInstancia().showmeMiembro();
 				break;
 				
 			case "show history":
@@ -135,7 +134,7 @@ public class AppMiembro extends AbstractAppRol implements DecodeListener{
 					}else{
 						if(parametros.size()==2){
 							System.out.println("Sus downline son:");
-							for(int i=1;i<2;i++){
+							for(int i=1;i<50;i++){
 								System.out.println("		--		");
 								System.out.println("		--		");
 							}
@@ -176,17 +175,18 @@ public class AppMiembro extends AbstractAppRol implements DecodeListener{
 								System.out.println("Pin incorrecto");
 							}
 					}else{
-						System.out.println("El Producto o Tarjeta ingresada no existe.");
+						System.out.println("El Producto o Tarjeta ingresada no existe. Escribe || help || para obtener ayuda");
 					}
 				//}else{
 					//System.out.println("Comprueba tu sintaxis.");
 				//}
 				}catch(NumberFormatException excepcionnumero){
-					System.out.println("Ingrese parametros validos");
+					System.out.println("Ingrese parametros validos. Escribe || help || para obtener ayuda");
 				}
 				break;
 				
 			case "add downline":
+			try{
 				if(parametros.size()>1 && parametros.size()<5){
 					Downline downline = new Downline();
 					downline.setNombre(parametros.get("nombre"));
@@ -194,8 +194,8 @@ public class AppMiembro extends AbstractAppRol implements DecodeListener{
 					downline.setEdad(Integer.parseInt(parametros.get("edad")));
 					String[] ruta = parametros.get("down").split(",");
 					if(parametros.get("nombre")!=null && parametros.get("edad")!=null /*&& parametros.get("idDowline")!=null*/ && parametros.get("down")!=null){
-						Miembro nombremim = ManejadorMiembro.getInstancia().buscarMiembro().get("nombre");
-						if(nombremim!=null){
+						/*Miembro nombremim = ManejadorMiembro.getInstancia().buscarMiembro().get("nombre");
+						if(nombremim!=null){*/
 							Downline peliR = ManejadorMiembro.getInstancia().buscarMiembro(ruta[0]);
 								if(!(peliR.equals(null))){
 									Downline downlineResultado = peliR;
@@ -208,28 +208,52 @@ public class AppMiembro extends AbstractAppRol implements DecodeListener{
 							}else{
 								System.err.println("Hay algo mal");
 							}
-						}else{
+						/*}else{
 							System.out.println("El miembro no existe. Pongase en contacto con el administrador.");
-						}
+						}*/
 					}else{
 						System.out.println("down=[down]");
 					}
 				}else{
 					System.out.println("La sintaxis correcta es: add downline nombre=[nombre] edad=[edad] idDownline=[idDownline] down=[down]");
 				}
-				break;
+			}catch(NullPointerException nulex){
+				System.out.println("Ingresa todos los parametros");
+			}
+			break;
 				
 			case "edit me":
-				new Comando().editMe(parametros);
+				if(parametros.size()>=1 && parametros.size()<=5){
+					Miembro miembroAmodificar = ManejadorMiembro.getInstancia().obtenerMiembroAutenticado();
+					if(parametros.get("nombre")!=null){
+						miembroAmodificar.setNombre(parametros.get("nombre"));
+					}
+					if(parametros.get("nick")!=null){
+						miembroAmodificar.setNick(parametros.get("nick"));
+					}
+					if(parametros.get("password")!=null){
+						miembroAmodificar.setPassword(parametros.get("password"));
+					}
+					if(parametros.get("edad")!=null){
+						miembroAmodificar.setEdad(Integer.parseInt(parametros.get("edad")));
+					}
+					if(parametros.get("tarjeta")!=null){
+						miembroAmodificar.setEdad(Integer.parseInt(parametros.get("tarjeta")));
+					}
+					if(parametros.get("pin")!=null){
+						miembroAmodificar.setEdad(Integer.parseInt(parametros.get("pin")));
+					}
+					System.out.println("Miembro Modificado");
+				}
 				break;
 				
 			case "help":
-				new Comando().ayudamiembro();
+				Comando.getInstancia().ayudamiembro();
 				break;
 				
 			default:
 				System.out.println("");
-				System.out.println("Compruebe su sintaxis");
+				System.out.println("Compruebe su sintaxis. Escribe || help || para obtener ayuda");
 		}
 	}
 }

@@ -4,8 +4,10 @@ import org.brandon.utilidades.eventos.DecodeListener;
 import org.brandon.utilidades.Decodificador;
 import org.brandon.utilidades.Comando;
 import org.brandon.manejadores.ManejadorAdmin;
+import org.brandon.manejadores.ManejadorMiembro;
 import org.brandon.manejadores.ManejadorProducto;
 import org.brandon.beans.Admin;
+import org.brandon.beans.Miembro;
 import org.brandon.beans.Producto;
 
 import java.util.HashMap;
@@ -29,12 +31,44 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 	public void avisarAccionar(String accion, HashMap<String, String> parametros){
 		switch(accion.trim()){
 		
+			case "add member":
+				if(parametros.size()==6){
+					Miembro miembro = new Miembro();
+					if(parametros.get("nombre")!=null && parametros.get("nick")!=null && parametros.get("password")!=null && parametros.get("edad")!=null && parametros.get("tarjeta")!=null && parametros.get("pin")!=null){
+						miembro.setNombre(parametros.get("nombre"));
+						miembro.setNick(parametros.get("nick"));
+						miembro.setPassword(parametros.get("password"));
+						miembro.setEdad(Integer.parseInt(parametros.get("edad")));
+						miembro.setTarjeta(Integer.parseInt(parametros.get("tarjeta")));
+						miembro.setPin(Integer.parseInt(parametros.get("pin")));
+						ManejadorMiembro.getInstancia().agregarMiembro(miembro);
+						System.out.println("Miembro agregado satisfactoriamente.");
+					}
+				}else{
+					System.out.println("Compruebe su sintaxis. Escribe || help || para obtener ayuda");
+				}
+			break;
+			
+			case "remove member":
+				if(parametros.size()==1){
+					Miembro miembroAEliminar = ManejadorMiembro.getInstancia().buscarMiembro(parametros.get("nick"));
+					if(miembroAEliminar!=null){
+						ManejadorMiembro.getInstancia().eliminarMiembro(miembroAEliminar);
+						System.out.println("Miembro eliminado satisfactoriamente.");
+					}else{
+						System.out.println("El usuario no existe.");
+					}
+				}else{
+					System.out.println("Compruebe su sintaxis. Escribe || help || para obtener ayuda");
+				}
+				break;
+				
 			case "list products":
 				if(parametros.size()>0){
 					System.out.println("");
-					System.out.println("La sintaxis correcta es : list products ");
+					System.out.println("La sintaxis correcta es : list products. Escribe || help || para obtener ayuda");
 				}else{
-					new Comando().listarProductos();
+					Comando.getInstancia().listarProductos();
 				}
 				break;
 				
@@ -52,12 +86,12 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 						System.out.println("");
 				}
 				}else{
-					System.out.println("Solo se puede ingresar un producto.");
+					System.out.println("Solo se puede ingresar un producto. Escribe || help || para obtener ayuda");
 				}
 				break;
 				
 			case "exit":
-				new Comando().exit();
+				Comando.getInstancia().exit();
 				break;
 				
 			case "":
@@ -65,7 +99,21 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 				break;
 				
 			case "edit me":
-				new Comando().editMe(parametros);
+				if(parametros.size()>=1 && parametros.size()<=3){
+					Admin adminAEditar = ManejadorAdmin.getInstancia().obtenerAdminAutenticado();
+					if(parametros.get("nombre")!=null){
+						adminAEditar.setNombre(parametros.get("nombre"));
+					}
+					if(parametros.get("nick")!=null){
+						adminAEditar.setNick(parametros.get("nick"));
+					}
+					if(parametros.get("password")!=null){
+						adminAEditar.setPassword(parametros.get("password"));
+					}
+					System.out.println("Administrador Modificado");
+				}else{
+					System.out.println("Compruebe su sintaxis.");
+				}
 				break;
 				
 			case "add user":
@@ -80,7 +128,7 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 						System.out.println("Administrador agregado satisfactoriamente.");
 					}
 				}else{
-					System.out.println("Compruebe su sintaxis.");
+					System.out.println("Compruebe su sintaxis. Escribe || help || para obtener ayuda");
 				}
 				break;
 				
@@ -90,19 +138,30 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 					ManejadorAdmin.getInstancia().eliminarAdmin(adminAEliminar);
 					System.out.println("Administrador eliminado satisfactoriamente.");
 				}else{
-					System.out.println("El usuario no existe.");
+					System.out.println("El usuario no existe. Escribe || help || para obtener ayuda");
 				}
 				break;
 				
 			case "list user":
+				System.out.println("");
+				System.out.println("------------------------------------");
+				System.out.println("Administradores: ");
 				for(Admin administrador : ManejadorAdmin.getInstancia().obtenerListaAdmin()){
 					System.out.println("");
-					System.out.println("nombre: "+administrador.getNombre());
-					System.out.println("nick: "+administrador.getNick());
+					System.out.println("Nombre: "+administrador.getNombre());
+					System.out.println("Nombre de Usuario (nick): "+administrador.getNick());
 					System.out.println("");
 				}
-				System.out.println("");
-				System.out.println("------------------------------");
+				System.out.println("------------------------------------");
+				System.out.println("Miembros");
+				for(Miembro member : ManejadorMiembro.getInstancia().obtenerListaMiembro()){
+					System.out.println("");
+					System.out.println("Nombre: "+member.getNombre());
+					System.out.println("Nombre de usuario (nick): "+member.getNick());
+					System.out.println("Tarjeta: "+member.getTarjeta());
+					System.out.println("");
+				}
+				System.out.println("------------------------------------");
 				System.out.println("Fin de la lista");
 				System.out.println("");
 				break;
@@ -124,7 +183,7 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 					System.out.println("Producto agregado satisfactoriamente.");
 				}catch(NumberFormatException numexc){
 					System.out.println("");
-					System.out.println("Ingresa datos validos");
+					System.out.println("Ingresa datos validos. Escribe || help || para obtener ayuda");
 				}
 				break;
 			case "remove product":
@@ -133,7 +192,7 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 					ManejadorProducto.getInstancia().eliminarProducto(productoAEliminar);
 					System.out.println("	Producto eliminado satisfactoriamente.");
 				}else{
-					System.out.println("El producto no existe.");
+					System.out.println("El producto no existe. Escribe || help || para obtener ayuda");
 				}
 				break;
 				
@@ -154,7 +213,7 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 					}
 				}catch(NumberFormatException pinexc){
 					System.out.println("");
-					System.out.println("Ingresa datos validos");
+					System.out.println("Ingresa datos validos. Escribe || help || para obtener ayuda");
 				}
 				break;
 				
@@ -173,7 +232,7 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 						System.out.println("Precio: "+productoAMostrar.getPrecio());
 					}else{
 						System.out.println("");
-						System.out.println("El producto no existe.");
+						System.out.println("El producto no existe. Escribe || help || para obtener ayuda");
 						System.out.println("");
 					}
 				}/*else{
@@ -187,7 +246,7 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 				break;
 				
 			case "show me":
-				new Comando().showmeAdmin();
+				Comando.getInstancia().showmeAdmin();
 				break;
 				
 			case "show history":
@@ -197,12 +256,12 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 				break;
 				
 			case "help":
-				new Comando().ayudaadmin();
+				Comando.getInstancia().ayudaadmin();
 				break;
 				
 			default:
 				System.out.println("");
-				System.out.println("Compruebe su sintaxis");
+				System.out.println("Compruebe su sintaxis. Escribe || help || para obtener ayuda");
 		}
 	}
 }

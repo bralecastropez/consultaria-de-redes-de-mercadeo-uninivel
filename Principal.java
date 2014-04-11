@@ -2,6 +2,7 @@ package org.brandon.sistema;
 
 import org.brandon.utilidades.Entrada;
 import org.brandon.utilidades.Decodificador;
+import org.brandon.utilidades.Comando;
 import org.brandon.manejadores.ManejadorAdmin;
 import org.brandon.manejadores.ManejadorMiembro;
 import org.brandon.app.AppAdmin;
@@ -9,6 +10,9 @@ import org.brandon.app.AppMiembro;
 import org.brandon.app.AbstractAppRol;
 
 import java.io.Console;
+import java.util.Date; 
+import java.text.DateFormat; 
+import java.text.SimpleDateFormat; 
 
 /**
 *	@author Brandon Castro
@@ -43,11 +47,13 @@ public class Principal{
 				if(resultadoadmin){
 					System.out.println("");
 					System.out.println("Bienvenido "+ManejadorAdmin.getInstancia().obtenerAdminAutenticado().getNombre());
+					System.out.println("Usted ingreso "+Comando.getInstancia().getTime());
 					app=new AppAdmin(new Decodificador());
 					app.iniciar();
 				}if(resultadomim){
 					System.out.println("");
 					System.out.println("Bienvenido "+ManejadorMiembro.getInstancia().obtenerMiembroAutenticado().getNombre());
+					System.out.println("Usted ingreso "+Comando.getInstancia().getTime());
 					app=new AppMiembro(new Decodificador());
 					app.iniciar();
 				}else{

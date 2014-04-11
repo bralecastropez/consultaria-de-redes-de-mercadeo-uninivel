@@ -42,6 +42,7 @@ public class ManejadorProducto{
 	public ArrayList<Producto> obtenerListaProducto(){
 		return this.listaProducto;
 	}
+	
 	public ArrayList<Producto> obtenerHistorial(){
 		return this.historial;
 	}

@@ -13,6 +13,7 @@ import org.brandon.beans.Downline;
 public class ManejadorMiembro{
 
 	private ArrayList<Miembro> listaMiembro;
+	private ArrayList<Miembro> historialDownline;
 	private Miembro miembroAutenticado;
 	private static ManejadorMiembro instancia;
 	
