@@ -64,21 +64,5 @@ public abstract class AbstractAppRol{
 		}
 		System.out.println(numeroDeLineas+"-----------------------");
 	}
-
-	/*public void revisarAccionar(String accion, HashMap<String,String> parametros){
-		switch(accion.trim()){
-			case "list downlines":
-				for(Miembro miembro : ManejadorMiembro.getInstancia().obtenerListaMiembro()){
-					System.out.println("---------------------------------");
-					System.out.println("Nombre: "+miembro.getNombre());
-					System.out.println("idDowline: "+miembro.getIdDownline());
-					System.out.println("Edad: "+miembro.getEdad());
-					System.out.println("--------Downlines-------");
-					this.listarDownlines(miembro, 1);
-				}
-				System.out.println("---------------------------------");
-			break;
-		}
-	}*/
 	
 }
