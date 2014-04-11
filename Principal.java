@@ -47,12 +47,14 @@ public class Principal{
 				if(resultadoadmin){
 					System.out.println("");
 					System.out.println("Bienvenido "+ManejadorAdmin.getInstancia().obtenerAdminAutenticado().getNombre());
+					System.out.println("");
 					System.out.println("Usted ingreso "+Comando.getInstancia().getTime());
 					app=new AppAdmin(new Decodificador());
 					app.iniciar();
 				}if(resultadomim){
 					System.out.println("");
 					System.out.println("Bienvenido "+ManejadorMiembro.getInstancia().obtenerMiembroAutenticado().getNombre());
+					System.out.println("");
 					System.out.println("Usted ingreso "+Comando.getInstancia().getTime());
 					app=new AppMiembro(new Decodificador());
 					app.iniciar();

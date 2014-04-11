@@ -9,9 +9,13 @@ import org.brandon.manejadores.ManejadorProducto;
 import org.brandon.beans.Miembro;
 import org.brandon.beans.Downline;
 import org.brandon.beans.Producto;
+import org.brandon.beans.Historial;
 
 import java.io.Console;
 import java.util.HashMap;
+import java.util.Date; 
+import java.text.DateFormat; 
+import java.text.SimpleDateFormat; 
 
 /**
 *	@author Brandon Castro
@@ -72,26 +76,7 @@ public class AppMiembro extends AbstractAppRol implements DecodeListener{
 				break;
 				
 			case "show sales":
-				if(parametros.size()<=0 || parametros.size()==0){
-					for(Producto product : ManejadorProducto.getInstancia().obtenerListaProducto()){
-						System.out.println("");
-						System.out.println("nombre: "+product.getNombre());
-					}
-				}if(parametros.size()>=1 && parametros.size()<2){
-					Producto productoAMostrar = ManejadorProducto.getInstancia().buscarProducto(parametros.get("nombre"));
-					if(productoAMostrar!=null){
-						System.out.println("");
-						System.out.println("Nombre: "+productoAMostrar.getNombre());
-						System.out.println("Categoria: "+productoAMostrar.getCategoria());
-						System.out.println("Precio: "+productoAMostrar.getPrecio());
-					}else{
-						System.out.println("");
-						System.out.println("El producto no existe. Escribe || help || para obtener ayuda");
-						System.out.println("");
-					}
-				}/*else{
-					System.out.println("Compruebe su sintaxis.");
-				}*/
+				Comando.getInstancia().showSales(parametros);
 				break;
 				
 			case "show downline":
@@ -134,9 +119,8 @@ public class AppMiembro extends AbstractAppRol implements DecodeListener{
 					}else{
 						if(parametros.size()==2){
 							System.out.println("Sus downline son:");
-							for(int i=1;i<50;i++){
-								System.out.println("		--		");
-								System.out.println("		--		");
+							for(int i=1;i<100;i++){
+								System.out.println("");
 							}
 						}else{
 							System.out.println("		--		");
@@ -153,7 +137,7 @@ public class AppMiembro extends AbstractAppRol implements DecodeListener{
 				//if(parametros.size()==2){
 					Producto productoAComprar = ManejadorProducto.getInstancia().buscarProducto(parametros.get("nombre"));
 					Miembro tarjeta = ManejadorMiembro.getInstancia().buscarMiembro(parametros.get("tarjeta"));
-					if(productoAComprar!=null /*&& tarjeta!=null*/){
+					if(productoAComprar!=null){
 							Console terminal = System.console();
 							if (terminal==null ) {
 								System.err.println("No puedo obtener la consola.");
@@ -164,13 +148,14 @@ public class AppMiembro extends AbstractAppRol implements DecodeListener{
 							int pinAutenticado=Integer.parseInt(pinSinAutenticar);
 							if(ManejadorMiembro.getInstancia().obtenerMiembroAutenticado().getPin()==pinAutenticado){
 								System.out.println("");
-								System.out.println("Acaba de comprar el producto: "+productoAComprar.getNombre());
+								System.out.println("Acaba de comprar el producto: "+productoAComprar.getNombre()+"	FECHA:	"+Comando.getInstancia().getTime());
 								System.out.println("");
 								System.out.println("Nombre: "+productoAComprar.getNombre());
 								System.out.println("Categoria: "+productoAComprar.getCategoria());
 								System.out.println("Precio: "+productoAComprar.getPrecio());
 								System.out.println("");
 								ManejadorProducto.getInstancia().agregarHistorial(productoAComprar);
+								ManejadorProducto.getInstancia().agregarHistorialVentas(productoAComprar);
 							}else{
 								System.out.println("Pin incorrecto");
 							}

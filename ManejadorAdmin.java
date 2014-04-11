@@ -59,8 +59,9 @@ public class ManejadorAdmin{
 	}
 	
 	public static ManejadorAdmin getInstancia(){
-		if(instancia==null)
+		if(instancia==null){
 			instancia=new ManejadorAdmin();
+		}
 		return instancia;
 	}
 }

@@ -9,6 +9,7 @@ import org.brandon.manejadores.ManejadorProducto;
 import org.brandon.beans.Admin;
 import org.brandon.beans.Miembro;
 import org.brandon.beans.Producto;
+import org.brandon.beans.Historial;
 
 import java.util.HashMap;
 
@@ -135,8 +136,12 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 			case "remove user":
 				Admin adminAEliminar = ManejadorAdmin.getInstancia().buscarAdmin(parametros.get("nick"));
 				if(adminAEliminar!=null){
-					ManejadorAdmin.getInstancia().eliminarAdmin(adminAEliminar);
-					System.out.println("Administrador eliminado satisfactoriamente.");
+					if(!(ManejadorAdmin.getInstancia().obtenerAdminAutenticado().getNick().equals(adminAEliminar))){
+						System.out.println("No se puede eliminar usted mismo");
+					}else{
+						ManejadorAdmin.getInstancia().eliminarAdmin(adminAEliminar);
+						System.out.println("Administrador eliminado satisfactoriamente.");
+					}
 				}else{
 					System.out.println("El usuario no existe. Escribe || help || para obtener ayuda");
 				}
@@ -218,26 +223,7 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 				break;
 				
 			case "show sales":
-				if(parametros.size()<=0 || parametros.size()==0){
-					for(Producto product : ManejadorProducto.getInstancia().obtenerListaProducto()){
-						System.out.println("");
-						System.out.println("nombre: "+product.getNombre());
-					}
-				}if(parametros.size()>=1 && parametros.size()<2){
-					Producto productoAMostrar = ManejadorProducto.getInstancia().buscarProducto(parametros.get("nombre"));
-					if(productoAMostrar!=null){
-						System.out.println("");
-						System.out.println("Nombre: "+productoAMostrar.getNombre());
-						System.out.println("Categoria: "+productoAMostrar.getCategoria());
-						System.out.println("Precio: "+productoAMostrar.getPrecio());
-					}else{
-						System.out.println("");
-						System.out.println("El producto no existe. Escribe || help || para obtener ayuda");
-						System.out.println("");
-					}
-				}/*else{
-					System.out.println("Compruebe su sintaxis.");
-				}*/
+				Comando.getInstancia().showSales(parametros);
 				break;
 				
 			case "show downline":
@@ -251,7 +237,6 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 				
 			case "show history":
 				break;
-				
 			case "search downline":
 				break;
 				

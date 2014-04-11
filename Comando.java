@@ -6,8 +6,7 @@ import org.brandon.manejadores.ManejadorMiembro;
 import org.brandon.beans.Admin;
 import org.brandon.beans.Miembro;
 import org.brandon.beans.Producto;
-import org.brandon.utilidades.eventos.DecodeListener;
-import org.brandon.utilidades.Decodificador;
+import org.brandon.beans.Historial;
 
 import java.util.HashMap;
 import java.util.Date; 
@@ -75,7 +74,7 @@ public class Comando{
 		System.out.println("");
 	}
 	
-	public String getTime() { 
+	public String getTime(){ 
 		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss"); 
 		Date date = new Date(); 
 		return dateFormat.format(date); 
@@ -154,5 +153,32 @@ public class Comando{
 		System.out.println("Edad: "+miembroAMostrar.getEdad());
 		System.out.println("Tarjeta de Credito: "+miembroAMostrar.getTarjeta());
 		System.out.println("");
+	}
+	public void showSales(HashMap<String,String> parametros){
+		if(parametros.size()<=0 || parametros.size()==0){
+			System.out.println("");
+			System.out.println("Los productos que se han vendido son: ");
+			System.out.println("---------------------------------");
+			for(Producto product : ManejadorProducto.getInstancia().obtenerHistorialVentas()){
+				System.out.println("");
+				System.out.println("Nombre: "+product.getNombre());
+				System.out.println("Categoria: "+product.getCategoria());
+				System.out.println("Precio: "+product.getPrecio());
+			}
+			System.out.println("---------------------------------");
+			System.out.println("Fin de la Lista.");
+		}if(parametros.size()>=1 && parametros.size()<2){
+			Producto productoAMostrar = ManejadorProducto.getInstancia().buscarProducto(parametros.get("nombre"));
+			if(productoAMostrar!=null){
+				System.out.println("");
+				System.out.println("Nombre: "+productoAMostrar.getNombre());
+				System.out.println("Categoria: "+productoAMostrar.getCategoria());
+				System.out.println("Precio: "+productoAMostrar.getPrecio());
+			}else{
+				System.out.println("");
+				System.out.println("El producto no existe. Escribe || help || para obtener ayuda");
+				System.out.println("");
+			}
+		}
 	}
 }

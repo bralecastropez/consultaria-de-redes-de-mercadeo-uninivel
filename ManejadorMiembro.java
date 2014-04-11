@@ -19,10 +19,8 @@ public class ManejadorMiembro{
 	
 	private ManejadorMiembro(){
 		this.listaMiembro=new ArrayList<Miembro>();
+		this.historialDownline=new ArrayList<Miembro>();
 		this.listaMiembro.add(new Miembro( "Miembro", 		"mim",	 		"mim", 			01,			2013155,		0001));
-		this.listaMiembro.add(new Miembro( "Miembro2", 		"mim2", 		"mim2", 		20,			2013156,		0002));
-		this.listaMiembro.add(new Miembro( "Miembro3", 		"mim3", 		"mim3", 		30,			2013157,		0003));
-		this.listaMiembro.add(new Miembro( "Miembro4", 		"mim4", 		"mim4", 		40,			2013158,		0004));
 	}
 	
 	public void agregarMiembro(Miembro miembro){
@@ -72,8 +70,9 @@ public class ManejadorMiembro{
 	}
 	
 	public static ManejadorMiembro getInstancia(){
-		if(instancia==null)
+		if(instancia==null){
 			instancia=new ManejadorMiembro();
+			}
 		return instancia;
 	}
 }

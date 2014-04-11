@@ -13,11 +13,14 @@ public class ManejadorProducto{
 
 	private ArrayList<Producto> listaProducto;
 	private ArrayList<Producto> historial;
+	private ArrayList<Producto> historialVentas;
 	private Producto productoAutenticado;
 	private static ManejadorProducto instancia;
 	
 	private ManejadorProducto(){
 		this.listaProducto=new ArrayList<Producto>();
+		this.historial=new ArrayList<Producto>();
+		this.historialVentas=new ArrayList<Producto>();
 		this.listaProducto.add(new Producto("producto1", 			"default", 				1000));
 		this.listaProducto.add(new Producto("producto2", 			"default", 				2000));
 		this.listaProducto.add(new Producto("producto3", 			"default", 				3000));
@@ -27,8 +30,6 @@ public class ManejadorProducto{
 		this.listaProducto.add(new Producto("producto7", 			"default", 				7000));
 		this.listaProducto.add(new Producto("producto8", 			"default", 				8000));
 		this.listaProducto.add(new Producto("producto9", 			"default", 				9000));
-		
-		this.historial=new ArrayList<Producto>();
 	}
 	
 	public void agregarProducto(Producto producto){
@@ -46,9 +47,15 @@ public class ManejadorProducto{
 	public ArrayList<Producto> obtenerHistorial(){
 		return this.historial;
 	}
-	
 	public void agregarHistorial(Producto producto){
 		this.historial.add(producto);
+	}
+	
+	public ArrayList<Producto> obtenerHistorialVentas(){
+		return this.historialVentas;
+	}
+	public void agregarHistorialVentas(Producto producto){
+		this.historialVentas.add(producto);
 	}
 	
 	public Producto buscarProducto(String nombre){
@@ -61,8 +68,9 @@ public class ManejadorProducto{
 	}
 	
 	public static ManejadorProducto getInstancia(){
-		if(instancia==null)
+		if(instancia==null){
 			instancia=new ManejadorProducto();
+		}
 		return instancia;
 	}
 }
