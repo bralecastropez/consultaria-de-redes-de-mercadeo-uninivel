@@ -65,21 +65,7 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 				break;
 				
 			case "edit me":
-				if(parametros.size()>=1 && parametros.size()<=3){
-					Admin adminAEditar = ManejadorAdmin.getInstancia().obtenerAdminAutenticado();
-					if(parametros.get("nombre")!=null){
-						adminAEditar.setNombre(parametros.get("nombre"));
-					}
-					if(parametros.get("nick")!=null){
-						adminAEditar.setNick(parametros.get("nick"));
-					}
-					if(parametros.get("password")!=null){
-						adminAEditar.setPassword(parametros.get("password"));
-					}
-					System.out.println("Administrador Modificado");
-				}else{
-					System.out.println("Compruebe su sintaxis.");
-				}
+				new Comando().editMe(parametros);
 				break;
 				
 			case "add user":

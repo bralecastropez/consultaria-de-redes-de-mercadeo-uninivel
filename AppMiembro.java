@@ -200,28 +200,7 @@ public class AppMiembro extends AbstractAppRol implements DecodeListener{
 				break;
 				
 			case "edit me":
-				if(parametros.size()>=1 && parametros.size()<=5){
-					Miembro miembroAmodificar = ManejadorMiembro.getInstancia().obtenerMiembroAutenticado();
-					if(parametros.get("nombre")!=null){
-						miembroAmodificar.setNombre(parametros.get("nombre"));
-					}
-					if(parametros.get("nick")!=null){
-						miembroAmodificar.setNick(parametros.get("nick"));
-					}
-					if(parametros.get("password")!=null){
-						miembroAmodificar.setPassword(parametros.get("password"));
-					}
-					if(parametros.get("edad")!=null){
-						miembroAmodificar.setEdad(Integer.parseInt(parametros.get("edad")));
-					}
-					if(parametros.get("tarjeta")!=null){
-						miembroAmodificar.setEdad(Integer.parseInt(parametros.get("tarjeta")));
-					}
-					if(parametros.get("pin")!=null){
-						miembroAmodificar.setEdad(Integer.parseInt(parametros.get("pin")));
-					}
-					System.out.println("Miembro Modificado");
-				}
+				new Comando().editMe(parametros);
 				break;
 				
 			case "help":
