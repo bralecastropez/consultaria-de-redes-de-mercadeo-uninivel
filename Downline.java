@@ -40,4 +40,7 @@ public class Downline{
 	public int getEdad(){
 		return this.edad;
 	}
+	public Downline(){
+		setListaDownlines(new ArrayList<Downline>());
+	}
 }

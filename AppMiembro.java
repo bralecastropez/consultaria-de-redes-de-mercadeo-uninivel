@@ -98,7 +98,16 @@ public class AppMiembro extends AbstractAppRol implements DecodeListener{
 				break;
 				
 			case "list downlines":
-				super.revisarAccionar(accion, parametros);
+				//super.revisarAccionar(accion, parametros);
+				for(Miembro miembro : ManejadorMiembro.getInstancia().obtenerListaMiembro()){
+					System.out.println("---------------------------------");
+					System.out.println("Nombre: "+miembro.getNombre());
+					System.out.println("idDowline: "+miembro.getIdDownline());
+					System.out.println("Edad: "+miembro.getEdad());
+					System.out.println("--------Downlines-------");
+					this.listarDownlines(miembro, 1);
+				}
+				System.out.println("---------------------------------");
 				break;
 				
 			case "show me":
@@ -178,25 +187,36 @@ public class AppMiembro extends AbstractAppRol implements DecodeListener{
 				break;
 				
 			case "add downline":
-				Downline downline = new Downline();
-				downline.setNombre(parametros.get("nombre"));
-				downline.setIdDownline(Integer.parseInt(parametros.get("idDownline")));
-				downline.setEdad(Integer.parseInt(parametros.get("edad")));
+				if(parametros.size()>1 && parametros.size()<5){
+					Downline downline = new Downline();
+					downline.setNombre(parametros.get("nombre"));
+					downline.setIdDownline(Integer.parseInt(parametros.get("idDownline")));
+					downline.setEdad(Integer.parseInt(parametros.get("edad")));
+					String[] ruta = parametros.get("down").split(",");
+					if(parametros.get("nombre")!=null && parametros.get("edad")!=null /*&& parametros.get("idDowline")!=null*/ && parametros.get("down")!=null){
+						Miembro nombremim = ManejadorMiembro.getInstancia().buscarMiembro().get("nombre");
+						if(nombremim!=null){
+							Downline peliR = ManejadorMiembro.getInstancia().buscarMiembro(ruta[0]);
+								if(!(peliR.equals(null))){
+									Downline downlineResultado = peliR;
 				
-				String[] ruta = parametros.get("down").split(",");
-				
-				Downline peliR = ManejadorMiembro.getInstancia().buscarMiembro(ruta[0]);
-					if(!(peliR.equals(null))){
-						Downline downlineResultado = peliR;
-				
-						for(int posicion=1;posicion<ruta.length;posicion++){
-						downlineResultado=ManejadorMiembro.getInstancia().buscarDentroDeDownline(downlineResultado, ruta[posicion]);
+									for(int posicion=1;posicion<ruta.length;posicion++){
+									downlineResultado=ManejadorMiembro.getInstancia().buscarDentroDeDownline(downlineResultado, ruta[posicion]);
+									}
+								downlineResultado.getListaDownlines().add(downline);
+								System.out.println("Downline agregado satisfactoriamente.");
+							}else{
+								System.err.println("Hay algo mal");
+							}
+						}else{
+							System.out.println("El miembro no existe. Pongase en contacto con el administrador.");
+						}
+					}else{
+						System.out.println("down=[down]");
 					}
-					downlineResultado.getListaDownlines().add(downline);
 				}else{
-					System.err.println("pancho");
+					System.out.println("La sintaxis correcta es: add downline nombre=[nombre] edad=[edad] idDownline=[idDownline] down=[down]");
 				}
-				super.revisarAccionar(accion, parametros);
 				break;
 				
 			case "edit me":

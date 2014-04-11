@@ -65,7 +65,7 @@ public abstract class AbstractAppRol{
 		System.out.println(numeroDeLineas+"-----------------------");
 	}
 
-	public void revisarAccionar(String accion, HashMap<String,String> parametros){
+	/*public void revisarAccionar(String accion, HashMap<String,String> parametros){
 		switch(accion.trim()){
 			case "list downlines":
 				for(Miembro miembro : ManejadorMiembro.getInstancia().obtenerListaMiembro()){
@@ -79,6 +79,6 @@ public abstract class AbstractAppRol{
 				System.out.println("---------------------------------");
 			break;
 		}
-	}
+	}*/
 	
 }

@@ -136,7 +136,6 @@ public class Comando{
 		System.out.println("Nombre: "+miembroAMostrar.getNombre());
 		System.out.println("Nick: "+miembroAMostrar.getNick());
 		System.out.println("Edad: "+miembroAMostrar.getEdad());
-		System.out.println("idDownline: "+miembroAMostrar.getIdDownline());
 		System.out.println("Tarjeta de Credito: "+miembroAMostrar.getTarjeta());
 		System.out.println("");
 	}
