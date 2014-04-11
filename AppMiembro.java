@@ -9,7 +9,6 @@ import org.brandon.manejadores.ManejadorProducto;
 import org.brandon.beans.Miembro;
 import org.brandon.beans.Downline;
 import org.brandon.beans.Producto;
-import org.brandon.beans.Historial;
 
 import java.io.Console;
 import java.util.HashMap;
@@ -99,34 +98,7 @@ public class AppMiembro extends AbstractAppRol implements DecodeListener{
 				break;
 				
 			case "show history":
-				if(parametros.size()==0){
-					System.out.println("La sintaxis correcta es : ||| show history [buy] --- show history [downline] [idDownline] |||");
-				}else{
-					if(parametros.size()==1){
-						System.out.println("");
-						System.out.println("Los Productos que ha comprado son: ");
-						System.out.println("");
-						for(Producto history : ManejadorProducto.getInstancia().obtenerHistorial()){
-							System.out.println("");
-							System.out.println("Nombre: "+history.getNombre()+"     ");
-							System.out.println("Categoria: "+history.getCategoria()+"     ");
-							System.out.println("Precio: "+history.getPrecio()+"     ");
-							System.out.println("");
-						}
-						System.out.println("");
-						System.out.println("Fin de la lista");
-						System.out.println("");
-					}else{
-						if(parametros.size()==2){
-							System.out.println("Sus downline son:");
-							for(int i=1;i<100;i++){
-								System.out.println("");
-							}
-						}else{
-							System.out.println("		--		");
-						}
-					}
-				}
+				Comando.getInstancia().showHistory(parametros);
 				break;
 				
 			case "search downline":

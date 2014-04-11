@@ -9,8 +9,6 @@ import org.brandon.manejadores.ManejadorProducto;
 import org.brandon.beans.Admin;
 import org.brandon.beans.Miembro;
 import org.brandon.beans.Producto;
-import org.brandon.beans.Historial;
-
 import java.util.HashMap;
 
 /**
@@ -236,6 +234,7 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 				break;
 				
 			case "show history":
+				Comando.getInstancia().showHistory(parametros);
 				break;
 			case "search downline":
 				break;
