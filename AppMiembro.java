@@ -75,8 +75,7 @@ public class AppMiembro extends AbstractAppRol implements DecodeListener{
 			break;
 				
 			case "show sales":
-				Comando.getInstancia().showSales(parametros);
-			break;
+				Comando.getInstancia().showSales();
 				
 			case "show downline":
 			break;
@@ -101,7 +100,7 @@ public class AppMiembro extends AbstractAppRol implements DecodeListener{
 				if(parametros.size()<1){
 					System.out.println("La sintaxis correcta es : ||| show history [buy] --- show history [downline] [idDownline] |||");
 				}else{
-					if(parametros.size()>0 && parametros.size()<2){
+					if(parametros.size()>1){
 						System.out.println("");
 						System.out.println("Los Productos que ha comprado son: ");
 						System.out.println("");
@@ -115,16 +114,19 @@ public class AppMiembro extends AbstractAppRol implements DecodeListener{
 						System.out.println("");
 						System.out.println("Fin de la lista");
 						System.out.println("");
-					}/*else{
-						if(parametros.size()>=2 && parametros.size()<4){
+						
+					}else{
+						/*if(parametros.size()>=2){
 							System.out.println("Sus downline son:");
-							for(int i=1;i<100;i++){
-								System.out.println("");
+							for(Downline historial : ManejadorMiembro.getInstancia().obtenerHistorialDownline()){
+								System.out.println("Nombre: "+historial.getNombre());
+								System.out.println("Edad: "+historial.getEdad());
+								System.out.println("IdDOWNLINE: "+historial.getIdDownline());
 							}
 						}else{
-						System.out.println("		--		");
-						}
-					}*/
+							System.out.println("Comprueba tu sintaxis");
+						}*/
+					}
 				}
 			break;
 				
@@ -187,7 +189,7 @@ public class AppMiembro extends AbstractAppRol implements DecodeListener{
 									for(int posicion=1;posicion<ruta.length;posicion++){
 									downlineResultado=ManejadorMiembro.getInstancia().buscarDentroDeDownline(downlineResultado, ruta[posicion]);
 									}
-								ManejadorMiembro.getInstancia().agregarHistorialDownline(downline);
+								/*ManejadorMiembro.getInstancia().agregarHistorialDownline(downline);*/
 								downlineResultado.getListaDownlines().add(downline);
 								System.out.println("Downline agregado satisfactoriamente.");
 							}else{

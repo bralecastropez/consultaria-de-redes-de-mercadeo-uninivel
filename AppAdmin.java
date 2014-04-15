@@ -228,7 +228,7 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 			break;
 				
 			case "show sales":
-				Comando.getInstancia().showSales(parametros);
+				Comando.getInstancia().showSales();
 			break;
 				
 			case "show downline":
@@ -268,7 +268,7 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 						System.out.println("");
 						System.out.println("Fin de la lista");
 						System.out.println("");
-					}else{
+					}/*else{
 						if(parametros.size()>=2 && parametros.size()<4){
 							System.out.println("Sus downline son:");
 							for(Downline historial : ManejadorMiembro.getInstancia().obtenerHistorialDownline()){
@@ -277,12 +277,12 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 								System.out.println("IdDOWNLINE: "+historial.getIdDownline());
 							}
 						}else{
-							System.out.println("		--		");
+							System.out.println("Comprueba tu sintaxis");
 						}
-					}
+					}*/
 				}
 			break;
-				
+			
 			case "search downline":
 			break;
 				

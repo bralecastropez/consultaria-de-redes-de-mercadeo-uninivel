@@ -14,8 +14,8 @@ public class Decodificador{
 
 	private DecodeListener decodeListener;
 	private HashMap<String, String> diccionario = new HashMap<String, String>();
-	//private ArrayList<String> listaUbicacion = new ArrayList<String>();
-	//private int ubicacion=-1;
+	private ArrayList<String> listaUbicacion = new ArrayList<String>();
+	private int ubicacion=-1;
 	private String accion=null;
 	
 	public void addDecodeListener(DecodeListener decodeListener){
@@ -24,7 +24,7 @@ public class Decodificador{
 	
 	public void decodificarComando(String comando){
 		try{
-			/*for(int ubicaciones=0;ubicaciones<comando.length();ubicaciones++){
+			for(int ubicaciones=0;ubicaciones<comando.length();ubicaciones++){
 				if(comando.substring(ubicaciones, ubicaciones+1).equals("'")){
 					listaUbicacion.add(""+ubicaciones+"");
 				}
@@ -38,7 +38,8 @@ public class Decodificador{
 				String varReemplazar=comando.substring(varContador,varUbicacion).replace(' ','-');
 				comando=comando.replace(varTemporal,varReemplazar);
 			}
-			listaUbicacion.clear();*/
+			listaUbicacion.clear();
+			
 			String[] comandos=comando.split(" ");
 			
 			if(comandos.length>1){

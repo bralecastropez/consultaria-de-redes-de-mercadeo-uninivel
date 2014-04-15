@@ -126,6 +126,7 @@ public class Comando{
 	}
 	
 	public void listarProductos(){
+	
 		for(Producto product : ManejadorProducto.getInstancia().obtenerListaProducto()){
 			System.out.println("");
 			System.out.println("nombre: "+product.getNombre());
@@ -134,17 +135,21 @@ public class Comando{
 		System.out.println("------------------------------");
 		System.out.println("Fin de la lista");
 		System.out.println("");
+		
 	}
 	
 	public void showmeAdmin(){
+	
 		Admin adminAMostrar = ManejadorAdmin.getInstancia().obtenerAdminAutenticado();
 		System.out.println("");
 		System.out.println("Nombre: "+adminAMostrar.getNombre());
 		System.out.println("Nombre de Usuario (nick): "+adminAMostrar.getNick());
 		System.out.println("");
+		
 	}
 	
 	public void showmeMiembro(){
+	
 		Miembro miembroAMostrar = ManejadorMiembro.getInstancia().obtenerMiembroAutenticado();
 		System.out.println("");
 		System.out.println("Nombre: "+miembroAMostrar.getNombre());
@@ -152,9 +157,11 @@ public class Comando{
 		System.out.println("Edad: "+miembroAMostrar.getEdad());
 		System.out.println("Tarjeta de Credito: "+miembroAMostrar.getTarjeta());
 		System.out.println("");
+		
 	}
-	public void showSales(HashMap<String,String> parametros){
-		if(parametros.size()<=0 || parametros.size()==0){
+	public void showSales(){
+		//if(parametros.size()<=0 || parametros.size()==0){
+		
 			System.out.println("");
 			System.out.println("Los productos que se han vendido son: ");
 			System.out.println("---------------------------------");
@@ -166,7 +173,9 @@ public class Comando{
 			}
 			System.out.println("---------------------------------");
 			System.out.println("Fin de la Lista.");
-		}if(parametros.size()>=1 && parametros.size()<2){
+			
+		/*}if(parametros.size()>=1 && parametros.size()<2){
+		
 			Producto productoAMostrar = ManejadorProducto.getInstancia().buscarProducto(parametros.get("nombre"));
 			if(productoAMostrar!=null){
 				System.out.println("");
@@ -178,6 +187,7 @@ public class Comando{
 				System.out.println("El producto no existe. Escribe || help || para obtener ayuda");
 				System.out.println("");
 			}
-		}
+			
+		}*/
 	}
 }
