@@ -37,19 +37,19 @@ public class AppMiembro extends AbstractAppRol implements DecodeListener{
 			
 			case "":
 				System.out.println("Escribe || help || para obtener ayuda");
-				break;
+			break;
 				
 			case "list products":
 				if(parametros.size()>0){
 					System.out.println("");
 					System.out.println("La sintaxis correcta es : list products. Escribe || help || para obtener ayuda");
 				}else{
-				Comando.getInstancia().listarProductos();
+					Comando.getInstancia().listarProductos();
 				}
-				break;
+			break;
 				
 			case "show product":
-				if(parametros.size()<=1){
+				if(parametros.size()>0 && parametros.size()<2){
 					Producto productoAMostrar = ManejadorProducto.getInstancia().buscarProducto(parametros.get("nombre"));
 					if(productoAMostrar!=null){
 						System.out.println("");
@@ -64,22 +64,22 @@ public class AppMiembro extends AbstractAppRol implements DecodeListener{
 				}else{
 					System.out.println("Comprueba tu sintaxis. Escribe || help || para obtener ayuda");
 				}
-				break;
+			break;
 				
 			case "exit":
 				Comando.getInstancia().exit();
-				break;
+			break;
 				
 			case "logout":
 				super.setConnected(false);
-				break;
+			break;
 				
 			case "show sales":
 				Comando.getInstancia().showSales(parametros);
-				break;
+			break;
 				
 			case "show downline":
-				break;
+			break;
 				
 			case "list downlines":
 				for(Miembro miembro : ManejadorMiembro.getInstancia().obtenerListaMiembro()){
@@ -91,25 +91,52 @@ public class AppMiembro extends AbstractAppRol implements DecodeListener{
 					this.listarDownlines(miembro, 1);
 				}
 				System.out.println("---------------------------------");
-				break;
+			break;
 				
 			case "show me":
 				Comando.getInstancia().showmeMiembro();
-				break;
+			break;
 				
 			case "show history":
-				Comando.getInstancia().showHistory(parametros);
-				break;
+				if(parametros.size()<1){
+					System.out.println("La sintaxis correcta es : ||| show history [buy] --- show history [downline] [idDownline] |||");
+				}else{
+					if(parametros.size()>0 && parametros.size()<2){
+						System.out.println("");
+						System.out.println("Los Productos que ha comprado son: ");
+						System.out.println("");
+						for(Producto history : ManejadorProducto.getInstancia().obtenerHistorial()){
+							System.out.println("");
+							System.out.println("Nombre: "+history.getNombre()+"     ");
+							System.out.println("Categoria: "+history.getCategoria()+"     ");
+							System.out.println("Precio: "+history.getPrecio()+"     ");
+							System.out.println("");
+						}
+						System.out.println("");
+						System.out.println("Fin de la lista");
+						System.out.println("");
+					}/*else{
+						if(parametros.size()>=2 && parametros.size()<4){
+							System.out.println("Sus downline son:");
+							for(int i=1;i<100;i++){
+								System.out.println("");
+							}
+						}else{
+						System.out.println("		--		");
+						}
+					}*/
+				}
+			break;
 				
 			case "search downline":
-				break;
+			break;
 				
 			case "buy product":
 				try{
-				//if(parametros.size()==2){
-					Producto productoAComprar = ManejadorProducto.getInstancia().buscarProducto(parametros.get("nombre"));
-					Miembro tarjeta = ManejadorMiembro.getInstancia().buscarMiembro(parametros.get("tarjeta"));
-					if(productoAComprar!=null){
+					if(parametros.size()>1 && parametros.size()<3){
+						Producto productoAComprar = ManejadorProducto.getInstancia().buscarProducto(parametros.get("nombre"));
+						Miembro tarjeta = ManejadorMiembro.getInstancia().buscarMiembro(parametros.get("tarjeta"));
+						if(productoAComprar!=null){
 							Console terminal = System.console();
 							if (terminal==null ) {
 								System.err.println("No puedo obtener la consola.");
@@ -131,20 +158,20 @@ public class AppMiembro extends AbstractAppRol implements DecodeListener{
 							}else{
 								System.out.println("Pin incorrecto");
 							}
+						}else{
+							System.out.println("El Producto o Tarjeta ingresada no existe. Escribe || help || para obtener ayuda");
+						}
 					}else{
-						System.out.println("El Producto o Tarjeta ingresada no existe. Escribe || help || para obtener ayuda");
+						System.out.println("Comprueba tu sintaxis.");
 					}
-				//}else{
-					//System.out.println("Comprueba tu sintaxis.");
-				//}
 				}catch(NumberFormatException excepcionnumero){
 					System.out.println("Ingrese parametros validos. Escribe || help || para obtener ayuda");
 				}
-				break;
+			break;
 				
 			case "add downline":
 			try{
-				if(parametros.size()>1 && parametros.size()<5){
+				if(parametros.size()>1 /*&& parametros.size()<5*/){
 					Downline downline = new Downline();
 					downline.setNombre(parametros.get("nombre"));
 					downline.setIdDownline(Integer.parseInt(parametros.get("idDownline")));
@@ -160,6 +187,7 @@ public class AppMiembro extends AbstractAppRol implements DecodeListener{
 									for(int posicion=1;posicion<ruta.length;posicion++){
 									downlineResultado=ManejadorMiembro.getInstancia().buscarDentroDeDownline(downlineResultado, ruta[posicion]);
 									}
+								ManejadorMiembro.getInstancia().agregarHistorialDownline(downline);
 								downlineResultado.getListaDownlines().add(downline);
 								System.out.println("Downline agregado satisfactoriamente.");
 							}else{
@@ -202,11 +230,11 @@ public class AppMiembro extends AbstractAppRol implements DecodeListener{
 					}
 					System.out.println("Miembro Modificado");
 				}
-				break;
+			break;
 				
 			case "help":
 				Comando.getInstancia().ayudamiembro();
-				break;
+			break;
 				
 			default:
 				System.out.println("");

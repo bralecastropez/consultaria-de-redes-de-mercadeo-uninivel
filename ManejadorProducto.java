@@ -18,18 +18,17 @@ public class ManejadorProducto{
 	private static ManejadorProducto instancia;
 	
 	private ManejadorProducto(){
-		this.listaProducto=new ArrayList<Producto>();
+	
 		this.historial=new ArrayList<Producto>();
+		
 		this.historialVentas=new ArrayList<Producto>();
+		
+		this.listaProducto=new ArrayList<Producto>();
 		this.listaProducto.add(new Producto("producto1", 			"default", 				1000));
 		this.listaProducto.add(new Producto("producto2", 			"default", 				2000));
 		this.listaProducto.add(new Producto("producto3", 			"default", 				3000));
 		this.listaProducto.add(new Producto("producto4", 			"default", 				4000));
 		this.listaProducto.add(new Producto("producto5", 			"default", 				5000));
-		this.listaProducto.add(new Producto("producto6", 			"default", 				6000));
-		this.listaProducto.add(new Producto("producto7", 			"default", 				7000));
-		this.listaProducto.add(new Producto("producto8", 			"default", 				8000));
-		this.listaProducto.add(new Producto("producto9", 			"default", 				9000));
 	}
 	
 	public void agregarProducto(Producto producto){

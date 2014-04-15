@@ -13,13 +13,15 @@ import org.brandon.beans.Downline;
 public class ManejadorMiembro{
 
 	private ArrayList<Miembro> listaMiembro;
-	private ArrayList<Miembro> historialDownline;
+	private ArrayList<Downline> historialDownline;
 	private Miembro miembroAutenticado;
 	private static ManejadorMiembro instancia;
 	
 	private ManejadorMiembro(){
 		this.listaMiembro=new ArrayList<Miembro>();
-		this.historialDownline=new ArrayList<Miembro>();
+		
+		this.historialDownline=new ArrayList<Downline>();
+		
 		this.listaMiembro.add(new Miembro( "Miembro", 		"mim",	 		"mim", 			01,			2013155,		0001));
 	}
 	
@@ -33,6 +35,13 @@ public class ManejadorMiembro{
 	
 	public ArrayList<Miembro> obtenerListaMiembro(){
 		return this.listaMiembro;
+	}
+	
+	public ArrayList<Downline> obtenerHistorialDownline(){
+		return this.historialDownline;
+	}
+	public void agregarHistorialDownline(Downline downline){
+		this.historialDownline.add(downline);
 	}
 	
 	public Miembro buscarMiembro(String nick){

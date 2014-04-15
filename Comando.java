@@ -180,34 +180,4 @@ public class Comando{
 			}
 		}
 	}
-	public void showHistory(HashMap<String,String> parametros){
-		if(parametros.size()==0){
-			System.out.println("La sintaxis correcta es : ||| show history [buy] --- show history [downline] [idDownline] |||");
-		}else{
-			if(parametros.size()==1){
-				System.out.println("");
-				System.out.println("Los Productos que ha comprado son: ");
-				System.out.println("");
-				for(Producto history : ManejadorProducto.getInstancia().obtenerHistorial()){
-					System.out.println("");
-					System.out.println("Nombre: "+history.getNombre()+"     ");
-					System.out.println("Categoria: "+history.getCategoria()+"     ");
-					System.out.println("Precio: "+history.getPrecio()+"     ");
-					System.out.println("");
-				}
-				System.out.println("");
-				System.out.println("Fin de la lista");
-				System.out.println("");
-			}else{
-				if(parametros.size()==2){
-					System.out.println("Sus downline son:");
-					for(int i=1;i<100;i++){
-							System.out.println("");
-					}
-				}else{
-					System.out.println("		--		");
-				}
-			}
-		}
-	}
 }

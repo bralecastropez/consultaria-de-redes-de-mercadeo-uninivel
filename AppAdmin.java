@@ -8,7 +8,9 @@ import org.brandon.manejadores.ManejadorMiembro;
 import org.brandon.manejadores.ManejadorProducto;
 import org.brandon.beans.Admin;
 import org.brandon.beans.Miembro;
+import org.brandon.beans.Downline;
 import org.brandon.beans.Producto;
+
 import java.util.HashMap;
 
 /**
@@ -49,7 +51,7 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 			break;
 			
 			case "remove member":
-				if(parametros.size()==1){
+				if(parametros.size()>0 && parametros.size()<2){
 					Miembro miembroAEliminar = ManejadorMiembro.getInstancia().buscarMiembro(parametros.get("nick"));
 					if(miembroAEliminar!=null){
 						ManejadorMiembro.getInstancia().eliminarMiembro(miembroAEliminar);
@@ -60,7 +62,7 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 				}else{
 					System.out.println("Compruebe su sintaxis. Escribe || help || para obtener ayuda");
 				}
-				break;
+			break;
 				
 			case "list products":
 				if(parametros.size()>0){
@@ -69,10 +71,10 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 				}else{
 					Comando.getInstancia().listarProductos();
 				}
-				break;
+			break;
 				
 			case "show product":
-				if(parametros.size()<=1){
+				if(parametros.size()>0 && parametros.size()<2){
 					Producto productoAMostrar = ManejadorProducto.getInstancia().buscarProducto(parametros.get("nombre"));
 					if(productoAMostrar!=null){
 						System.out.println("");
@@ -87,15 +89,15 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 				}else{
 					System.out.println("Solo se puede ingresar un producto. Escribe || help || para obtener ayuda");
 				}
-				break;
+			break;
 				
 			case "exit":
 				Comando.getInstancia().exit();
-				break;
+			break;
 				
 			case "":
 				System.out.println("Escribe || help || para obtener ayuda");
-				break;
+			break;
 				
 			case "edit me":
 				if(parametros.size()>=1 && parametros.size()<=3){
@@ -113,7 +115,7 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 				}else{
 					System.out.println("Compruebe su sintaxis.");
 				}
-				break;
+			break;
 				
 			case "add user":
 				if(parametros.size()>1 && parametros.size()<4){
@@ -129,21 +131,21 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 				}else{
 					System.out.println("Compruebe su sintaxis. Escribe || help || para obtener ayuda");
 				}
-				break;
+			break;
 				
 			case "remove user":
-				Admin adminAEliminar = ManejadorAdmin.getInstancia().buscarAdmin(parametros.get("nick"));
-				if(adminAEliminar!=null){
-					if(!(ManejadorAdmin.getInstancia().obtenerAdminAutenticado().getNick().equals(adminAEliminar))){
-						System.out.println("No se puede eliminar usted mismo");
-					}else{
+				if(parametros.size()>0 && parametros.size()<2){
+					Admin adminAEliminar = ManejadorAdmin.getInstancia().buscarAdmin(parametros.get("nick"));
+					if(adminAEliminar!=null){
 						ManejadorAdmin.getInstancia().eliminarAdmin(adminAEliminar);
 						System.out.println("Administrador eliminado satisfactoriamente.");
+					}else{
+						System.out.println("El usuario no existe. Escribe || help || para obtener ayuda");
 					}
 				}else{
-					System.out.println("El usuario no existe. Escribe || help || para obtener ayuda");
+					System.out.println("Comprueba tu sintaxis. Escribe ||help|| para obtener ayuda.");
 				}
-				break;
+			break;
 				
 			case "list user":
 				System.out.println("");
@@ -167,11 +169,11 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 				System.out.println("------------------------------------");
 				System.out.println("Fin de la lista");
 				System.out.println("");
-				break;
+			break;
 				
 			case "logout":
 				super.setConnected(false);
-				break;
+			break;
 				
 			case "add product":
 				try{
@@ -188,16 +190,21 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 					System.out.println("");
 					System.out.println("Ingresa datos validos. Escribe || help || para obtener ayuda");
 				}
-				break;
+			break;
+			
 			case "remove product":
-				Producto productoAEliminar = ManejadorProducto.getInstancia().buscarProducto(parametros.get("nombre"));
-				if(productoAEliminar!=null){
-					ManejadorProducto.getInstancia().eliminarProducto(productoAEliminar);
-					System.out.println("	Producto eliminado satisfactoriamente.");
+				if(parametros.size()>0 && parametros.size()<2){
+					Producto productoAEliminar = ManejadorProducto.getInstancia().buscarProducto(parametros.get("nombre"));
+					if(productoAEliminar!=null){
+						ManejadorProducto.getInstancia().eliminarProducto(productoAEliminar);
+						System.out.println("	Producto eliminado satisfactoriamente.");
+					}else{
+						System.out.println("El producto no existe. Escribe || help || para obtener ayuda");
+					}
 				}else{
-					System.out.println("El producto no existe. Escribe || help || para obtener ayuda");
+					System.out.println("Comprueba tu sintaxis. Escribe ||help|| para obtener ayuda.");
 				}
-				break;
+			break;
 				
 			case "edit product":
 				try{
@@ -218,30 +225,70 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 					System.out.println("");
 					System.out.println("Ingresa datos validos. Escribe || help || para obtener ayuda");
 				}
-				break;
+			break;
 				
 			case "show sales":
 				Comando.getInstancia().showSales(parametros);
-				break;
+			break;
 				
 			case "show downline":
-				break;
+			break;
+			
 			case "list downlines":
-				break;
+				for(Miembro miembro : ManejadorMiembro.getInstancia().obtenerListaMiembro()){
+					System.out.println("---------------------------------");
+					System.out.println("Nombre: "+miembro.getNombre());
+					System.out.println("idDowline: "+miembro.getIdDownline());
+					System.out.println("Edad: "+miembro.getEdad());
+					System.out.println("--------Downlines-------");
+					this.listarDownlines(miembro, 1);
+				}
+				System.out.println("---------------------------------");
+			break;
 				
 			case "show me":
 				Comando.getInstancia().showmeAdmin();
-				break;
+			break;
 				
 			case "show history":
-				Comando.getInstancia().showHistory(parametros);
-				break;
+				if(parametros.size()<1){
+					System.out.println("La sintaxis correcta es : ||| show history [buy] --- show history [downline] [idDownline] |||");
+				}else{
+					if(parametros.size()>0 && parametros.size()<2){
+						System.out.println("");
+						System.out.println("Los Productos que ha comprado son: ");
+						System.out.println("");
+						for(Producto history : ManejadorProducto.getInstancia().obtenerHistorial()){
+							System.out.println("");
+							System.out.println("Nombre: "+history.getNombre()+"     ");
+							System.out.println("Categoria: "+history.getCategoria()+"     ");
+							System.out.println("Precio: "+history.getPrecio()+"     ");
+							System.out.println("");
+						}
+						System.out.println("");
+						System.out.println("Fin de la lista");
+						System.out.println("");
+					}else{
+						if(parametros.size()>=2 && parametros.size()<4){
+							System.out.println("Sus downline son:");
+							for(Downline historial : ManejadorMiembro.getInstancia().obtenerHistorialDownline()){
+								System.out.println("Nombre: "+historial.getNombre());
+								System.out.println("Edad: "+historial.getEdad());
+								System.out.println("IdDOWNLINE: "+historial.getIdDownline());
+							}
+						}else{
+							System.out.println("		--		");
+						}
+					}
+				}
+			break;
+				
 			case "search downline":
-				break;
+			break;
 				
 			case "help":
 				Comando.getInstancia().ayudaadmin();
-				break;
+			break;
 				
 			default:
 				System.out.println("");

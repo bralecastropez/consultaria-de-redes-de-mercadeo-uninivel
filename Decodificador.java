@@ -12,7 +12,11 @@ import java.util.ArrayList;
 
 public class Decodificador{
 
-	private DecodeListener decodeListener;	
+	private DecodeListener decodeListener;
+	private HashMap<String, String> diccionario = new HashMap<String, String>();
+	//private ArrayList<String> listaUbicacion = new ArrayList<String>();
+	//private int ubicacion=-1;
+	private String accion=null;
 	
 	public void addDecodeListener(DecodeListener decodeListener){
 		this.decodeListener=decodeListener;
@@ -20,15 +24,11 @@ public class Decodificador{
 	
 	public void decodificarComando(String comando){
 		try{
-			HashMap<String, String> diccionario = new HashMap<String, String>();
-			ArrayList<String> listaUbicacion = new ArrayList<String>();
-			
-			for(int ubicaciones=0;ubicaciones<comando.length();ubicaciones++){
+			/*for(int ubicaciones=0;ubicaciones<comando.length();ubicaciones++){
 				if(comando.substring(ubicaciones, ubicaciones+1).equals("'")){
 					listaUbicacion.add(""+ubicaciones+"");
 				}
 			}
-			int ubicacion=-1;
 			
 			for(int contador=0;contador<listaUbicacion.size();contador=contador+2){
 				ubicacion=contador+1;
@@ -38,9 +38,8 @@ public class Decodificador{
 				String varReemplazar=comando.substring(varContador,varUbicacion).replace(' ','-');
 				comando=comando.replace(varTemporal,varReemplazar);
 			}
-			listaUbicacion.clear();
+			listaUbicacion.clear();*/
 			String[] comandos=comando.split(" ");
-			String accion = null;
 			
 			if(comandos.length>1){
 				accion = comandos[0]+" "+comandos[1];
@@ -48,8 +47,8 @@ public class Decodificador{
 				accion = comandos[0];
 			}
 			
-			for(int posicion=2;posicion<comandos.length;posicion++){
-				String claveValor[] = comandos[posicion].split("=");
+			for(int lugar=2;lugar<comandos.length;lugar++){
+				String claveValor[] = comandos[lugar].split("=");
 				diccionario.put(claveValor[0], claveValor[1]);
 			}
 			this.decodeListener.avisarAccionar(accion, diccionario);
