@@ -15,7 +15,7 @@ import java.util.ArrayList;
 */
 
 public abstract class AbstractAppRol{
-
+	
 	private Decodificador decodificador;
 	private boolean estadoSesion;
 
@@ -57,9 +57,9 @@ public abstract class AbstractAppRol{
 		String numeroDeLineas=this.obtenerLineas(nivel);
 		for(Downline downlineDentro : downline.getListaDownlines()){
 			System.out.println(numeroDeLineas+"-----------------------");
-			System.out.println(numeroDeLineas+"|_____Nombre: "+downlineDentro.getNombre());
-			System.out.println(numeroDeLineas+"|_____idDownline: "+downlineDentro.getIdDownline());
-			System.out.println(numeroDeLineas+"|_____Edad: "+downlineDentro.getEdad());
+			System.out.println(numeroDeLineas+"|_______Nombre: "+downlineDentro.getNombre());
+			System.out.println(numeroDeLineas+"|_______idDownline: "+downlineDentro.getIdDownline());
+			System.out.println(numeroDeLineas+"|_______Edad: "+downlineDentro.getEdad());
 			this.listarDownlines(downlineDentro, nivel+1);
 		}
 		System.out.println(numeroDeLineas+"-----------------------");

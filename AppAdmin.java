@@ -6,8 +6,10 @@ import org.brandon.utilidades.Comando;
 import org.brandon.manejadores.ManejadorAdmin;
 import org.brandon.manejadores.ManejadorMiembro;
 import org.brandon.manejadores.ManejadorProducto;
+import org.brandon.manejadores.ManejadorOferta;
 import org.brandon.beans.Admin;
 import org.brandon.beans.Miembro;
+import org.brandon.beans.Oferta;
 import org.brandon.beans.Downline;
 import org.brandon.beans.Producto;
 
@@ -47,7 +49,7 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 					}
 				}else{
 					System.out.println("Compruebe su sintaxis. Escribe || help || para obtener ayuda");
-				}
+				}	
 			break;
 			
 			case "remove member":
@@ -93,6 +95,42 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 				
 			case "exit":
 				Comando.getInstancia().exit();
+			break;
+			
+			case "add ofert":
+				Producto productooffer = ManejadorProducto.getInstancia().buscarProducto(parametros.get("nombre"));
+				Oferta oferta = new Oferta;
+				Oferta descuento = new Oferta;
+				if(parametros.size()>0 && parametros.size()<6){
+					if(productooffer!=null){
+						switch(parametros.get("tipo")){
+							case "oferta":
+								oferta.setTipo(parametros.get("tipo"));
+								oferta.setCantidad(Integer.parseInt(parametros.get("cantidad")));
+								oferta.setPrecio(Integer.parseInt(parametros.get("precio")));
+								oferta.setDescuento(0);
+								ManejadorOferta.getInstancia().agregarListaOferta(oferta);
+								ManejadorProducto.getInstancia().agregarHistorialOfertas(productooffer);
+								System.out.println("Oferta agregado satisfactoriamente.");
+							break;
+							
+							case "descuento":
+								descuento.setTipo(parametros.get("tipo"));
+								descuento.setCantidad(0));
+								descuento.setPrecio(0));
+								descuento.setDescuento(Integer.parseInt(parametros.get("descuento"));
+								
+							break;
+							
+							default:
+								System.out.println("El tipo de oferta no es valido");
+						}
+					}else{
+						System.out.println("Producto se encuentra.");
+					}
+				}else{
+					System.out.println("Le Faltaron parametros. Escriba ||help|| para obtener ayuda");
+				}	
 			break;
 				
 			case "":

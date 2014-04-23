@@ -10,7 +10,7 @@ public class Downline{
 
 	private ArrayList<Downline> listaDownlines;
 	private String nombre;
-	private int idDownline;
+	private String idDownline;
 	private int edad;
 	
 	public void setListaDownlines(ArrayList<Downline> listaDownlines){
@@ -27,10 +27,10 @@ public class Downline{
 		this.nombre=nombre;
 	}
 	
-	public void setIdDownline(int idDownline){
+	public void setIdDownline(String idDownline){
 		this.idDownline=idDownline;
 	}
-	public int getIdDownline(){
+	public String getIdDownline(){
 		return this.idDownline;
 	}
 	

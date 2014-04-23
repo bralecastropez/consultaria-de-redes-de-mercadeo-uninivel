@@ -176,7 +176,7 @@ public class AppMiembro extends AbstractAppRol implements DecodeListener{
 				if(parametros.size()>1 /*&& parametros.size()<5*/){
 					Downline downline = new Downline();
 					downline.setNombre(parametros.get("nombre"));
-					downline.setIdDownline(Integer.parseInt(parametros.get("idDownline")));
+					downline.setIdDownline(parametros.get("idDownline"));
 					downline.setEdad(Integer.parseInt(parametros.get("edad")));
 					String[] ruta = parametros.get("down").split(",");
 					if(parametros.get("nombre")!=null && parametros.get("edad")!=null /*&& parametros.get("idDowline")!=null*/ && parametros.get("down")!=null){

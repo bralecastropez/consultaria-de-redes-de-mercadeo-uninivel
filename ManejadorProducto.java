@@ -14,12 +14,15 @@ public class ManejadorProducto{
 	private ArrayList<Producto> listaProducto;
 	private ArrayList<Producto> historial;
 	private ArrayList<Producto> historialVentas;
+	private ArrayList<Producto> HistorialOfertas;
 	private Producto productoAutenticado;
 	private static ManejadorProducto instancia;
 	
 	private ManejadorProducto(){
 	
 		this.historial=new ArrayList<Producto>();
+		
+		this.HistorialOfertas=new ArrayList<Producto>();
 		
 		this.historialVentas=new ArrayList<Producto>();
 		
@@ -55,6 +58,13 @@ public class ManejadorProducto{
 	}
 	public void agregarHistorialVentas(Producto producto){
 		this.historialVentas.add(producto);
+	}
+	
+	public ArrayList<Producto> obtenerHistorialOfertas(){
+		return this.HistorialOfertas;
+	}
+	public void agregarHistorialOfertas(Producto producto){
+		this.HistorialOfertas.add(producto);
 	}
 	
 	public Producto buscarProducto(String nombre){
