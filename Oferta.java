@@ -5,11 +5,14 @@ package org.brandon.beans;
 * Esta clase sirve para listar ofertas.
 */
 
-public class Oferta{
+public class Oferta extends Producto{
 
 	private String tipo;
+	private String producto;
 	private int cantidad;
 	private int precio;
+	private int precioOficial;
+	private int precioOferta;
 	private int descuento;
 	
 	public String getTipo(){
@@ -17,6 +20,13 @@ public class Oferta{
 	}
 	public void setTipo(String tipo){
 		this.tipo=tipo;
+	}
+	
+	public String getProducto(){
+		return this.producto;
+	}
+	public void setProducto(String producto){
+		this.producto=producto;
 	}
 	
 	public int getCantidad(){
@@ -33,6 +43,20 @@ public class Oferta{
 		this.precio=precio;
 	}
 	
+	public int getPrecioOficial(){
+		return this.precioOficial;
+	}
+	public void setPrecioOficial(int precioOficial){
+		this.precioOficial=precioOficial;
+	}
+	
+	public int getPrecioOferta(){
+		return this.precioOferta;
+	}
+	public void setPrecioOferta(int precioOferta){
+		this.precioOferta=precioOferta;
+	}
+	
 	public int getDescuento(){
 		return this.descuento;
 	}
@@ -43,10 +67,13 @@ public class Oferta{
 	public Oferta(){
 	
 	}
-	public Oferta(String tipo, int cantidad, int precio, int descuento){
+	public Oferta(String tipo, int cantidad, int precio, int precioOficial, int precioOferta, int descuento,String producto){
 		this.setTipo(tipo);
 		this.setCantidad(cantidad);
 		this.setPrecio(precio);
+		this.setPrecioOficial(precioOficial);
+		this.setPrecioOferta(precioOferta);
 		this.setDescuento(descuento);
+		this.setProducto(producto);
 	}
 }

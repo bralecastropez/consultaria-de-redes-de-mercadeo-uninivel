@@ -67,12 +67,12 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 			break;
 				
 			case "list products":
-				if(parametros.size()>0){
+				/*if(parametros.size()>0){
 					System.out.println("");
 					System.out.println("La sintaxis correcta es : list products. Escribe || help || para obtener ayuda");
-				}else{
+				}else{*/
 					Comando.getInstancia().listarProductos();
-				}
+				//}
 			break;
 				
 			case "show product":
@@ -97,39 +97,51 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 				Comando.getInstancia().exit();
 			break;
 			
-			case "add ofert":
+			case "add offert":
 				Producto productooffer = ManejadorProducto.getInstancia().buscarProducto(parametros.get("nombre"));
-				Oferta oferta = new Oferta;
-				Oferta descuento = new Oferta;
+				Oferta oferta = new Oferta();
+				Oferta descuento = new Oferta();
 				if(parametros.size()>0 && parametros.size()<6){
 					if(productooffer!=null){
 						switch(parametros.get("tipo")){
 							case "oferta":
+								int precioOf = ManejadorProducto.getInstancia().buscarProducto(parametros.get("nombre")).getPrecio();
+								int precioOfer = ManejadorProducto.getInstancia().buscarProducto(parametros.get("nombre")).getPrecio();
 								oferta.setTipo(parametros.get("tipo"));
 								oferta.setCantidad(Integer.parseInt(parametros.get("cantidad")));
 								oferta.setPrecio(Integer.parseInt(parametros.get("precio")));
 								oferta.setDescuento(0);
+								oferta.setPrecioOficial(precioOf);
+								oferta.setPrecioOferta(precioOfer);
+								oferta.setProducto(parametros.get("nombre"));
 								ManejadorOferta.getInstancia().agregarListaOferta(oferta);
-								ManejadorProducto.getInstancia().agregarHistorialOfertas(productooffer);
-								System.out.println("Oferta agregado satisfactoriamente.");
+								System.out.println("Oferta agregada satisfactoriamente.");
 							break;
 							
 							case "descuento":
+								int precioOficial = ManejadorProducto.getInstancia().buscarProducto(parametros.get("nombre")).getPrecio();
 								descuento.setTipo(parametros.get("tipo"));
-								descuento.setCantidad(0));
-								descuento.setPrecio(0));
-								descuento.setDescuento(Integer.parseInt(parametros.get("descuento"));
-								
+								descuento.setCantidad(0);
+								descuento.setPrecio(0);
+								descuento.setPrecioOficial(precioOficial);
+								descuento.setDescuento(Integer.parseInt(parametros.get("descuento")));
+								descuento.setProducto(parametros.get("nombre"));
+								int precioOferta = ManejadorProducto.getInstancia().buscarProducto(parametros.get("nombre")).getPrecio();
+								int descuentoOferta = descuento.getDescuento();
+								int nuevoprecio=precioOficial-descuentoOferta;
+								descuento.setPrecioOferta(nuevoprecio);
+								ManejadorOferta.getInstancia().agregarListaOferta(descuento);
+								System.out.println("Descuento agregado satisfactoriamente.");
 							break;
 							
 							default:
 								System.out.println("El tipo de oferta no es valido");
 						}
 					}else{
-						System.out.println("Producto se encuentra.");
+						System.out.println("Producto no se encuentra.");
 					}
 				}else{
-					System.out.println("Le Faltaron parametros. Escriba ||help|| para obtener ayuda");
+					System.out.println("SINTAXIS: add affert nombre=[nombre del producto] tipo=[tipo de oferta]  precio=[cantidad de pago del producto] cantidad=[cantidad de pago del producto] descuento=[descuento del producto si hay]");
 				}	
 			break;
 				

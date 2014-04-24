@@ -3,7 +3,9 @@ package org.brandon.utilidades;
 import org.brandon.manejadores.ManejadorProducto;
 import org.brandon.manejadores.ManejadorAdmin;
 import org.brandon.manejadores.ManejadorMiembro;
+import org.brandon.manejadores.ManejadorOferta;
 import org.brandon.beans.Admin;
+import org.brandon.beans.Oferta;
 import org.brandon.beans.Miembro;
 import org.brandon.beans.Producto;
 
@@ -13,7 +15,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat; 
 
 /**
-*	@author Brandon Castro
+*	@author Brandon Castrow
 *	Esta clase se creo para no repetir comandos en nuestros Apps.
 */
 
@@ -58,6 +60,9 @@ public class Comando{
 		System.out.println("");
 		System.out.println("add product - Agrega un producto del stock");
 		System.out.println("SINTAXIS: add product nombre=[nombre del nuevo producto] categoria=[categoria del nuevo producto]  precio=[precio del nuevo producto]");
+		System.out.println("");
+		System.out.println("add offert - Agrega un producto del stock");
+		System.out.println("SINTAXIS: add affert nombre=[nombre del producto] tipo=[tipo de oferta]  precio=[cantidad de pago del producto] cantidad=[cantidad de pago del producto] descuento=[descuento del producto si hay]");
 		System.out.println("");
 		System.out.println("remove product - Elimina un producto del stock");
 		System.out.println("SINTAXIS: remove product nombre=[nombre del nuevo producto] categoria=[categoria del nuevo producto]  precio=[precio del nuevo producto]");
@@ -109,7 +114,7 @@ public class Comando{
 		System.out.println("add downline - Agregar un downline a tu perfil, o a downline especificado");
 		System.out.println("SINTAXIS: add downline [Datos] [down] [idDownline] [Producto]");
 		System.out.println("");
-		System.out.println("search downline - Muestra la información detallada del downline si coincide con la busqueda");
+		System.out.println("search downline - Muestra la informacion detallada del downline si coincide con la busqueda");
 		System.out.println("SINTAXIS: search downline [Datos]");
 		System.out.println("");
 		System.out.println("buy product - Comprar un producto del Stock");
@@ -126,7 +131,44 @@ public class Comando{
 	}
 	
 	public void listarProductos(){
-	
+		/*String oferta = "oferta";
+		String descuento = "descuento";
+		System.out.println("------------------------------");*/
+		System.out.println("Productos en oferta: ");
+		//String productoOferta = ManejadorOferta.getInstancia().obtenerListaOferta();
+		for(Oferta productoOferta : ManejadorOferta.getInstancia().obtenerListaOferta()){
+			System.out.println("");
+			System.out.println("Tipo de oferta: "+productoOferta.getTipo());
+			System.out.println("Producto de oferta: "+productoOferta.getProducto());
+			System.out.println("Precio de Normal: "+productoOferta.getPrecioOficial());
+			System.out.println("Precio de Oferta: "+productoOferta.getPrecioOferta());
+			System.out.println("Al : "+productoOferta.getCantidad()+" x "+productoOferta.getPrecio());
+			System.out.println("Con un descuento de : "+"Q. "+productoOferta.getDescuento()+".00");
+		}
+			/*if(ManejadorOferta.getInstancia().obtenerListaOferta().getTipo().equals(oferta)){
+				for(Oferta productoOfe : ManejadorOferta.getInstancia().obtenerListaOferta()){
+					System.out.println("");
+					System.out.println("------------------------------");
+					System.out.println("Tipo de oferta: "+productoOfe.getTipo());
+					System.out.println("Producto de oferta: "+productoOfe.getProducto());
+					System.out.println("Precio de Normal: "+productoOfe.getPrecioOficial());
+					System.out.println("Al : "+productoOfe.getCantidad()+" x "+productoOfe.getPrecio());
+					System.out.println("------------------------------");
+				}
+			}
+			if(ManejadorOferta.getInstancia().obtenerListaOferta().getTipo().equals(descuento)){
+				for(Oferta productoDes : ManejadorOferta.getInstancia().obtenerListaOferta()){
+					System.out.println("");
+					System.out.println("Tipo de oferta: "+productoDes.getTipo());
+					System.out.println("Producto de oferta: "+productoDes.getProducto());
+					System.out.println("Precio de Normal: "+productoDes.getPrecioOficial());
+					System.out.println("Precio de Oferta: "+productoDes.getPrecioOferta());
+					System.out.println("Con un descuento de : "+"Q. "+productoDes.getDescuento()+".00");
+				}
+			}*/
+		System.out.println("");
+		System.out.println("------------------------------");
+		System.out.println("Productos sin ofertas o descuentos: ");
 		for(Producto product : ManejadorProducto.getInstancia().obtenerListaProducto()){
 			System.out.println("");
 			System.out.println("nombre: "+product.getNombre());
