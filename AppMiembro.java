@@ -49,21 +49,7 @@ public class AppMiembro extends AbstractAppRol implements DecodeListener{
 			break;
 				
 			case "show product":
-				if(parametros.size()>0 && parametros.size()<2){
-					Producto productoAMostrar = ManejadorProducto.getInstancia().buscarProducto(parametros.get("nombre"));
-					if(productoAMostrar!=null){
-						System.out.println("");
-						System.out.println("Nombre: "+productoAMostrar.getNombre());
-						System.out.println("Categoria: "+productoAMostrar.getCategoria());
-						System.out.println("Precio: "+productoAMostrar.getPrecio());
-					}else{
-						System.out.println("");
-						System.out.println("El producto no existe. Escribe || help || para obtener ayuda");
-						System.out.println("");
-					}
-				}else{
-					System.out.println("Comprueba tu sintaxis. Escribe || help || para obtener ayuda");
-				}
+				Comando.getInstancia().showProduct(parametros);
 			break;
 				
 			case "exit":

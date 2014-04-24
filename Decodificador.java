@@ -4,6 +4,7 @@ import org.brandon.utilidades.eventos.DecodeListener;
 
 import java.util.HashMap;
 import java.util.ArrayList;
+import java.io.*;
 
 /**
 *	@author Brandon Castro
@@ -53,7 +54,7 @@ public class Decodificador{
 				diccionario.put(claveValor[0], claveValor[1]);
 			}
 			this.decodeListener.avisarAccionar(accion, diccionario);
-		
+			
 		}catch(ArrayIndexOutOfBoundsException ex){
 			System.out.println("");
 			System.out.println("Ingrese datos validos");

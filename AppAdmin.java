@@ -31,9 +31,11 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 	public void iniciar(){                    
 		super.iniciar();
 	}
+	
 	public void avisarAccionar(String accion, HashMap<String, String> parametros){
+	try{
 		switch(accion.trim()){
-		
+			//Este comando es para agregar miembros
 			case "add member":
 				if(parametros.size()==6){
 					Miembro miembro = new Miembro();
@@ -52,6 +54,7 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 				}	
 			break;
 			
+			//Comando para eliminar miembros
 			case "remove member":
 				if(parametros.size()>0 && parametros.size()<2){
 					Miembro miembroAEliminar = ManejadorMiembro.getInstancia().buscarMiembro(parametros.get("nick"));
@@ -66,6 +69,7 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 				}
 			break;
 				
+			//Comandos para listar productos
 			case "list products":
 				/*if(parametros.size()>0){
 					System.out.println("");
@@ -75,29 +79,19 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 				//}
 			break;
 				
+			//Comando para mostrar Productos
 			case "show product":
-				if(parametros.size()>0 && parametros.size()<2){
-					Producto productoAMostrar = ManejadorProducto.getInstancia().buscarProducto(parametros.get("nombre"));
-					if(productoAMostrar!=null){
-						System.out.println("");
-						System.out.println("Nombre: "+productoAMostrar.getNombre());
-						System.out.println("Categoria: "+productoAMostrar.getCategoria());
-						System.out.println("Precio: "+productoAMostrar.getPrecio());
-					}else{
-						System.out.println("");
-						System.out.println("El producto no existe.");
-						System.out.println("");
-				}
-				}else{
-					System.out.println("Solo se puede ingresar un producto. Escribe || help || para obtener ayuda");
-				}
+				Comando.getInstancia().showProduct(parametros);
 			break;
-				
+			
+			//Comando para Salir del Programa
 			case "exit":
 				Comando.getInstancia().exit();
 			break;
 			
+			//Agregar Ofertas a los productos
 			case "add offert":
+			try{
 				Producto productooffer = ManejadorProducto.getInstancia().buscarProducto(parametros.get("nombre"));
 				Oferta oferta = new Oferta();
 				Oferta descuento = new Oferta();
@@ -119,19 +113,24 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 							break;
 							
 							case "descuento":
-								int precioOficial = ManejadorProducto.getInstancia().buscarProducto(parametros.get("nombre")).getPrecio();
-								descuento.setTipo(parametros.get("tipo"));
-								descuento.setCantidad(0);
-								descuento.setPrecio(0);
-								descuento.setPrecioOficial(precioOficial);
 								descuento.setDescuento(Integer.parseInt(parametros.get("descuento")));
-								descuento.setProducto(parametros.get("nombre"));
-								int precioOferta = ManejadorProducto.getInstancia().buscarProducto(parametros.get("nombre")).getPrecio();
+								int precioOficial = ManejadorProducto.getInstancia().buscarProducto(parametros.get("nombre")).getPrecio();
 								int descuentoOferta = descuento.getDescuento();
 								int nuevoprecio=precioOficial-descuentoOferta;
-								descuento.setPrecioOferta(nuevoprecio);
-								ManejadorOferta.getInstancia().agregarListaOferta(descuento);
-								System.out.println("Descuento agregado satisfactoriamente.");
+								if(descuentoOferta>precioOficial){
+									System.out.println("El descuento es mucho mayor que el precio del producto.");
+								}else{
+									descuento.setTipo(parametros.get("tipo"));
+									descuento.setCantidad(0);
+									descuento.setPrecio(0);
+									descuento.setPrecioOficial(precioOficial);
+									descuento.setDescuento(Integer.parseInt(parametros.get("descuento")));
+									descuento.setProducto(parametros.get("nombre"));
+									descuento.setPrecioOferta(nuevoprecio);
+									ManejadorOferta.getInstancia().agregarListaOferta(descuento);
+									productooffer.setPrecio(nuevoprecio);
+									System.out.println("Descuento agregado satisfactoriamente.");
+								}
 							break;
 							
 							default:
@@ -142,9 +141,24 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 					}
 				}else{
 					System.out.println("SINTAXIS: add affert nombre=[nombre del producto] tipo=[tipo de oferta]  precio=[cantidad de pago del producto] cantidad=[cantidad de pago del producto] descuento=[descuento del producto si hay]");
-				}	
+				}
+			}catch (NullPointerException ex){
+				System.out.println("Ingrese todos los parametros");
+			}
 			break;
-				
+			//Comandos de Sql	
+			case "INSERT INTO":
+				System.out.println("Escribe || help || para obtener ayuda");
+			break;
+			
+			case "SELECT":
+				System.out.println("Escribe || help || para obtener ayuda");
+			break;
+			
+			case "UPDATE":
+				System.out.println("Escribe || help || para obtener ayuda");
+			break;
+			// Fin de Comandos de Sql
 			case "":
 				System.out.println("Escribe || help || para obtener ayuda");
 			break;
@@ -344,5 +358,8 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 				System.out.println("");
 				System.out.println("Compruebe su sintaxis. Escribe || help || para obtener ayuda");
 		}
+	}catch(NumberFormatException numer){
+		System.out.println("Los numeros no pueden ser mayores a 9 digitos");
+	}
 	}
 }

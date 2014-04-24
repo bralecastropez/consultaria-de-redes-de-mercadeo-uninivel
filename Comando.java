@@ -28,6 +28,7 @@ public class Comando{
 		return instancia;
 	}
 	
+	//Comando para mostrar Ayuda al Administrador.
 	public void ayudaadmin(){
 		System.out.println("Comandos que puede usar el Administrador");
 		System.out.println("");
@@ -78,12 +79,14 @@ public class Comando{
 		System.out.println("");
 	}
 	
+	//Comando para obtener hora.
 	public String getTime(){ 
 		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss"); 
 		Date date = new Date(); 
 		return dateFormat.format(date); 
 	} 
-
+	
+	//Comando de Ayuda para el Miembro
 	public void ayudamiembro(){
 		System.out.println("Comandos que puede usar el Miembro");
 		System.out.println("");
@@ -125,11 +128,13 @@ public class Comando{
 		System.out.println("");
 	}
 	
+	//Comando para salir del programa
 	public void exit(){
 		System.out.println("Gracias por utilizar mi programa");
 		System.exit(0);
 	}
 	
+	//Comando para listar Productos
 	public void listarProductos(){
 		/*String oferta = "oferta";
 		String descuento = "descuento";
@@ -180,6 +185,7 @@ public class Comando{
 		
 	}
 	
+	//Comando para mostrar las caracteristicas del administrador
 	public void showmeAdmin(){
 	
 		Admin adminAMostrar = ManejadorAdmin.getInstancia().obtenerAdminAutenticado();
@@ -190,6 +196,7 @@ public class Comando{
 		
 	}
 	
+	//Comando para mostrar las caracteristicas del miembro
 	public void showmeMiembro(){
 	
 		Miembro miembroAMostrar = ManejadorMiembro.getInstancia().obtenerMiembroAutenticado();
@@ -201,6 +208,8 @@ public class Comando{
 		System.out.println("");
 		
 	}
+	
+	//Comando para mostrar productos vendidos.
 	public void showSales(){
 		//if(parametros.size()<=0 || parametros.size()==0){
 		
@@ -230,6 +239,25 @@ public class Comando{
 				System.out.println("");
 			}
 			
+		}*/
+	}
+	
+	//Comando para mostrar Productos
+	public void showProduct(HashMap<String,String> parametros){
+		//if(parametros.size()<2){
+			Producto productoAMostrar = ManejadorProducto.getInstancia().buscarProducto(parametros.get("nombre"));
+			if(productoAMostrar!=null){
+				System.out.println("");
+				System.out.println("Nombre: "+productoAMostrar.getNombre());
+				System.out.println("Categoria: "+productoAMostrar.getCategoria());
+				System.out.println("Precio: "+productoAMostrar.getPrecio());
+			}else{
+				System.out.println("");
+				System.out.println("El producto no existe.");
+				System.out.println("");
+			}
+		/*}else{
+			System.out.println("Solo se puede ingresar un producto. Escribe || help || para obtener ayuda");
 		}*/
 	}
 }
