@@ -67,7 +67,7 @@ public class Oferta extends Producto{
 	public Oferta(){
 	
 	}
-	public Oferta(String tipo, int cantidad, int precio, int precioOficial, int precioOferta, int descuento,String producto){
+	public Oferta(String tipo, int cantidad, int precio, int precioOficial, int precioOferta, int descuento, String producto){
 		this.setTipo(tipo);
 		this.setCantidad(cantidad);
 		this.setPrecio(precio);

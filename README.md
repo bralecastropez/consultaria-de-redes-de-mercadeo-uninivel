@@ -11,11 +11,21 @@
 	agregar a tu lista de socios y obtener ganancias por ellos.
 	
 	Comandos que puede usar el Administrador
+	
 	list products - Muestra un listado de los productos
 	SINTAXIS: list products
 	
 	show product - Muestra informacion detallada de un producto.
 	SINTAXIS: show product[nombre del producto]
+	
+	"Nuevo"
+	"add offert" - agregar una oferta al producto seleccionado.
+	SINTAXIS: add offert nombre=[Nombre del Producto] tipo=[tipo de oferta[descuento / oferta]] cantidad=[cantidad de producto que se oferta] precio=[cantidad que se paga por producto] descuento=[cantidad de descuento]]
+	SINTAXIS DE UNA OFERTA: add offert nombre=producto1 tipo=oferta cantidad=5 precio=1
+		"La oferta saldria asi: El producto 1 esta en oferta al 5x1 "
+		
+	SINTAXIS DE UN DESCUENTO: add offert nombre=producto1 tipo=descuento descuento=20
+		"La oferta saldria asi: El producto 1 tiene un descuento de Q. 20.00"
 	
 	list downlines - Muestra una lista de tus downlines o del downline especificado
 	SINTAXIS: list downlines [idDownline]
