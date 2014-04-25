@@ -77,6 +77,12 @@ public class Comando{
 		System.out.println("add user - Agrega un Administrador");
 		System.out.println("SINTAXIS: add user nombre=[nombre que desea ponerle al admnistrador] password=[contrasenha del administrador] nick=[nombre de usuario del nuevo administrador]");
 		System.out.println("");
+		System.out.println("add member - Agrega un Miembro a la red");
+		System.out.println("SINTAXIS: add member nombre=[nombre que desea ponerle al admnistrador] password=[contrasenha del administrador] nick=[nombre de usuario del nuevo administrador] tarjeta=[tarjeta de credito] pin=[pin de la tarjeta de credito]");
+		System.out.println("");
+		System.out.println("remove member - Elimina un Miembro a la red");
+		System.out.println("SINTAXIS: remove member nick=[nombre de usuario del miembro]");
+		System.out.println("");
 	}
 	
 	//Comando para obtener hora.
