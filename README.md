@@ -18,7 +18,7 @@
 	show product - Muestra informacion detallada de un producto.
 	SINTAXIS: show product[nombre del producto]
 	
-	"Nuevo"
+	"Nuevo Comando"
 	"add offert" - agregar una oferta al producto seleccionado.
 	SINTAXIS: add offert nombre=[Nombre del Producto] tipo=[tipo de oferta[descuento / oferta]] cantidad=[cantidad de producto que se oferta] precio=[cantidad que se paga por producto] descuento=[cantidad de descuento]]
 	SINTAXIS DE UNA OFERTA: add offert nombre=producto1 tipo=oferta cantidad=5 precio=1
