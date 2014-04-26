@@ -35,9 +35,10 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 	public void avisarAccionar(String accion, HashMap<String, String> parametros){
 	try{
 		switch(accion.trim()){
+		
 			//Este comando es para agregar miembros
 			case "add member":
-				if(parametros.size()==6){
+				if(parametros.size()>5){
 					Miembro miembro = new Miembro();
 					if(parametros.get("nombre")!=null && parametros.get("nick")!=null && parametros.get("password")!=null && parametros.get("edad")!=null && parametros.get("tarjeta")!=null && parametros.get("pin")!=null){
 						miembro.setNombre(parametros.get("nombre"));
@@ -56,7 +57,7 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 			
 			//Comando para eliminar miembros
 			case "remove member":
-				if(parametros.size()>0 && parametros.size()<2){
+				if(parametros.size()>0){
 					Miembro miembroAEliminar = ManejadorMiembro.getInstancia().buscarMiembro(parametros.get("nick"));
 					if(miembroAEliminar!=null){
 						ManejadorMiembro.getInstancia().eliminarMiembro(miembroAEliminar);
@@ -148,7 +149,7 @@ public class AppAdmin extends AbstractAppRol implements DecodeListener{
 			break;
 			//Comandos de Sql	
 			case "INSERT INTO":
-				System.out.println("Escribe || help || para obtener ayuda");
+				
 			break;
 			
 			case "SELECT":
